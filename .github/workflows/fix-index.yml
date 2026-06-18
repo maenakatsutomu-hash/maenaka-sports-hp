@@ -1,0 +1,30 @@
+name: Fix index.html news fetch
+on:
+  workflow_dispatch:
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix news.json fetch in index.html
+        run: |
+          python3 -c "
+import re
+with open('index.html', 'r', encoding='utf-8') as f:
+    content = f.read()
+old = 'const items = await res.json();'
+new_code = 'const data = await res.json();\n      const items = Array.isArray(data) ? data : (data.items || []);'
+content = content.replace(old, new_code)
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(content)
+print('Done')
+"
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "fix: news.jsonオブジェクト形式対応"
+          git push
