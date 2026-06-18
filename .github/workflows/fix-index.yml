@@ -1,0 +1,20 @@
+name: Fix index.html news fetch
+on:
+  workflow_dispatch:
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix news.json fetch
+        run: |
+          node -e "var fs=require('fs');var c=fs.readFileSync('index.html','utf8');c=c.replace('const items = await res.json();','const data = await res.json();\n      const items = Array.isArray(data) ? data : (data.items || []);');fs.writeFileSync('index.html',c);console.log('Done');"
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "fix: news.jsonオブジェクト形式対応"
+          git push
