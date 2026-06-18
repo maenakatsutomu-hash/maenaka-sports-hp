@@ -932,7 +932,8 @@
 
     try {
       const res = await fetch('news.json?_=' + Date.now());
-      const items = await res.json();
+      const data = await res.json();
+      const items = Array.isArray(data) ? data : (data.items || []);
 
       if (!items.length) {
         list.innerHTML = '<p class="news-loading">現在お知らせはありません。</p>';
