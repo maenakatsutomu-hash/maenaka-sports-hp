@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お知らせ詳細 | マエナカスポーツ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="service-common.css">
+  <style>
+    body { background: #fafafa; }
+    .news-detail-wrap {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 24px 80px;
+    }
+    .news-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #3a7b52;
+      font-size: 0.9rem;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+    .news-back:hover { text-decoration: underline; }
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .news-cat {
+      background: #3a7b52;
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 2px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .news-date {
+      color: #888;
+      font-size: 0.85rem;
+    }
+    .news-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+    }
+    .news-image {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 32px;
+    }
+    .news-body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #333;
+    }
+    .news-not-found {
+      text-align: center;
+      padding: 80px 0;
+      color: #888;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-en">MAENAKA SPORTS</span>
+        <span class="logo-ja">マエナカスポーツ</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <a href="kau.html">かう</a>
+        <a href="tsukuru.html">つくる</a>
+        <a href="kariru.html">かりる</a>
+        <a href="suru.html">する</a>
+        <a href="tsunagaru.html">つながる</a>
+        <a href="index.html#news">お知らせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="news-detail-wrap">
+      <a href="index.html#news" class="news-back">← お知らせ一覧に戻る</a>
+      <div id="news-detail-content">
+        <p class="news-not-found">読み込み中...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-logo">MAENAKA SPORTS</p>
+      <p class="footer-address">〒669-1321 兵庫県三田市南が丘2丁目 | TEL: 079-563-XXXX</p>
+      <p class="footer-copy">© 2025 マエナカスポーツ. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="service-common.js"></script>
+  <script>
+    (async () => {
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id');
+      const container = document.getElementById('news-detail-content');
+
+      if (!id) {
+        container.innerHTML = '<p class="news-not-found">記事が見つかりません。</p>';
+        return;
+      }
+
+      try {
+        const res = await fetch('news.json?_=' + Date.now());
+        const items = await res.json();
+        const item = items.find(n => n.id === id);
+
+        if (!item) {
+          container.innerHTML = '<p class="news-not-found">記事が見つかりません。</p>';
+          return;
+        }
+
+        document.title = item.title + ' | マエナカスポーツ';
+
+        const imgHtml = item.image
+          ? `<img class="news-image" src="${item.image}" alt="${item.title}">`
+          : '';
+
+        const bodyHtml = item.body
+          .split('\n')
+          .map(p => p.trim() ? `<p>${p}</p>` : '')
+          .join('');
+
+        container.innerHTML = `
+          <div class="news-meta">
+            <span class="news-cat">${item.category}</span>
+            <span class="news-date">${item.date}</span>
+          </div>
+          <h1 class="news-title">${item.title}</h1>
+          ${imgHtml}
+          <div class="news-body">${bodyHtml}</div>
+        `;
+      } catch (e) {
+        container.innerHTML = '<p class="news-not-found">読み込みに失敗しました。</p>';
+      }
+    })();
+  </script>
+</body>
+</html>

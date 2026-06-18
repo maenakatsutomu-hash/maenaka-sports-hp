@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="マエナカスポーツのスポーツ教室・フィットネスプログラム。幼児体操教室からパーソナルジムまで、三田市で体を動かす5つのプログラム。">
+  <title>するスポーツ｜マエナカスポーツ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="service-common.css">
+  <style>
+    /* プログラムロゴ */
+    .prog-logo {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+    }
+    .prog-logo img {
+      max-height: 48px;
+      max-width: 220px;
+      width: auto;
+      object-fit: contain;
+    }
+    .prog-logo-css-fitsme {
+      font-style: italic;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #e07c82;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .prog-logo-css-kobito {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+    .prog-logo-css-kobito span:nth-child(1)  { color: #e31e24; }
+    .prog-logo-css-kobito span:nth-child(2)  { color: #f5821f; }
+    .prog-logo-css-kobito span:nth-child(3)  { color: #ffd400; }
+    .prog-logo-css-kobito span:nth-child(4)  { color: #00a650; }
+    .prog-logo-css-kobito span:nth-child(5)  { color: #0072bc; }
+    .prog-logo-css-kobito span:nth-child(6)  { color: #92278f; }
+    .prog-logo-css-kobito span:nth-child(7)  { color: #e31e24; }
+    .prog-logo-css-kobito .kobito-sep        { color: #555; margin: 0 4px; font-size: 1.2rem; }
+    .prog-logo-css-kobito span:nth-child(9)  { color: #f5821f; }
+    .prog-logo-css-kobito span:nth-child(10) { color: #ffd400; }
+    .prog-logo-css-kobito span:nth-child(11) { color: #00a650; }
+    .prog-logo-css-kobito span:nth-child(12) { color: #0072bc; }
+    .prog-logo-css-kobito span:nth-child(13) { color: #92278f; }
+
+    /* プログラムカード */
+    .program-list {
+      padding: 64px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .program-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .program-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+    .prog-header {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      text-align: center;
+      gap: 12px;
+    }
+    .program-card:nth-child(1) .prog-header { background: #3a7b52; }
+    .program-card:nth-child(2) .prog-header { background: #0066cc; }
+    .program-card:nth-child(3) .prog-header { background: #e8316e; }
+    .program-card:nth-child(4) .prog-header { background: #111; }
+    .program-card:nth-child(5) .prog-header { background: #f5c500; }
+    .prog-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1;
+    }
+    .prog-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .prog-body {
+      padding: 32px 36px;
+      background: #fff;
+    }
+    .prog-body h3 {
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .prog-body p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.85;
+      margin-bottom: 20px;
+      max-width: 680px;
+    }
+    .prog-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .prog-points span {
+      background: #f5f5f3;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #444;
+    }
+    .prog-btn {
+      display: inline-block;
+      background: #111;
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .prog-btn:hover { background: #333; }
+    .prog-btn-ext { background: #3a7b52; }
+    .prog-btn-ext:hover { background: #2c5f3e; }
+
+    @media (max-width: 640px) {
+      .program-card { grid-template-columns: 1fr; }
+      .prog-header { flex-direction: row; padding: 16px 24px; border-radius: 0; gap: 12px; }
+      .prog-num { font-size: 2rem; }
+      .prog-body { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+<header id="header" class="scrolled">
+  <div class="header-inner">
+    <a href="index.html" class="logo-wrap"><div class="logo-icon">MS</div><div class="logo-text-wrap"><strong>マエナカスポーツ</strong><span>MAENAKA SPORTS · SANDA</span></div></a>
+    <nav class="header-nav">
+      <a href="index.html#services">サービス</a><a href="index.html#about">店舗紹介</a><a href="index.html#about">会社概要</a><a href="index.html#access">アクセス</a>
+      <a href="tel:0795645570" class="header-cta">📞 079-564-5570</a>
+    </nav>
+    <div class="hbg" onclick="openMM()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+<div id="mmenu" onclick="if(event.target===this)closeMM()">
+  <div class="mmenu-panel"><button class="mmenu-close" onclick="closeMM()">✕</button><a href="index.html#services" onclick="closeMM()">サービス</a><a href="index.html#about" onclick="closeMM()">店舗紹介</a><a href="index.html#about" onclick="closeMM()">会社概要</a><a href="index.html#access" onclick="closeMM()">アクセス</a><a href="tel:0795645570" class="mmenu-cta">📞 今すぐ電話する</a></div>
+</div>
+
+<div class="page-hero">
+  <img src="svc-suru-hero.jpg" alt="フィットネス・スポーツ教室">
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <a href="index.html" class="breadcrumb">← トップへ戻る</a>
+    <div class="service-num">04</div>
+    <h1>するスポーツ</h1>
+    <p>スポーツ教室・フィットネスプログラムに参加する</p>
+  </div>
+</div>
+
+<main class="service-main">
+  <div class="service-intro reveal">
+    <h2>あなたにぴったりの<br>スポーツ・フィットネスがある</h2>
+    <p>マエナカスポーツでは、子どもから大人まで、さまざまなニーズに応える5つのプログラムを提供しています。幼児向け体操教室からパーソナルジムまで、三田市を拠点に「動く習慣」をサポートします。詳しくは各プログラムのページまたは店頭スタッフへお問い合わせください。</p>
+  </div>
+
+  <div class="program-list">
+
+    <div class="program-card reveal">
+      <div class="prog-header">
+        <div class="prog-num">01</div>
+        <div class="prog-tag">幼児向け<br>体操教室</div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-logo">
+          <div class="prog-logo-css-kobito"><span>K</span><span>O</span><span>B</span><span>I</span><span>T</span><span>O</span><span class="kobito-sep"> </span><span>S</span><span>E</span><span>K</span><span>A</span><span>I</span></div>
+        </div>
+        <h3>あそぶをまなぶ　こびとの世界</h3>
+        <p>子どもの「運動音痴」がみるみるよくなる最大5人までの運動教室。からだ・こころ・頭脳をバランスよく発達させるために欠かせない７つの能力をデータに基づき、150種類を超える遊びを通じて鍛えます。</p>
+        <div class="prog-points">
+          <span>🔢 最大5名の少人数制</span>
+          <span>🎮 150種類以上の遊び</span>
+          <span>📊 データに基づく指導</span>
+          <span>🧠 7つの能力を育成</span>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;color:#888;margin-bottom:8px;">▶ こびとの世界とは？</div>
+          <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
+            <iframe src="https://www.youtube.com/embed/DkOwV4usBP4" title="こびとの世界 紹介動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+          </div>
+        </div>
+        <a href="index.html#access" class="prog-btn">📍 詳しくは店頭で</a>
+      </div>
+    </div>
+
+    <div class="program-card reveal">
+      <div class="prog-header">
+        <div class="prog-num">02</div>
+        <div class="prog-tag">ヒップ<br>トレーニング</div>
+      </div>
+      <div class="prog-body">
+        <h3>美しく強いお尻づくり専門店「ストロングヒップ」</h3>
+        <p>専用ヒップバンドを装着して、ソフト・ミディアム・ハードの３つのステップでトレーニングをおこない、理想のおしりをつくります。</p>
+        <div class="prog-points">
+          <span>🩺 専用ヒップバンド使用</span>
+          <span>📈 3ステップで着実に変化</span>
+        </div>
+        <a href="https://stronghip.amebaownd.com/" target="_blank" rel="noopener" class="prog-btn prog-btn-ext">🔗 公式サイトを見る</a>
+      </div>
+    </div>
+
+    <div class="program-card reveal">
+      <div class="prog-header">
+        <div class="prog-num">03</div>
+        <div class="prog-tag">女性専用<br>フィットネス</div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-logo">
+          <div class="prog-logo-css-fitsme">FITS ME</div>
+        </div>
+        <h3>女性専用フィットネスジム「タニタフィッツミー 三田フラワータウン店」</h3>
+        <p>健康総合企業タニタがプロデュースする、女性専用30分フィットネス。効率的に体づくりができるプログラムで、忙しい女性でも続けやすい仕組みが整っています。</p>
+        <div class="prog-points">
+          <span>👩 女性専用</span>
+          <span>⏱ 30分で完結</span>
+          <span>🏢 タニタプロデュース</span>
+        </div>
+        <a href="https://www.tanita.co.jp/fitsme/" target="_blank" rel="noopener" class="prog-btn prog-btn-ext">🔗 公式サイトを見る</a>
+      </div>
+    </div>
+
+    <div class="program-card reveal">
+      <div class="prog-header">
+        <div class="prog-num">04</div>
+        <div class="prog-tag">24時間<br>プライベートジム</div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-logo">
+          <img src="https://static.wixstatic.com/media/3e8150_d2f59c75f9e4448ca3740fcb7c25db16~mv2.png" alt="GYMBOX" style="background:#111;padding:6px 14px;border-radius:6px;">
+        </div>
+        <h3>24時間365日 会員制プライベートジム「GYM BOX」</h3>
+        <p>24時間365日、いつでも好きな時間にトレーニングできる会員制プライベートジム。5坪の小さなスペースながら、オーナーが厳選した最新トレーニングマシンが揃う本格ジム。完全個室なので、他人の目を気にせず気軽に利用できます。</p>
+        <div class="prog-points">
+          <span>🕐 24時間365日利用可</span>
+          <span>🔒 完全個室</span>
+          <span>🏋️ 最新マシン完備</span>
+          <span>📱 ネット予約対応</span>
+        </div>
+        <a href="https://www.gymbox-24.com/" target="_blank" rel="noopener" class="prog-btn prog-btn-ext">🔗 公式サイトを見る</a>
+      </div>
+    </div>
+
+    <div class="program-card reveal">
+      <div class="prog-header">
+        <div class="prog-num">05</div>
+        <div class="prog-tag">パーソナル<br>トレーニング</div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-logo">
+          <img src="https://static.wixstatic.com/media/670663_b47e4a04479d410389923be971cdb821.png" alt="myスポット by マエスポ">
+        </div>
+        <h3>あなたにfitするfitness「myスポット」</h3>
+        <p>10,000人の心と体を変えたフィジカルトレーナーが、あなたにFitしたトレーニングを創ります。一人ひとりの体質・目標・ライフスタイルに合わせたオーダーメイドプログラムで、確実に変わる体験を。</p>
+        <div class="prog-points">
+          <span>👤 完全オーダーメイド</span>
+          <span>💯 10,000人の実績</span>
+        </div>
+        <a href="https://myspotbymaespo.wixsite.com/myspot" target="_blank" rel="noopener" class="prog-btn prog-btn-ext">🔗 公式サイトを見る</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="service-cta reveal">
+    <h2>最新スケジュールは<br>LINEで配信中</h2>
+    <p>お友達登録で最新情報をいち早くお届けします</p>
+    <div class="cta-btns">
+      <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="btn-g">💬 LINE登録する</a>
+      <a href="tel:0795645570" class="btn-ghost">📞 電話で問い合わせ</a>
+    </div>
+  </div>
+
+  <div class="other-services reveal">
+    <h2 class="section-h2">他のサービスも見る</h2>
+    <div class="other-grid">
+      <a href="kau.html" class="other-card"><img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&q=70" alt="かうスポーツ"><div class="other-overlay"><span>01 かうスポーツ</span></div></a>
+      <a href="tsukuru.html" class="other-card"><img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=400&q=70" alt="つくるスポーツ"><div class="other-overlay"><span>02 つくるスポーツ</span></div></a>
+      <a href="kariru.html" class="other-card"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=70" alt="かりるスポーツ"><div class="other-overlay"><span>03 かりるスポーツ</span></div></a>
+      <a href="tsunagaru.html" class="other-card"><img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=70" alt="つながるスポーツ"><div class="other-overlay"><span>05 つながるスポーツ</span></div></a>
+    </div>
+  </div>
+</main>
+
+<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo-icon">MS</div><div class="footer-logo-text">マエナカスポーツ</div><p>三田市南が丘に40年以上根ざした地域密着型スポーツ専門店。</p></div><div class="footer-col"><h4>Services</h4><ul><li><a href="kau.html">かうスポーツ</a></li><li><a href="tsukuru.html">つくるスポーツ</a></li><li><a href="kariru.html">かりるスポーツ</a></li><li><a href="suru.html">するスポーツ</a></li><li><a href="tsunagaru.html">つながるスポーツ</a></li></ul></div><div class="footer-col"><h4>Contact</h4><ul><li><a href="index.html#about">会社概要</a></li><li><a href="tel:0795645570">079-564-5570</a></li><li><a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener">LINE公式</a></li><li><a href="index.html#access">アクセス・地図</a></li></ul></div></div><div class="footer-bottom"><p>© 2024 株式会社マエナカスポーツ. All rights reserved.</p></div></div></footer>
+<script src="service-common.js"></script>
+</body>
+</html>

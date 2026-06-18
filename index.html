@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="三田市の地域密着型スポーツ専門店マエナカスポーツ。スポーツ用品販売・ユニフォーム製作・レンタル・教室・チーム紹介まで。">
+  <title>マエナカスポーツ｜三田市のスポーツ専門店</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+      color: #1a1a1a; background: #fff; overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== HEADER ===== */
+    #header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid #e8e6df;
+      padding: 0 32px;
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.3s;
+    }
+    #header.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+    .header-inner {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      max-width: 1280px; margin: 0 auto;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: #3a7b52;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; color: #fff; letter-spacing: 0.05em;
+    }
+    .logo-text-wrap strong { display: block; font-size: 0.92rem; font-weight: 900; color: #1a1a1a; line-height: 1.2; }
+    .logo-text-wrap span { font-size: 0.62rem; color: #aaa; letter-spacing: 0.08em; }
+    .header-nav { display: flex; align-items: center; gap: 2px; }
+    .header-nav a {
+      padding: 8px 13px; font-size: 0.8rem; font-weight: 700;
+      color: #555; border-radius: 4px; transition: all 0.2s;
+    }
+    .header-nav a:hover { background: #f5f4f0; color: #1a1a1a; }
+    .header-cta {
+      border: 1.5px solid #3a7b52 !important; color: #3a7b52 !important;
+      border-radius: 4px !important; padding: 7px 16px !important;
+    }
+    .header-cta:hover { background: #3a7b52 !important; color: #fff !important; }
+    .hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hbg span { width: 26px; height: 2px; background: #1a1a1a; border-radius: 2px; }
+
+    /* ===== MOBILE MENU ===== */
+    #mmenu { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.4); }
+    #mmenu.open { display: block; }
+    .mmenu-panel {
+      position: absolute; top: 0; right: 0;
+      width: min(320px, 90vw); height: 100%;
+      background: #fff; padding: 28px 24px;
+      display: flex; flex-direction: column; overflow-y: auto;
+    }
+    .mmenu-close { align-self: flex-end; background: none; border: none; font-size: 1.6rem; cursor: pointer; margin-bottom: 24px; color: #1a1a1a; }
+    .mmenu-panel a { display: block; padding: 16px 8px; font-size: 1rem; font-weight: 700; border-bottom: 1px solid #f0f0f0; color: #1a1a1a; }
+    .mmenu-cta { margin-top: 20px; background: #3a7b52; color: #fff !important; text-align: center; border-radius: 4px; padding: 16px !important; border: none !important; }
+
+    /* ===== HERO ===== */
+    #hero { position: relative; height: 85vh; min-height: 540px; max-height: 860px; overflow: hidden; background: #111; }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.32) 55%, rgba(0,0,0,0.10) 100%);
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.7); margin-bottom: 18px;
+    }
+    .hero-content { position: absolute; z-index: 10; left: 56px; bottom: 80px; max-width: 560px; }
+    .hero-h1 {
+      font-size: clamp(1.75rem, 3vw, 3rem);
+      font-weight: 900; color: #fff; line-height: 1.28;
+      letter-spacing: -0.02em; margin-bottom: 14px; white-space: nowrap;
+    }
+    .hero-sub { font-size: clamp(0.8rem, 1.1vw, 0.9rem); color: rgba(255,255,255,0.8); line-height: 1.9; margin-bottom: 10px; }
+    .hero-tagline { font-family: 'Bebas Neue', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; color: #ff4040; display: block; margin-bottom: 28px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-hero-g {
+      background: #3a7b52; color: #fff; padding: 12px 28px; border-radius: 4px;
+      font-size: 0.88rem; font-weight: 700; transition: background 0.2s, transform 0.15s;
+      border: 1.5px solid #3a7b52;
+    }
+    .btn-hero-g:hover { background: #2c5f3e; transform: translateY(-1px); }
+    .btn-hero-o {
+      border: 1.5px solid rgba(255,255,255,0.5); color: #fff;
+      padding: 11px 24px; border-radius: 4px;
+      font-size: 0.88rem; font-weight: 700; transition: all 0.2s;
+    }
+    .btn-hero-o:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.85); }
+    .scroll-hint {
+      position: absolute; bottom: 28px; right: 36px; z-index: 10;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.38); font-size: 0.65rem; letter-spacing: 0.12em;
+    }
+    .scroll-hint .line { width: 1px; height: 40px; background: rgba(255,255,255,0.18); position: relative; overflow: hidden; }
+    .scroll-hint .line::after {
+      content: ''; position: absolute; top: -100%; left: 0;
+      width: 100%; height: 100%; background: #3a7b52;
+      animation: scrollline 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollline { to { top: 100%; } }
+
+    /* ===== SPORT CATEGORIES ===== */
+    #sport-cats { background: #fff; border-bottom: 1px solid #e8e6df; }
+    .sport-cats-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 32px;
+      display: grid; grid-template-columns: repeat(8, 1fr);
+    }
+    .sport-cat {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 9px; padding: 22px 10px;
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.05em;
+      color: #777; border-right: 1px solid #f0ede6;
+      cursor: default; transition: color 0.2s, background 0.2s;
+    }
+    .sport-cat:last-child { border-right: none; }
+    .sport-cat:hover { color: #3a7b52; background: #f4faf7; }
+    .sport-cat svg { width: 27px; height: 27px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar { background: #f7f6f3; border-bottom: 1px solid #e8e6df; display: flex; }
+    .stats-bar-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; }
+    .stat-item { padding: 22px 18px; border-right: 1px solid #e8e6df; text-align: center; }
+    .stat-item:last-child { border-right: none; }
+    .stat-pre { font-size: 0.6rem; color: #bbb; letter-spacing: 0.18em; margin-bottom: 2px; text-transform: uppercase; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: #3a7b52; line-height: 1; letter-spacing: 0.02em; }
+    .svc-arrow-link { display: block; }
+    .stat-label { font-size: 0.68rem; color: #aaa; margin-top: 4px; letter-spacing: 0.06em; }
+    a.stat-item { text-decoration: none; cursor: pointer; transition: background 0.2s; }
+    a.stat-item:hover { background: #f0efe9; }
+    a.stat-item:hover .stat-num { color: #2c5f3e; }
+
+    /* ===== SECTION UTILS ===== */
+    .sec { padding: 84px 32px; max-width: 1280px; margin: 0 auto; }
+    .sec-tag {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #3a7b52;
+      margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .sec-tag::before { content: ''; display: inline-block; width: 16px; height: 1.5px; background: #3a7b52; flex-shrink: 0; }
+    .sec-title { font-size: clamp(1.65rem, 3.2vw, 2.6rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 14px; }
+    .sec-desc { font-size: 0.9rem; color: #666; line-height: 1.85; max-width: 460px; }
+
+    /* ===== SERVICES ===== */
+    #services { background: #f7f6f3; padding: 84px 0; }
+    .services-wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    .services-header { margin-bottom: 40px; }
+    .services-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+
+    /* カード: iCas風 縦長 写真上・テキスト下 */
+    .svc-card {
+      border-radius: 6px; overflow: hidden;
+      background: #fff; border: 1px solid #e8e6df;
+      cursor: pointer; display: flex; flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s;
+      text-decoration: none;
+    }
+    .svc-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.09); transform: translateY(-3px); }
+    /* 古いgrid-column指定を無効化 */
+    .svc-card:first-child, .svc-card:nth-child(2) { grid-column: auto; grid-row: auto; }
+    .svc-photo { overflow: hidden; flex-shrink: 0; }
+    .svc-img {
+      width: 100%; aspect-ratio: 3 / 4;
+      object-fit: cover; display: block;
+      transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .svc-card:hover .svc-img { transform: scale(1.04); }
+    .svc-overlay { display: none; }
+    .svc-body { padding: 14px 16px 18px; flex: 1; }
+    .svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; color: #3a7b52; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .svc-name { font-size: 0.92rem; font-weight: 900; color: #1a1a1a; line-height: 1.35; }
+    .svc-sub { font-size: 0.78rem; color: #888; line-height: 1.6; margin-top: 5px; }
+    .svc-arrow { display: none; }
+
+    /* ===== ABOUT ===== */
+    #about { background: #fff; }
+    .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 580px; }
+    .about-img-col { position: relative; overflow: hidden; }
+    .about-img-col img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+    .about-img-col:hover img { transform: scale(1.02); }
+    .about-badge-float {
+      position: absolute; bottom: 28px; left: 28px;
+      background: #fff; border-radius: 6px; padding: 16px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.11);
+    }
+    .about-badge-float .big { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: #3a7b52; line-height: 1; }
+    .about-badge-float .small { font-size: 0.73rem; color: #999; margin-top: 2px; font-weight: 700; }
+    .about-text-col { background: #f7f6f3; color: #1a1a1a; display: flex; align-items: center; }
+    .about-text-inner { padding: 68px 56px; }
+    .about-text-inner .sec-tag { color: #3a7b52; }
+    .about-text-inner .sec-tag::before { background: #3a7b52; }
+    .about-text-inner .sec-title { color: #1a1a1a; }
+    .about-text-inner p { color: #555; line-height: 1.9; margin-bottom: 14px; font-size: 0.9rem; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 26px 0; }
+    .feat-item { display: flex; align-items: flex-start; gap: 10px; }
+    .feat-icon { width: 30px; height: 30px; flex-shrink: 0; background: #e8f3ed; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .feat-item span { font-size: 0.78rem; color: #555; line-height: 1.5; padding-top: 5px; }
+    .btn-white {
+      display: inline-block; border: 1.5px solid #3a7b52; color: #3a7b52;
+      padding: 11px 26px; border-radius: 4px; font-size: 0.86rem; font-weight: 700;
+      transition: all 0.2s; margin-top: 8px;
+    }
+    .btn-white:hover { background: #3a7b52; color: #fff; }
+
+    /* ===== FULL BLEED ===== */
+    .fullbleed { position: relative; height: 460px; overflow: hidden; }
+    .fullbleed img { width: 100%; height: 100%; object-fit: cover; }
+    .fullbleed-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.46); display: flex; align-items: center; }
+    .fullbleed-text { max-width: 1280px; margin: 0 auto; padding: 0 32px; color: #fff; }
+    .fullbleed-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 6vw, 5.2rem); line-height: 0.95; letter-spacing: 0.01em; margin-bottom: 18px; }
+    .fullbleed-text h2 span { color: #3a7b52; }
+    .fullbleed-text p { font-size: 0.92rem; color: rgba(255,255,255,0.78); max-width: 420px; line-height: 1.85; }
+
+    /* ===== BRANDS ===== */
+    #brands { background: #fff; padding: 48px 0; overflow: hidden; border-top: 1px solid #e8e6df; border-bottom: 1px solid #e8e6df; }
+    .brands-title { text-align: center; font-size: 0.7rem; letter-spacing: 0.15em; color: #ccc; text-transform: uppercase; margin-bottom: 22px; }
+    .marquee-wrap { overflow: hidden; }
+    .marquee-track { display: flex; gap: 0; animation: marquee 22s linear infinite; width: max-content; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .brand-chip { flex-shrink: 0; padding: 10px 26px; font-size: 0.9rem; font-weight: 900; color: #555; letter-spacing: 0.04em; border-right: 1px solid #e8e6df; white-space: nowrap; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* ===== NEWS ===== */
+    #news { background: #f7f6f3; }
+    .news-list { margin-top: 44px; display: flex; flex-direction: column; gap: 0; }
+    .news-item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 20px 0; border-bottom: 1px solid #e4e2da;
+      cursor: pointer; text-decoration: none; color: inherit;
+      transition: background 0.15s;
+    }
+    .news-item:first-child { border-top: 1px solid #e4e2da; }
+    .news-item:hover { background: rgba(58,123,82,0.04); }
+    .news-thumb {
+      width: 96px; height: 72px; flex-shrink: 0;
+      object-fit: cover; border-radius: 4px; background: #ddd;
+    }
+    .news-thumb-placeholder {
+      width: 96px; height: 72px; flex-shrink: 0;
+      background: #e4e2da; border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: #bbb; font-size: 0.7rem;
+    }
+    .news-item-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+    .news-cat {
+      font-size: 0.67rem; font-weight: 700; letter-spacing: 0.06em;
+      color: #fff; background: #3a7b52; padding: 2px 8px; border-radius: 2px;
+    }
+    .news-date { font-size: 0.72rem; color: #aaa; }
+    .news-item-title { font-size: 0.95rem; font-weight: 700; line-height: 1.5; color: #1a1a1a; }
+    .news-more-wrap { text-align: center; margin-top: 36px; }
+    .news-loading { text-align: center; padding: 32px; color: #aaa; font-size: 0.9rem; }
+
+    /* ===== ACCESS ===== */
+    #access { background: #1a1a1a; padding: 0; }
+    .access-layout { display: grid; grid-template-columns: 1fr 1fr; }
+    .access-map { height: 500px; }
+    .access-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .access-info { padding: 60px 52px; color: #fff; display: flex; flex-direction: column; justify-content: center; }
+    .access-info .sec-tag { color: #3a7b52; }
+    .access-info .sec-tag::before { background: #3a7b52; }
+    .access-info .sec-title { color: #fff; margin-bottom: 30px; }
+    .info-rows { display: flex; flex-direction: column; gap: 0; }
+    .info-row { display: flex; gap: 16px; align-items: flex-start; padding: 13px 0; border-bottom: 1px solid #282828; }
+    .info-row:first-child { border-top: 1px solid #282828; }
+    .info-icon { font-size: 1rem; width: 20px; flex-shrink: 0; margin-top: 1px; }
+    .info-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; color: #3a7b52; width: 66px; flex-shrink: 0; margin-top: 2px; text-transform: uppercase; }
+    .info-val { font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .access-btns { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+    .btn-g { display: inline-block; background: #3a7b52; color: #fff; padding: 11px 22px; border-radius: 4px; font-size: 0.82rem; font-weight: 700; transition: background 0.2s; }
+    .btn-g:hover { background: #2c5f3e; }
+    .btn-ghost { display: inline-block; border: 1px solid #3a3a3a; color: rgba(255,255,255,0.6); padding: 11px 22px; border-radius: 4px; font-size: 0.82rem; font-weight: 700; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: #fff; color: #fff; }
+
+    /* ===== CTA ===== */
+    #cta { background: #3a7b52; padding: 84px 32px; text-align: center; position: relative; overflow: hidden; }
+    #cta::before { content: 'SPORTS'; font-family: 'Bebas Neue', sans-serif; font-size: 22vw; color: rgba(255,255,255,0.06); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; letter-spacing: 0.1em; }
+    #cta h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 5vw, 4.2rem); color: #fff; line-height: 1.05; margin-bottom: 12px; position: relative; z-index: 1; letter-spacing: 0.01em; }
+    #cta p { color: rgba(255,255,255,0.82); font-size: 0.92rem; margin-bottom: 34px; position: relative; z-index: 1; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-cta-dark { background: #1a1a1a; color: #fff; padding: 13px 34px; border-radius: 4px; font-size: 0.9rem; font-weight: 700; transition: background 0.2s; }
+    .btn-cta-dark:hover { background: #333; }
+    .btn-cta-wh { background: rgba(255,255,255,0.14); color: #fff; border: 1.5px solid rgba(255,255,255,0.4); padding: 12px 30px; border-radius: 4px; font-size: 0.9rem; font-weight: 700; transition: all 0.2s; }
+    .btn-cta-wh:hover { background: rgba(255,255,255,0.24); border-color: #fff; }
+
+    /* ===== FOOTER ===== */
+    footer { background: #111; color: rgba(255,255,255,0.48); padding: 60px 32px 28px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; border-bottom: 1px solid #1e1e1e; }
+    .footer-brand p { font-size: 0.8rem; line-height: 1.85; margin-top: 14px; }
+    .footer-logo-text { color: #fff; font-weight: 900; font-size: 0.92rem; margin-top: 8px; }
+    .footer-col h4 { color: #fff; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 0.8rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #3a7b52; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 0.74rem; }
+    .socials { display: flex; gap: 8px; }
+    .social-btn { width: 36px; height: 36px; border: 1px solid #222; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.88rem; transition: all 0.2s; }
+    .social-btn:hover { border-color: #3a7b52; background: #3a7b52; color: #fff; }
+
+    /* ===== ANIMATIONS ===== */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+    .reveal-right.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1200px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .about-text-inner { padding: 52px 40px; }
+    }
+    @media (max-width: 900px) {
+      .sport-cats-inner { grid-template-columns: repeat(4, 1fr); }
+      .sport-cat:nth-child(4) { border-right: none; }
+      .news-thumb { width: 80px; height: 60px; }
+      .access-layout { grid-template-columns: 1fr; }
+      .access-map { height: 260px; }
+      .access-info { padding: 36px 28px; }
+    }
+    @media (max-width: 768px) {
+      #header { padding: 0 20px; }
+      .header-nav { display: none; }
+      .hbg { display: flex; }
+      #hero { height: 75vh; min-height: 450px; }
+      .hero-content { left: 0; right: 0; bottom: 0; padding: 20px 20px 72px; max-width: 100%; }
+      .hero-h1 { white-space: normal; font-size: clamp(1.45rem, 5.5vw, 1.85rem); line-height: 1.3; }
+      .hero-sub { font-size: 0.78rem; }
+      .btn-hero-g, .btn-hero-o { padding: 10px 18px; font-size: 0.83rem; }
+      .scroll-hint { display: none; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-num { font-size: 2rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .about-layout { grid-template-columns: 1fr; }
+      .about-img-col { height: 280px; }
+      .about-text-inner { padding: 36px 20px; }
+      .about-badge-float { left: 16px; bottom: 16px; }
+      .fullbleed { height: 260px; }
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .sec { padding: 56px 20px; }
+      .services-wrap { padding: 0 20px; }
+      .sec-title { font-size: clamp(1.4rem, 5.5vw, 1.8rem); }
+    }
+    @media (max-width: 540px) {
+      .sport-cats-inner { grid-template-columns: repeat(4, 1fr); }
+      .sport-cat { padding: 16px 6px; font-size: 0.59rem; }
+    }
+    @media (max-width: 400px) {
+      .hero-h1 { font-size: 1.3rem; }
+      .stat-num { font-size: 1.75rem; }
+    }
+
+    /* ===== STORY (初代+2代目 2行レイアウト) ===== */
+    #story { background: #1a120b; position: relative; }
+    #story::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' fill='rgba(255,255,255,0.025)'/%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .story-row { display: grid; grid-template-columns: 1fr 1.5fr; min-height: 520px; border-bottom: 1px solid rgba(200,160,80,0.12); position: relative; z-index: 1; }
+    .story-row:last-child { border-bottom: none; }
+    .story-photo { position: relative; overflow: hidden; background: #0e0a06; }
+    .story-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.6s; }
+    .story-photo:hover img { transform: scale(1.04); }
+    .story-photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%); padding: 40px 24px 22px; color: #fff; }
+    .spc-gen { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.18em; color: #c8843a; margin-bottom: 4px; text-transform: uppercase; }
+    .spc-role { font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+    .spc-name { font-size: 1.2rem; font-weight: 900; color: #fff; }
+    .spc-name span { display: block; font-size: 0.62rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px; }
+    /* 右: テキストエリア共通 */
+    .story-content { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
+    /* 上段（初代）: 明るめ */
+    .story-row.row-gen1 .story-content { background: #fafafa; }
+    .fd-eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 0.76rem; letter-spacing: 0.26em; color: #3a7b52; margin-bottom: 16px; }
+    .fd-h2 { font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.03em; color: #111; margin-bottom: 24px; }
+    .fd-body p { font-size: 0.88rem; color: #555; line-height: 2; margin-bottom: 14px; }
+    .fd-body p strong { color: #111; }
+    .fd-quote { margin-top: 24px; padding: 18px 22px; background: #111; border-radius: 6px; color: #fff; }
+    .fd-quote-text { font-size: 0.95rem; font-weight: 900; line-height: 1.6; border-left: 3px solid #3a7b52; padding-left: 14px; margin-bottom: 10px; }
+    .fd-quote-by { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+    .fd-quote-by strong { display: block; color: #fff; font-size: 0.85rem; margin-top: 2px; }
+    /* 下段（2代目）: ダークレトロ */
+    .story-row.row-gen2 .story-content { background: transparent; }
+    .phi-eyebrow {
+      font-family: 'Bebas Neue', sans-serif; font-size: 0.76rem; letter-spacing: 0.32em;
+      color: #c8843a; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .phi-eyebrow::before, .phi-eyebrow::after { content: ''; display: inline-block; height: 1px; width: 24px; background: #c8843a; opacity: 0.5; }
+    .phi-h2 { font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 900; letter-spacing: 0.02em; color: #f0e6d0; margin-bottom: 32px; }
+    .vmvb-list { display: flex; flex-direction: column; }
+    .vmvb-row-item { display: grid; grid-template-columns: 140px 1fr; border-bottom: 1px solid rgba(200,160,80,0.15); padding: 20px 0; align-items: baseline; }
+    .vmvb-row-item:last-child { border-bottom: none; }
+    .vi-label { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: 0.1em; color: #c8843a; line-height: 1; }
+    .vi-tag { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,220,180,0.35); margin-bottom: 6px; }
+    .vi-body { font-size: 0.88rem; font-weight: 600; color: rgba(240,220,180,0.85); line-height: 1.75; }
+    .vi-biz-list { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 20px; }
+    .vi-biz-list li { font-size: 0.78rem; color: rgba(240,220,180,0.7); padding: 3px 0; display: flex; align-items: center; gap: 7px; }
+    .vi-biz-list li::before { content: "—"; color: #c8843a; font-size: 0.65rem; }
+
+    /* COMPANY INFO */
+    #company { padding: 88px 56px; background: #fafafa; border-top: 1px solid #eee; }
+    .co-hd { margin-bottom: 40px; }
+    .co-tag { font-family: 'Bebas Neue', sans-serif; font-size: 0.76rem; letter-spacing: 0.26em; color: #3a7b52; margin-bottom: 6px; }
+    .co-h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 900; letter-spacing: -0.03em; color: #111; }
+    .co-rows { display: flex; flex-direction: column; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.05); }
+    .co-row { display: grid; grid-template-columns: 160px 1fr; align-items: center; border-bottom: 1px solid #f0f0f0; }
+    .co-row:last-child { border-bottom: none; }
+    .co-key { padding: 18px 24px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; color: #888; background: #fafafa; border-right: 1px solid #f0f0f0; white-space: nowrap; }
+    .co-val { padding: 18px 24px; font-size: 0.88rem; color: #222; line-height: 1.7; }
+    .co-val a { color: #3a7b52; }
+    .co-val .sub { font-size: 0.76rem; color: #999; margin-top: 2px; }
+    .co-val .warn { color: #e55; font-size: 0.76rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .story-row { grid-template-columns: 1fr; min-height: auto; }
+      .story-photo { height: 70vw; max-height: 480px; }
+      .story-content { padding: 44px 28px; }
+
+      #company { padding: 64px 28px; }
+    }
+    @media (max-width: 560px) {
+      .story-content { padding: 32px 20px; }
+      .vmvb-item { padding: 30px 24px; }
+      #company { padding: 48px 20px; }
+      .co-row { grid-template-columns: 1fr; }
+      .co-key { border-right: none; border-bottom: 1px solid #f0f0f0; padding: 10px 18px 6px; }
+      .co-val { padding: 6px 18px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div id="mmenu" onclick="if(event.target===this)closeMM()">
+  <div class="mmenu-panel">
+    <button class="mmenu-close" onclick="closeMM()">✕</button>
+    <a href="#services" onclick="closeMM()">サービス</a>
+    <a href="#about" onclick="closeMM()">店舗紹介</a>
+    <a href="#news" onclick="closeMM()">お知らせ</a>
+    <a href="#access" onclick="closeMM()">アクセス</a>
+    <a href="tel:0795645570" class="mmenu-cta">📞 今すぐ電話する</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo-wrap">
+      <div class="logo-icon">MS</div>
+      <div class="logo-text-wrap">
+        <strong>マエナカスポーツ</strong>
+        <span>MAENAKA SPORTS · SANDA</span>
+      </div>
+    </a>
+    <nav class="header-nav">
+      <a href="#services">サービス</a>
+      <a href="#about">店舗紹介</a>
+      <a href="#news">お知らせ</a>
+      <a href="#access">アクセス</a>
+      <a href="tel:0795645570" class="header-cta">📞 079-564-5570</a>
+    </nav>
+    <div class="hbg" onclick="openMM()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <img class="hero-bg" src="hero-top3.png" alt="マエナカスポーツ トップビジュアル">
+  <div class="hero-overlay"></div>
+
+  <!-- Text overlay -->
+  <div class="hero-content">
+    <h1 class="hero-h1">まちのスポーツを、<br>ずっと見てきました。</h1>
+    <p class="hero-sub">40年以上、三田の地で地域のスポーツを支えてきた専門店。<br>用品選びからユニフォーム製作まで</p>
+    <span class="hero-tagline">三田市南が丘　1982年創業</span>
+    <div class="hero-actions">
+      <a href="#services" class="btn-hero-g">サービスを見る</a>
+      <a href="#access" class="btn-hero-o">店舗・アクセス</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>SCROLL</span><div class="line"></div></div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <a href="#about" class="stat-item">
+      <div class="stat-pre">SINCE</div>
+      <div class="stat-num">1982</div>
+      <div class="stat-label">年の地域実績</div>
+    </a>
+    <a href="#services" class="stat-item">
+      <div class="stat-num">5</div>
+      <div class="stat-label">つのサービス</div>
+    </a>
+    <div class="stat-item">
+      <div class="stat-num">100<span style="font-size:1.4rem">+</span></div>
+      <div class="stat-label">取り扱いアイテム数（千）</div>
+    </div>
+    <a href="kau.html#school" class="stat-item">
+      <div class="stat-num">12<span style="font-size:1.4rem">校</span></div>
+      <div class="stat-label">取り扱い学校（幼稚園2・小学校7・中学校3）</div>
+    </a>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-wrap">
+    <div class="services-header reveal">
+      <p class="sec-tag">Our Services</p>
+      <h2 class="sec-title">スポーツの<br>すべてが、ここに</h2>
+    </div>
+    <div class="services-grid">
+
+      <!-- Card 1: かう -->
+      <a href="kau.html" class="svc-card reveal">
+        <div class="svc-photo">
+          <img class="svc-img"
+          src="svc-kau.jpg"
+          alt="スポーツ用品販売">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">01 — かうスポーツ</div>
+          <div class="svc-name">スポーツ用品を買う</div>
+          <div class="svc-sub">Nike・adidas・ASICSなど主要ブランドを豊富に取り揃え。スタッフが最適な一品をご提案します。</div>
+          <div class="svc-arrow">詳しく見る →</div>
+        </div>
+      </a>
+
+      <!-- Card 2: つくる -->
+      <a href="tsukuru.html" class="svc-card reveal delay-1">
+        <div class="svc-photo">
+          <img class="svc-img"
+          src="svc-tsukuru.jpg"
+          alt="ユニフォーム製作">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">02 — つくるスポーツ</div>
+          <div class="svc-name">ユニフォームを作る</div>
+          <div class="svc-sub">チームユニフォーム・オリジナルウェア製作。名入れ・番号・ロゴ対応。</div>
+          <div class="svc-arrow">詳しく見る →</div>
+        </div>
+      </a>
+
+      <!-- Card 3: かりる -->
+      <a href="kariru.html" class="svc-card reveal">
+        <div class="svc-photo">
+          <img class="svc-img"
+          src="svc-kariru.jpg"
+          alt="用具レンタル">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">03 — かりるスポーツ</div>
+          <div class="svc-name">借りる</div>
+          <div class="svc-sub">スポーツ用具・フィットネススタジオのレンタル。</div>
+          <div class="svc-arrow">詳しく見る →</div>
+        </div>
+      </a>
+
+      <!-- Card 4: する -->
+      <a href="suru.html" class="svc-card reveal delay-1">
+        <div class="svc-photo">
+          <img class="svc-img"
+          src="svc-suru.jpg"
+          alt="スポーツ教室">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">04 — するスポーツ</div>
+          <div class="svc-name">教室に参加する</div>
+          <div class="svc-sub">子どもから大人まで対応のスポーツ教室・フィットネス。</div>
+          <div class="svc-arrow">詳しく見る →</div>
+        </div>
+      </a>
+
+      <!-- Card 5: つながる -->
+      <a href="tsunagaru.html" class="svc-card reveal delay-2">
+        <div class="svc-photo">
+          <img class="svc-img"
+          src="svc-tsunagaru.jpg"
+          alt="チーム・コミュニティ">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">05 — つながるスポーツ</div>
+          <div class="svc-name">チームと繋がる</div>
+          <div class="svc-sub">三田市内のスポーツチーム・クラブ紹介。仲間を見つけよう。</div>
+          <div class="svc-arrow">詳しく見る →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div class="about-img-col reveal">
+      <img src="about-store.jpg" alt="マエナカスポーツ 店舗">
+      <div class="about-badge-float">
+        <div class="big">SINCE</div>
+        <div class="big" style="color:#111;font-size:2.8rem;">1982</div>
+        <div class="small">三田市南が丘で営業中</div>
+      </div>
+    </div>
+    <div class="about-text-col">
+      <div class="about-text-inner reveal">
+        <p class="sec-tag">About Us</p>
+        <h2 class="sec-title">地域とともに<br>歩んできた<br>スポーツ専門店</h2>
+        <p>三田市南が丘で1982年から、地域のスポーツライフに寄り添い続けてきた専門店です。ニュータウンとともに成長し、地域の皆さんの運動・趣味・健康をサポートしています。</p>
+        <p>用具選びのご相談から、チームウェアの製作、スポーツ教室の運営まで、スポーツに関することなら何でもお任せください。</p>
+        <div class="feature-grid">
+          <div class="feat-item"><div class="feat-icon">🏪</div><span>地域密着型の<br>総合スポーツ専門店</span></div>
+          <div class="feat-item"><div class="feat-icon">👕</div><span>ユニフォーム・<br>オリジナルウェア製作</span></div>
+          <div class="feat-item"><div class="feat-icon">🏫</div><span>学校指定用品の<br>取り扱い実績多数</span></div>
+          <div class="feat-item"><div class="feat-icon">💬</div><span>スタッフによる<br>丁寧なご相談対応</span></div>
+        </div>
+        <a href="#founder" class="btn-white">詳しく見る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY: 初代 + 2代目 -->
+<section id="story">
+
+  <!-- 上段: 初代 × Founder's Story -->
+  <div class="story-row row-gen1">
+    <div class="story-photo reveal-left">
+      <img src="shacho1.jpg.jpg" alt="創業者 前中茂">
+      <div class="story-photo-caption">
+        <div class="spc-gen">1st Generation · 創業者</div>
+        <div class="spc-role">代表取締役（初代）</div>
+        <div class="spc-name">前中 茂<span>Shigeru Maenaka · Founder, 1982</span></div>
+      </div>
+    </div>
+    <div class="story-content reveal-right">
+      <div class="fd-eyebrow">Founder's Story</div>
+      <h2 class="fd-h2">まちのスポーツを、<br>ずっと支えてきた。</h2>
+      <div class="fd-body">
+        <p>マエナカスポーツは、身長190cmの元バレーボール選手だった父・前中茂が1982年に創業しました。豪快で利益を度外視し、スポーツを振興するために活動してきました。</p>
+        <p>2018年に2代目として社長に就任した私は、大学卒業後に大手企業に就職しましたが、東日本大震災に被災したことがきっかけで、両親と一緒に志事（仕事）をしたいと思い地元三田市に帰郷しました。</p>
+        <p>「今日中になんとかしてぇ」「こんな商品あらへん？」困難なことでも、<strong>「まずは断らずに、なんとかなるように考えてみます」</strong>と徹底的にお客様のニーズに対応することを心がけています。</p>
+      </div>
+      <div class="fd-quote">
+        <div class="fd-quote-text">お客さんとの会話の<br>キャッチボールを楽しむ店</div>
+        <div class="fd-quote-by">株式会社マエナカスポーツ 代表取締役<strong>前中 務</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 下段: 2代目 × 私たちの想い -->
+  <div class="story-row row-gen2">
+    <div class="story-photo reveal-left">
+      <img src="shacho.jpg" alt="代表取締役 前中 務">
+      <div class="story-photo-caption">
+        <div class="spc-gen">2nd Generation · 現代表</div>
+        <div class="spc-role">代表取締役</div>
+        <div class="spc-name">前中 務<span>Tsutomu Maenaka · 2018〜</span></div>
+      </div>
+    </div>
+    <div class="story-content reveal-right">
+      <div class="phi-eyebrow">Our Philosophy</div>
+      <h2 class="phi-h2">私たちの想い</h2>
+      <div class="vmvb-list">
+        <div class="vmvb-row-item">
+          <div class="vi-label">Vision</div>
+          <div class="vi-content">
+            <div class="vi-tag">私たちが観ている世界</div>
+            <div class="vi-body">人びとの心身が健康に満ちあふれ、社会が健全に成熟している</div>
+          </div>
+        </div>
+        <div class="vmvb-row-item">
+          <div class="vi-label">Mission</div>
+          <div class="vi-content">
+            <div class="vi-tag">社会に貢献すること</div>
+            <div class="vi-body">人びとの「心身ともに健康でありたい」という願いを、スポーツで叶える</div>
+          </div>
+        </div>
+        <div class="vmvb-row-item">
+          <div class="vi-label">Value</div>
+          <div class="vi-content">
+            <div class="vi-tag">大切にしている価値観</div>
+            <div class="vi-body">人のために前向きに挑戦する素直な心</div>
+          </div>
+        </div>
+        <div class="vmvb-row-item">
+          <div class="vi-label">Business</div>
+          <div class="vi-content">
+            <div class="vi-tag">取り組んでいること</div>
+            <ul class="vi-biz-list">
+              <li>スポーツ用品販売</li>
+              <li>スポーツグッズの修理</li>
+              <li>オリジナル商品の製作と販売</li>
+              <li>学校指定用品（体操服など）取り扱い</li>
+              <li>運動指導（幼児・グループ・パーソナル・高齢者）</li>
+              <li>レンタルスペース（卓球場・貸しジム・貸しスタジオ）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- COMPANY INFO -->
+<section id="company" class="reveal">
+  <div class="co-hd">
+    <div class="co-tag">Company Info</div>
+    <h2 class="co-h2">会社情報</h2>
+  </div>
+  <div class="co-rows">
+    <div class="co-row"><div class="co-key">社名</div><div class="co-val">株式会社マエナカスポーツ</div></div>
+    <div class="co-row"><div class="co-key">設立</div><div class="co-val">1989年11月（創業 1982年）</div></div>
+    <div class="co-row"><div class="co-key">代表</div><div class="co-val">代表取締役　前中 務</div></div>
+    <div class="co-row"><div class="co-key">資本金</div><div class="co-val">1,000万円</div></div>
+    <div class="co-row">
+      <div class="co-key">所在地</div>
+      <div class="co-val">〒669-1535 兵庫県三田市南が丘1-40-5<div class="sub">マクドナルド隣・三田学園高校前　※駐車場はマクドナルドと共用</div></div>
+    </div>
+    <div class="co-row"><div class="co-key">電話</div><div class="co-val"><a href="tel:0795645570">079-564-5570</a></div></div>
+    <div class="co-row"><div class="co-key">FAX</div><div class="co-val">079-564-5573</div></div>
+    <div class="co-row"><div class="co-key">メール</div><div class="co-val"><a href="mailto:maenakasports@gmail.com">maenakasports@gmail.com</a></div></div>
+    <div class="co-row"><div class="co-key">LINE公式</div><div class="co-val"><a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener">https://lin.ee/gC3VFdY</a></div></div>
+    <div class="co-row">
+      <div class="co-key">営業時間</div>
+      <div class="co-val">月〜土 10:00〜19:00 ／ 日・祝 10:00〜18:00<div class="warn">水曜日定休</div></div>
+    </div>
+    <div class="co-row"><div class="co-key">主要銀行</div><div class="co-val">三菱UFJ銀行・中兵庫信用金庫・池田泉州銀行</div></div>
+    <div class="co-row"><div class="co-key">関係会社</div><div class="co-val">T3合同会社・株式会社もひとつ</div></div>
+  </div>
+</section>
+
+
+<!-- FULL BLEED VISUAL -->
+<div class="fullbleed">
+  <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&q=75" alt="スポーツ">
+  <div class="fullbleed-overlay">
+    <div class="fullbleed-text">
+      <h2>SPORTS<br><span>FOR ALL.</span></h2>
+      <p>スポーツを通じて、心身ともに健康な毎日を。<br>子どもから大人まで、あらゆるスポーツライフをサポートします。</p>
+    </div>
+  </div>
+</div>
+
+<!-- BRANDS MARQUEE -->
+<div id="brands">
+  <p class="brands-title">取り扱いブランド / Brands</p>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="brand-chip">ASICS</span><span class="brand-chip">adidas</span><span class="brand-chip">Nike</span><span class="brand-chip">Descente</span><span class="brand-chip">Umbro</span><span class="brand-chip">PUMA</span><span class="brand-chip">New Balance</span><span class="brand-chip">Hummel</span><span class="brand-chip">ZETT</span><span class="brand-chip">SSK</span><span class="brand-chip">Canterbury</span><span class="brand-chip">Kappa</span><span class="brand-chip">Le coq sportif</span><span class="brand-chip">Butterfly</span><span class="brand-chip">Nittaku</span><span class="brand-chip">Yasaka</span><span class="brand-chip">VICTAS</span><span class="brand-chip">MIKASA</span><span class="brand-chip">Molten</span><span class="brand-chip">YONEX</span><span class="brand-chip">Gosen</span><span class="brand-chip">TOEILIGHT</span><span class="brand-chip">Evernew</span><span class="brand-chip">Bridgestone</span><span class="brand-chip">Kusazakura</span><span class="brand-chip">TOMS</span><span class="brand-chip">CAB</span><span class="brand-chip">WUNDOU</span><span class="brand-chip">HATACHI</span><span class="brand-chip">Nichiyo</span><span class="brand-chip">LOGOS</span><span class="brand-chip">Under Armour</span><span class="brand-chip">Wilson</span><span class="brand-chip">Ellesse</span><span class="brand-chip">CASIO</span><span class="brand-chip">Kaneya</span><span class="brand-chip">GAVIC</span><span class="brand-chip">Captain Stag</span><span class="brand-chip">Caravan</span><span class="brand-chip">Coleman</span><span class="brand-chip">Kenko</span><span class="brand-chip">Sunlucky</span><span class="brand-chip">Sinano</span><span class="brand-chip">Danno</span><span class="brand-chip">Sanwa</span><span class="brand-chip">Dr.Air</span><span class="brand-chip">Hata</span><span class="brand-chip">Prince</span><span class="brand-chip">Luxilon</span><span class="brand-chip">Yonger</span>
+      <span class="brand-chip">ASICS</span><span class="brand-chip">adidas</span><span class="brand-chip">Nike</span><span class="brand-chip">Descente</span><span class="brand-chip">Umbro</span><span class="brand-chip">PUMA</span><span class="brand-chip">New Balance</span><span class="brand-chip">Hummel</span><span class="brand-chip">ZETT</span><span class="brand-chip">SSK</span><span class="brand-chip">Canterbury</span><span class="brand-chip">Kappa</span><span class="brand-chip">Le coq sportif</span><span class="brand-chip">Butterfly</span><span class="brand-chip">Nittaku</span><span class="brand-chip">Yasaka</span><span class="brand-chip">VICTAS</span><span class="brand-chip">MIKASA</span><span class="brand-chip">Molten</span><span class="brand-chip">YONEX</span><span class="brand-chip">Gosen</span><span class="brand-chip">TOEILIGHT</span><span class="brand-chip">Evernew</span><span class="brand-chip">Bridgestone</span><span class="brand-chip">Kusazakura</span><span class="brand-chip">TOMS</span><span class="brand-chip">CAB</span><span class="brand-chip">WUNDOU</span><span class="brand-chip">HATACHI</span><span class="brand-chip">Nichiyo</span><span class="brand-chip">LOGOS</span><span class="brand-chip">Under Armour</span><span class="brand-chip">Wilson</span><span class="brand-chip">Ellesse</span><span class="brand-chip">CASIO</span><span class="brand-chip">Kaneya</span><span class="brand-chip">GAVIC</span><span class="brand-chip">Captain Stag</span><span class="brand-chip">Caravan</span><span class="brand-chip">Coleman</span><span class="brand-chip">Kenko</span><span class="brand-chip">Sunlucky</span><span class="brand-chip">Sinano</span><span class="brand-chip">Danno</span><span class="brand-chip">Sanwa</span><span class="brand-chip">Dr.Air</span><span class="brand-chip">Hata</span><span class="brand-chip">Prince</span><span class="brand-chip">Luxilon</span><span class="brand-chip">Yonger</span>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="sec">
+    <p class="sec-tag">News & Info</p>
+    <h2 class="sec-title">お知らせ</h2>
+    <div class="news-list" id="newsList">
+      <p class="news-loading">読み込み中...</p>
+    </div>
+    <div class="news-more-wrap">
+      <a href="index.html#news" class="btn-outline" id="newsMoreBtn" style="display:none">もっと見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="access-layout">
+    <div class="access-map">
+      <iframe
+        src="https://maps.google.com/maps?q=マエナカスポーツ+三田市&output=embed&hl=ja"
+        title="マエナカスポーツ 地図"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="access-info reveal">
+      <p class="sec-tag">Access</p>
+      <h2 class="sec-title">店舗・アクセス</h2>
+      <div class="info-rows">
+        <div class="info-row">
+          <span class="info-icon">📍</span>
+          <span class="info-label">住所</span>
+          <span class="info-val">兵庫県三田市南が丘1丁目</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🕐</span>
+          <span class="info-label">営業時間</span>
+          <span class="info-val">10:00 〜 19:00</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🚫</span>
+          <span class="info-label">定休日</span>
+          <span class="info-val">水曜日</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🚉</span>
+          <span class="info-label">アクセス</span>
+          <span class="info-val">神戸電鉄 横山駅から徒歩5分</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">🅿️</span>
+          <span class="info-label">駐車場</span>
+          <span class="info-val">マクドナルドと共同駐車場</span>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">📞</span>
+          <span class="info-label">電話</span>
+          <span class="info-val"><a href="tel:0795645570" style="color:#3a7b52;font-weight:700">079-564-5570</a></span>
+        </div>
+      </div>
+      <div class="access-btns">
+        <a href="https://maps.google.com/maps?q=マエナカスポーツ+三田市" target="_blank" rel="noopener" class="btn-g">Google マップで開く</a>
+        <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="btn-ghost">LINE で問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2>スポーツ、<br>はじめよう。</h2>
+  <p>用具選びからチーム探しまで、何でもご相談ください。</p>
+  <div class="cta-btns">
+    <a href="tel:0795645570" class="btn-cta-dark">📞 電話で問い合わせる</a>
+    <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="btn-cta-wh">💬 LINE で相談する</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="logo-icon">MS</div>
+          <div class="footer-logo-text">マエナカスポーツ</div>
+        </div>
+        <p>三田市南が丘に1982年から根ざした<br>地域密着型スポーツ専門店。<br>スポーツのすべてをサポートします。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="kau.html">かうスポーツ</a></li>
+          <li><a href="tsukuru.html">つくるスポーツ</a></li>
+          <li><a href="kariru.html">かりるスポーツ</a></li>
+          <li><a href="suru.html">するスポーツ</a></li>
+          <li><a href="tsunagaru.html">つながるスポーツ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#about">会社概要</a></li>
+          <li><a href="#news">お知らせ</a></li>
+          <li><a href="#access">アクセス</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:0795645570">📞 079-564-5570</a></li>
+          <li><a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener">💬 LINE</a></li>
+          <li><a href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener">📷 Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 株式会社マエナカスポーツ. All rights reserved.</p>
+      <div class="socials">
+        <a class="social-btn" href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener" title="Instagram">📷</a>
+        <a class="social-btn" href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" title="LINE">💬</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  function openMM() { document.getElementById('mmenu').classList.add('open'); }
+  function closeMM() { document.getElementById('mmenu').classList.remove('open'); }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+  // ===== NEWS LIST =====
+  (async () => {
+    const list = document.getElementById('newsList');
+    const moreBtn = document.getElementById('newsMoreBtn');
+    const LIMIT = 5;
+
+    try {
+      const res = await fetch('news.json?_=' + Date.now());
+      const items = await res.json();
+
+      if (!items.length) {
+        list.innerHTML = '<p class="news-loading">現在お知らせはありません。</p>';
+        return;
+      }
+
+      const shown = items.slice(0, LIMIT);
+      list.innerHTML = shown.map(item => {
+        const thumb = item.image
+          ? `<img class="news-thumb" src="${item.image}" alt="${item.title}" loading="lazy">`
+          : `<div class="news-thumb-placeholder">No Image</div>`;
+        return `
+          <a class="news-item" h

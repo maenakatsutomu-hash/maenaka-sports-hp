@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="マエナカスポーツのスポーツ用品販売。Nike・adidas・ASICSなど主要ブランドを豊富に取り揃え。スタッフが最適な一品をご提案します。">
+  <title>かうスポーツ｜マエナカスポーツ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="service-common.css">
+  <style>
+    .info-photo {
+      width: 100%; height: 260px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 28px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header" class="scrolled">
+  <div class="header-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon">MS</div>
+      <div class="logo-text-wrap">
+        <strong>マエナカスポーツ</strong>
+        <span>MAENAKA SPORTS · SANDA</span>
+      </div>
+    </a>
+    <nav class="header-nav">
+      <a href="index.html#services">サービス</a>
+      <a href="index.html#about">店舗紹介</a>
+      <a href="index.html#news">お知らせ</a>
+      <a href="index.html#access">アクセス</a>
+      <a href="tel:0795645570" class="header-cta">📞 079-564-5570</a>
+    </nav>
+    <div class="hbg" onclick="openMM()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div id="mmenu" onclick="if(event.target===this)closeMM()">
+  <div class="mmenu-panel">
+    <button class="mmenu-close" onclick="closeMM()">✕</button>
+    <a href="index.html#services" onclick="closeMM()">サービス</a>
+    <a href="index.html#about" onclick="closeMM()">店舗紹介</a>
+    <a href="index.html#news" onclick="closeMM()">お知らせ</a>
+    <a href="index.html#access" onclick="closeMM()">アクセス</a>
+    <a href="tel:0795645570" class="mmenu-cta">📞 今すぐ電話する</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <img src="svc-kau-hero.jpg" alt="スポーツ用品">
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <a href="index.html" class="breadcrumb">← トップへ戻る</a>
+    <div class="service-num">01</div>
+    <h1>かうスポーツ</h1>
+    <p>スポーツ用品・ウェア・シューズを買う</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="service-main">
+  <div class="service-intro reveal">
+    <h2>あなたにぴったりの<br>一品を見つけよう</h2>
+    <p>マエナカスポーツでは、主要スポーツブランドのシューズ・ウェア・用具を幅広く取り揃えています。スタッフが競技・体型・レベルに合わせて丁寧にご提案。オンラインでは分からない「実物を見て、触って、試して」買える専門店ならではの体験を提供します。</p>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="fc-img-wrap">
+        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=75" alt="ランニングシューズ 青">
+      </div>
+      <div class="fc-body">
+        <div class="fc-icon">👟</div>
+        <h3>シューズ・フットウェア</h3>
+        <p>ランニング・バスケ・サッカー・テニスなど種目別シューズを豊富に展開。足型に合わせた選び方をスタッフがアドバイスします。</p>
+      </div>
+    </div>
+    <div class="feature-card reveal delay-1">
+      <div class="fc-img-wrap">
+        <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=600&q=75" alt="アディダス スポーツウェア">
+      </div>
+      <div class="fc-body">
+        <div class="fc-icon">👕</div>
+        <h3>スポーツウェア</h3>
+        <p>機能性インナー・トレーニングウェア・アウタージャケットまで。素材・サイズ感にこだわった一着をご提案します。</p>
+      </div>
+    </div>
+    <div class="feature-card reveal delay-2">
+      <div class="fc-img-wrap">
+        <img src="https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=75" alt="スポーツ用具各種">
+      </div>
+      <div class="fc-body">
+        <div class="fc-icon">⚽</div>
+        <h3>スポーツ用具</h3>
+        <p>ボール・ラケット・グローブ・バッグなど各種競技用品を取り扱い。学校・クラブ活動から趣味まで対応します。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANDS -->
+  <div class="brands-section reveal">
+    <h2 class="section-h2">取り扱いブランド</h2>
+    <div class="brands-wrap">
+      <div class="brand-tag">ASICS</div>
+      <div class="brand-tag">adidas</div>
+      <div class="brand-tag">Nike</div>
+      <div class="brand-tag">Descente</div>
+      <div class="brand-tag">Umbro</div>
+      <div class="brand-tag">PUMA</div>
+      <div class="brand-tag">New Balance</div>
+      <div class="brand-tag">Hummel</div>
+      <div class="brand-tag">ZETT</div>
+      <div class="brand-tag">SSK</div>
+      <div class="brand-tag">Canterbury</div>
+      <div class="brand-tag">Kappa</div>
+      <div class="brand-tag">Le coq sportif</div>
+      <div class="brand-tag">Butterfly</div>
+      <div class="brand-tag">Nittaku</div>
+      <div class="brand-tag">Yasaka</div>
+      <div class="brand-tag">VICTAS</div>
+      <div class="brand-tag">MIKASA</div>
+      <div class="brand-tag">Molten</div>
+      <div class="brand-tag">YONEX</div>
+      <div class="brand-tag">Gosen</div>
+      <div class="brand-tag">TOEILIGHT</div>
+      <div class="brand-tag">Evernew</div>
+      <div class="brand-tag">Bridgestone</div>
+      <div class="brand-tag">Kusazakura</div>
+      <div class="brand-tag">TOMS</div>
+      <div class="brand-tag">CAB</div>
+      <div class="brand-tag">WUNDOU</div>
+      <div class="brand-tag">HATACHI</div>
+      <div class="brand-tag">Nichiyo</div>
+      <div class="brand-tag">LOGOS</div>
+      <div class="brand-tag">Under Armour</div>
+      <div class="brand-tag">Wilson</div>
+      <div class="brand-tag">Ellesse</div>
+      <div class="brand-tag">CASIO</div>
+      <div class="brand-tag">Kaneya</div>
+      <div class="brand-tag">GAVIC</div>
+      <div class="brand-tag">Captain Stag</div>
+      <div class="brand-tag">Caravan</div>
+      <div class="brand-tag">Coleman</div>
+      <div class="brand-tag">Kenko</div>
+      <div class="brand-tag">Sunlucky</div>
+      <div class="brand-tag">Sinano</div>
+      <div class="brand-tag">Danno</div>
+      <div class="brand-tag">Sanwa</div>
+      <div class="brand-tag">Dr.Air</div>
+      <div class="brand-tag">Hata</div>
+      <div class="brand-tag">Prince</div>
+      <div class="brand-tag">Luxilon</div>
+      <div class="brand-tag">Yonger</div>
+    </div>
+    <p class="brands-note">※ 上記以外のブランドもお取り寄せ可能です。お気軽にご相談ください。</p>
+  </div>
+
+  <!-- 学校指定用品 -->
+  <div id="school" class="info-section reveal">
+    <div class="info-badge">学校指定用品</div>
+    <h2 class="section-h2">学校指定用品</h2>
+    <img class="info-photo" src="school-items.jpg.jpg" alt="学校体操服・指定用品">
+    <p class="info-lead">三田市内及び近隣地区の小・中・高等学校の指定体操服・水着・赤白帽・体育館シューズ等を取扱っております。詳しくはスタッフまでお問合せください。</p>
+    <div class="info-two-col">
+      <div class="info-col">
+        <h4 class="info-col-title">取り扱い商品</h4>
+        <ul class="info-list">
+          <li>体操服</li>
+          <li>赤白帽</li>
+          <li>体育館シューズ</li>
+          <li>上履き</li>
+          <li>柔道着</li>
+          <li>水着</li>
+        </ul>
+      </div>
+      <div class="info-col">
+        <h4 class="info-col-title">取り扱い校</h4>
+        <div class="school-group">
+          <span class="school-label">幼稚園・こども園</span>
+          <p>こんだこども園・猪名川幼稚園</p>
+        </div>
+        <div class="school-group">
+          <span class="school-label">小学校</span>
+          <p>武庫小・弥生小・富士小・あかしあ台小・すずかけ台小・学園小・今田小</p>
+        </div>
+        <div class="school-group">
+          <span class="school-label">中学校</span>
+          <p>富士中・けやき台中・吉川中</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 加工・修理 -->
+  <div class="info-section reveal">
+    <div class="info-badge">加工・修理</div>
+    <h2 class="section-h2">加工・修理</h2>
+    <img class="info-photo" src="https://images.unsplash.com/photo-1551958219-acbc49a25e89?w=900&q=75" alt="テニス・バドミントンラケット修理">
+    <p class="info-lead">当店ではスポーツグッズの修理を行っております。お客様の愛用グッズを丁寧に修理させて頂きます。</p>
+    <div class="price-block">
+      <div class="price-block-group">
+        <h4>ガット貼り替え加工料（即張り90分）<span class="price-note">※ガット持込みは別途料金</span></h4>
+        <table class="price-table">
+          <tr><td>硬式テニスラケット</td><td>¥1,430</td></tr>
+          <tr><td>軟式テニスラケット</td><td>¥1,430</td></tr>
+          <tr><td>バドミントンラケット</td><td>¥1,430</td></tr>
+          <tr><td>ラケットグリップ交換</td><td>¥330</td></tr>
+        </table>
+      </div>
+      <div class="price-block-group">
+        <h4>卓球ラバー貼り替え料</h4>
+        <table class="price-table">
+          <tr><td>ラバー1枚に付き</td><td>¥990</td></tr>
+        </table>
+      </div>
+      <div class="price-block-group">
+        <h4>野球グローブ紐修理代</h4>
+        <table class="price-table">
+          <tr><td>修理紐1本に付き</td><td>¥1,188</td></tr>
+        </table>
+      </div>
+      <div class="price-block-group">
+        <h4>グラウンドゴルフ</h4>
+        <table class="price-table">
+          <tr><td>グリップ交換</td><td>¥1,430</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- トロフィー・カップ・メダル -->
+  <div class="info-section reveal">
+    <div class="info-badge">トロフィー・カップ・メダル</div>
+    <h2 class="section-h2">トロフィー・カップ・メダル</h2>
+    <img class="info-photo" src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=900&q=75" alt="トロフィー・メダル・カップ">
+    <p class="info-lead">スポーツイベント・大会の記念品、卒業・卒団の記念に使用するトロフィー・カップ・盾・メダルなどの商品の販売およびプレート刻印を承っております。</p>
+    <div class="trophy-grid">
+      <div class="trophy-item">
+        <div class="trophy-icon">🏆</div>
+        <h4>商品の購入</h4>
+        <p>トロフィー・カップ・盾・メダルなど各種記念品を取り揃えております。大会の規模・ご予算に合わせてご提案します。</p>
+      </div>
+      <div class="trophy-item">
+        <div class="trophy-icon">✏️</div>
+        <h4>プレート刻印</h4>
+        <p>大会名・日付・チーム名・氏名などプレートへの刻印も承ります。卒業・卒団の記念品にも最適です。お気軽にご相談ください。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <div class="flow-section reveal">
+    <h2 class="section-h2">ご購入の流れ</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-num">01</div>
+        <h3>ご来店・ご相談</h3>
+        <p>まずはお気軽にご来店ください。スタッフが用途・競技・ご予算をヒアリングします。</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="step-num">02</div>
+        <h3>商品のご提案</h3>
+        <p>豊富な在庫からピッタリの商品をご提案。実物を手に取ってご確認いただけます。</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="step-num">03</div>
+        <h3>ご購入・お持ち帰り</h3>
+        <p>その場でお持ち帰りいただけます。在庫がない場合はお取り寄せにも対応します。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="service-cta reveal">
+    <h2>まずはお気軽にご相談ください</h2>
+    <p>電話・LINE・ご来店、お好きな方法でどうぞ</p>
+    <div class="cta-btns">
+      <a href="tel:0795645570" class="btn-g">📞 電話する</a>
+      <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="btn-ghost">💬 LINEで相談</a>
+      <a href="index.html#access" class="btn-ghost">📍 店舗情報を見る</a>
+    </div>
+  </div>
+
+  <!-- OTHER SERVICES -->
+  <div class="other-services reveal">
+    <h2 class="section-h2">他のサービスも見る</h2>
+    <div class="other-grid">
+      <a href="tsukuru.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=400&q=70" alt="つくるスポーツ">
+        <div class="other-overlay"><span>02 つくるスポーツ</span></div>
+      </a>
+      <a href="kariru.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=70" alt="かりるスポーツ">
+        <div class="other-overlay"><span>03 かりるスポーツ</span></div>
+      </a>
+      <a href="suru.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=70" alt="するスポーツ">
+        <div class="other-overlay"><span>04 するスポーツ</span></div>
+      </a>
+      <a href="tsunagaru.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=70" alt="つながるスポーツ">
+        <div class="other-overlay"><span>05 つながるスポーツ</span></div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-icon">MS</div>
+        <div class="footer-logo-text">マエナカスポーツ</div>
+        <p>三田市南が丘に40年以上根ざした<br>地域密着型スポーツ専門店。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="kau.html">かうスポーツ</a></li>
+          <li><a href="tsukuru.html">つくるスポーツ</a></li>
+          <li><a href="kariru.html">かりるスポーツ</a></li>
+          <li><a href="suru.html">するスポーツ</a></li>
+          <li><a href="tsunagaru.html">つながるスポーツ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:0795645570">079-564-5570</a></li>
+          <li><a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener">LINE公式</a></li>
+          <li><a href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="index.html#access">アクセス・地図</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 株式会社マエナカスポーツ. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="service-common.js"></script>
+</body>
+</html>
