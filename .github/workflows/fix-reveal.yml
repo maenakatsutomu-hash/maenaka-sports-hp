@@ -1,0 +1,32 @@
+name: Fix reveal animation
+on:
+  workflow_dispatch:
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix reveal and LINE URL
+        run: |
+          cat > fix_all.js << 'JSEOF'
+          var fs = require('fs');
+          var c = fs.readFileSync('index.html', 'utf8');
+          // 1. reveal即時表示フォールバック追加
+          var search = "document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));";
+          var replace = search + "\n  setTimeout(function(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){el.classList.add('visible');});},100);";
+          if (c.includes(search)) { c = c.replace(search, replace); console.log('reveal fix: OK'); } else { console.log('reveal fix: not found'); }
+          // 2. LINE URL更新
+          c = c.replace(/https:\/\/lin\.ee\/gC3VFdY/g, 'https://lin.ee/XwdfZR7');
+          fs.writeFileSync('index.html', c);
+          console.log('Done');
+          JSEOF
+          node fix_all.js
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "fix: reveal即時表示+LINE URL更新"
+          git push
