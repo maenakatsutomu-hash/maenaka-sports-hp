@@ -11,7 +11,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    body {h
+    body {
       font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
       color: #1a1a1a; background: #fff; overflow-x: hidden;
     }
@@ -318,11 +318,11 @@
     .social-btn:hover { border-color: #3a7b52; background: #3a7b52; color: #fff; }
 
     /* ===== ANIMATIONS ===== */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+    .reveal { opacity: 1; transform: none; transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
     .reveal.visible { opacity: 1; transform: none; }
-    .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+    .reveal-left { opacity: 1; transform: none; transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
     .reveal-left.visible { opacity: 1; transform: none; }
-    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+    .reveal-right { opacity: 1; transform: none; transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1); }
     .reveal-right.visible { opacity: 1; transform: none; }
     .delay-1 { transition-delay: 0.1s; }
     .delay-2 { transition-delay: 0.2s; }
@@ -917,13 +917,20 @@
   function openMM() { document.getElementById('mmenu').classList.add('open'); }
   function closeMM() { document.getElementById('mmenu').classList.remove('open'); }
 
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
-  }, { threshold: 0 });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-  setTimeout(function(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){el.classList.add('visible');});},100);
+  }, { threshold: 0.01, rootMargin: '0px 0px -20px 0px' });
+  revealEls.forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      el.classList.add('visible'); // すでに表示範囲内なら即表示
+    } else {
+      observer.observe(el);
+    }
+  });
 
   // ===== NEWS LIST =====
   (async () => {
@@ -945,6 +952,4 @@
       list.innerHTML = shown.map(item => {
         const thumb = item.image
           ? `<img class="news-thumb" src="${item.image}" alt="${item.title}" loading="lazy">`
-          : `<div class="news-thumb-placeholder">No Image</div>`;
-        return `
-          <a class="news-item" h
+          : `<div class="news-thumb-placeholder
