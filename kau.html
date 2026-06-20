@@ -684,8 +684,202 @@
         <p>ロゴ入りテントやチーム統一グッズ。遠征・合宿・大会のご準備に。</p>
       </div>
     </div>
+
+    <!-- 電子カタログビューア -->
+    <div class="catalog-viewer-wrap reveal" style="margin-top:64px;">
+      <p class="catalog-heading-sub">CATALOG</p>
+      <h3 class="catalog-heading">電子カタログから選ぶ</h3>
+      <p class="catalog-desc">トロフィー・記念品・チームグッズはカタログからお選びいただけます。<br>気になった商品はそのままLINEや電話でご相談ください。</p>
+
+      <div class="catalog-tabs">
+        <button class="catalog-tab active" data-url="https://goldshachi.co.jp/wp-content/themes/tree_tcd081-child/catalog120/index_h5.html#%E8%A1%A8%E7%B4%99" data-name="ゴールドシャチ">
+          <span class="tab-label">ゴールドシャチ</span>
+          <span class="tab-sub">トロフィー・カップ・盾</span>
+        </button>
+        <button class="catalog-tab" data-url="https://www.asaco.co.jp/catalog/254/#page=1" data-name="アサコ">
+          <span class="tab-label">アサコ</span>
+          <span class="tab-sub">メダル・記念品</span>
+        </button>
+        <button class="catalog-tab" data-url="https://www.wininc.jp/catalogue2023/all/" data-name="ウィン">
+          <span class="tab-label">ウィン</span>
+          <span class="tab-sub">チームグッズ・のぼり</span>
+        </button>
+        <button class="catalog-tab" data-url="https://worldeagle.co.jp/book37/index.html#page=1" data-name="ワールドイーグル">
+          <span class="tab-label">ワールドイーグル</span>
+          <span class="tab-sub">ゴルフ用品</span>
+        </button>
+      </div>
+
+      <div class="catalog-frame-wrap">
+        <div class="catalog-frame-header">
+          <span id="catalogTitle">ゴールドシャチ カタログ</span>
+          <a id="catalogExtLink" href="https://goldshachi.co.jp/wp-content/themes/tree_tcd081-child/catalog120/index_h5.html#%E8%A1%A8%E7%B4%99" target="_blank" rel="noopener" class="catalog-ext-btn">別タブで開く ↗</a>
+        </div>
+        <iframe id="catalogIframe"
+          src="https://goldshachi.co.jp/wp-content/themes/tree_tcd081-child/catalog120/index_h5.html#%E8%A1%A8%E7%B4%99"
+          frameborder="0" allowfullscreen
+          style="width:100%; height:680px; border:none; display:block; background:#111;">
+        </iframe>
+        <p class="catalog-blocked-note" id="catalogNote" style="display:none;">
+          ※ このカタログはセキュリティの関係で埋め込みができません。
+          <a id="catalogNoteLink" href="#" target="_blank" rel="noopener">別タブで開く ↗</a>
+        </p>
+      </div>
+
+      <div class="catalog-cta">
+        <p>気になった商品が見つかりましたか？</p>
+        <div class="btn-row">
+          <a href="tel:0795645570" class="btn-amber">📞 電話で相談する</a>
+          <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="btn-ghost-dark">💬 LINEで見積もり</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  /* ─── カタログビューア ─── */
+  .catalog-viewer-wrap {
+    border-top: 1px solid rgba(200,132,58,0.25);
+    padding-top: 48px;
+  }
+  .catalog-heading-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.2em;
+    color: #c8843a; margin-bottom: 6px;
+  }
+  .catalog-heading {
+    font-size: 1.5rem; font-weight: 900;
+    color: #f0e8d8; margin: 0 0 10px;
+  }
+  .catalog-desc {
+    font-size: 0.85rem; color: #c8b99a;
+    line-height: 1.7; margin-bottom: 28px;
+  }
+  .catalog-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; margin-bottom: 0;
+  }
+  .catalog-tab {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,132,58,0.2);
+    border-radius: 4px 4px 0 0;
+    padding: 14px 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    color: #c8b99a;
+    border-bottom: none;
+  }
+  .catalog-tab:hover {
+    background: rgba(200,132,58,0.1);
+    border-color: rgba(200,132,58,0.5);
+  }
+  .catalog-tab.active {
+    background: rgba(200,132,58,0.15);
+    border-color: #c8843a;
+    color: #f0e8d8;
+  }
+  .tab-label {
+    display: block;
+    font-size: 0.9rem; font-weight: 900;
+    margin-bottom: 3px;
+  }
+  .tab-sub {
+    display: block;
+    font-size: 0.7rem; opacity: 0.7;
+  }
+  .catalog-frame-wrap {
+    border: 1px solid rgba(200,132,58,0.35);
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+  }
+  .catalog-frame-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(200,132,58,0.12);
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    color: #f0e8d8;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(200,132,58,0.2);
+  }
+  .catalog-ext-btn {
+    font-size: 0.75rem;
+    color: #c8843a;
+    text-decoration: none;
+    background: rgba(200,132,58,0.15);
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(200,132,58,0.3);
+    transition: all 0.2s;
+  }
+  .catalog-ext-btn:hover {
+    background: rgba(200,132,58,0.3);
+    color: #f0e8d8;
+  }
+  .catalog-blocked-note {
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    color: #c8b99a;
+    background: rgba(255,255,255,0.03);
+  }
+  .catalog-blocked-note a { color: #c8843a; }
+  .catalog-cta {
+    margin-top: 24px;
+    text-align: center;
+  }
+  .catalog-cta p {
+    font-size: 0.9rem;
+    color: #c8b99a;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 640px) {
+    .catalog-tabs { grid-template-columns: repeat(2, 1fr); }
+    #catalogIframe { height: 460px; }
+  }
+</style>
+
+<script>
+(function() {
+  const tabs = document.querySelectorAll('.catalog-tab');
+  const iframe = document.getElementById('catalogIframe');
+  const title = document.getElementById('catalogTitle');
+  const extLink = document.getElementById('catalogExtLink');
+  const note = document.getElementById('catalogNote');
+  const noteLink = document.getElementById('catalogNoteLink');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const url = tab.dataset.url;
+      const name = tab.dataset.name;
+      title.textContent = name + ' カタログ';
+      extLink.href = url;
+      noteLink.href = url;
+      iframe.src = url;
+      note.style.display = 'none';
+    });
+  });
+
+  // iframeが読み込めなかった場合の検知
+  iframe.addEventListener('load', function() {
+    try {
+      // X-Frame-Options でブロックされるとcontentDocumentがnullになる
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      if (!doc || doc.body === null) {
+        note.style.display = 'block';
+        iframe.style.height = '80px';
+      }
+    } catch(e) {
+      // cross-originエラー = 読み込めているのでOK
+    }
+  });
+})();
+</script>
 
 <!-- CTA -->
 <div class="kau-cta">
