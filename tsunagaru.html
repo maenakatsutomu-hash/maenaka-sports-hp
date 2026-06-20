@@ -3,31 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="三田市のスポーツチーム・クラブ情報、メンバー募集掲示板、地域イベント・大会情報。マエナカスポーツが三田のスポーツコミュニティをつなぎます。">
+  <meta name="description" content="三田のスポーツをする人・支える人・応援する人をつなぐ地域スポーツプラットフォーム。チーム探し・大会情報・仲間募集はマエナカスポーツへ。">
   <title>つながるスポーツ｜マエナカスポーツ</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="service-common.css">
   <style>
-    /* ===== PAGE NAV ===== */
+
+    /* =====================================================
+       PAGE HERO — つながる専用
+    ===================================================== */
+    .tsn-hero {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: #0d1f14;
+    }
+    .tsn-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(160deg, rgba(10,30,18,0.85) 0%, rgba(10,30,18,0.4) 100%),
+        url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1400&q=80') center/cover no-repeat;
+    }
+    .tsn-hero-content {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; padding: 64px 32px;
+      width: 100%;
+    }
+    .tsn-hero-eyebrow {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem; letter-spacing: 0.3em;
+      color: #5fca85; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .tsn-hero-eyebrow::before {
+      content: '';
+      display: inline-block; width: 32px; height: 2px;
+      background: #5fca85;
+    }
+    .tsn-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900; color: #fff;
+      line-height: 1.2; letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .tsn-hero h1 em {
+      font-style: normal;
+      color: #5fca85;
+    }
+    .tsn-hero-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.7);
+      line-height: 1.8; max-width: 560px;
+      margin-bottom: 36px;
+    }
+    .tsn-hero-stats {
+      display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .tsn-hero-stat {
+      text-align: left;
+    }
+    .tsn-hero-stat .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem; color: #fff; line-height: 1;
+    }
+    .tsn-hero-stat .num span { font-size: 1rem; color: #5fca85; margin-left: 2px; }
+    .tsn-hero-stat .label {
+      font-size: 0.72rem; color: rgba(255,255,255,0.55);
+      letter-spacing: 0.05em; margin-top: 4px;
+    }
+    .tsn-breadcrumb {
+      position: absolute; top: 80px; left: 32px;
+      font-size: 0.75rem; color: rgba(255,255,255,0.5);
+      z-index: 3;
+    }
+    .tsn-breadcrumb a { color: rgba(255,255,255,0.5); }
+    .tsn-breadcrumb a:hover { color: #5fca85; }
+
+    /* =====================================================
+       PLATFORM CONCEPT
+    ===================================================== */
+    .platform-section {
+      background: #f5f9f6;
+      padding: 56px 0;
+      border-bottom: 1px solid #e0ece4;
+    }
+    .platform-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+    }
+    .platform-label {
+      text-align: center;
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.15em; color: #3a7b52;
+      margin-bottom: 8px;
+    }
+    .platform-title {
+      text-align: center;
+      font-size: 1.6rem; font-weight: 900;
+      color: #1a1a1a; margin-bottom: 6px;
+    }
+    .platform-desc {
+      text-align: center;
+      font-size: 0.85rem; color: #666;
+      line-height: 1.8; max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    .platform-flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .platform-flow-item {
+      background: #fff;
+      border: 1.5px solid #c6e8d4;
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+      min-width: 130px;
+      transition: all 0.2s;
+    }
+    .platform-flow-item:hover {
+      border-color: #3a7b52;
+      box-shadow: 0 4px 16px rgba(58,123,82,0.12);
+      transform: translateY(-2px);
+    }
+    .pf-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .pf-label { font-size: 0.72rem; font-weight: 900; color: #1a1a1a; line-height: 1.4; }
+    .pf-sub { font-size: 0.62rem; color: #888; margin-top: 3px; }
+    .platform-arrow {
+      color: #3a7b52; font-size: 1.2rem; flex-shrink: 0;
+    }
+
+    /* =====================================================
+       STICKY NAV
+    ===================================================== */
     .page-section-nav {
       background: #fff;
-      border-bottom: 1px solid #eee;
+      border-bottom: 2px solid #e8f3ed;
       position: sticky;
       top: 64px;
       z-index: 90;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
     .section-nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       padding: 0 24px;
-      display: flex;
-      gap: 0;
+      display: flex; gap: 0;
+      overflow-x: auto;
     }
     .section-nav-inner a {
-      padding: 16px 24px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: #666;
+      padding: 16px 22px;
+      font-size: 0.8rem; font-weight: 800;
+      color: #777;
       letter-spacing: 0.04em;
       border-bottom: 3px solid transparent;
       transition: color 0.2s, border-color 0.2s;
@@ -39,251 +168,75 @@
       border-bottom-color: #3a7b52;
     }
 
-    /* ===== SECTION TITLES ===== */
+    /* =====================================================
+       SECTION BASE
+    ===================================================== */
     .tsn-section {
       padding: 80px 0;
-      border-top: 1px solid #eee;
     }
-    .tsn-section:first-of-type { border-top: none; }
-    .tsn-section-header {
-      margin-bottom: 48px;
+    .tsn-section.alt { background: #f9f8f5; }
+    .tsn-section.dark { background: #0f1f15; }
+    .tsn-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
     }
+    .tsn-section-header { margin-bottom: 48px; }
     .tsn-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #e8f3ed;
-      color: #3a7b52;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 4px;
-      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #e8f3ed; color: #3a7b52;
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 4px;
+      margin-bottom: 14px;
+    }
+    .tsn-badge.amber {
+      background: #fef3e2; color: #b5620a;
+    }
+    .tsn-badge.blue {
+      background: #e8f0fe; color: #1a56c4;
+    }
+    .tsn-badge.dark-badge {
+      background: rgba(95,202,133,0.15); color: #5fca85;
     }
     .tsn-section-header h2 {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.25;
-      margin-bottom: 12px;
+      font-size: 2rem; font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1.25;
+      margin-bottom: 12px; color: #111;
     }
+    .tsn-section.dark .tsn-section-header h2 { color: #fff; }
     .tsn-section-header p {
-      font-size: 0.92rem;
-      color: #555;
-      line-height: 1.8;
-      max-width: 700px;
+      font-size: 0.9rem; color: #555;
+      line-height: 1.85; max-width: 680px;
     }
+    .tsn-section.dark .tsn-section-header p { color: rgba(255,255,255,0.65); }
 
-    /* ===== EVENT SECTION ===== */
-    .event-layout {
+    /* =====================================================
+       ① チーム・仲間とつながる
+    ===================================================== */
+    .sport-category-grid {
       display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 40px;
-      align-items: start;
-    }
-    .calendar-wrap {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #eee;
-      background: #f5f5f3;
-      min-height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 16px;
-      padding: 40px;
-      text-align: center;
-    }
-    .calendar-wrap iframe {
-      width: 100%;
-      height: 480px;
-      border: none;
-      display: block;
-    }
-    .calendar-placeholder-icon { font-size: 3rem; }
-    .calendar-placeholder-title { font-size: 1rem; font-weight: 800; color: #333; margin-bottom: 8px; }
-    .calendar-placeholder-text { font-size: 0.82rem; color: #888; line-height: 1.7; }
-    .calendar-placeholder-btn {
-      display: inline-block;
-      background: #3a7b52;
-      color: #fff;
-      padding: 10px 24px;
-      border-radius: 4px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      margin-top: 8px;
-      transition: background 0.2s;
-    }
-    .calendar-placeholder-btn:hover { background: #2c5f3e; }
-
-    .event-sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .event-sidebar-box {
-      background: #f7f7f5;
-      border-radius: 16px;
-      padding: 24px;
-      border: 1px solid #eee;
-    }
-    .sidebar-box-title {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: #888;
-      margin-bottom: 14px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #e5e5e0;
-    }
-    .ext-link-list { display: flex; flex-direction: column; gap: 8px; }
-    .ext-link-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #333;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .ext-link-item:hover { border-color: #3a7b52; color: #3a7b52; }
-    .ext-link-item span.ext-icon { font-size: 1.1rem; flex-shrink: 0; }
-    .ext-link-item .ext-arrow { margin-left: auto; color: #bbb; font-size: 0.75rem; }
-
-    .local-event-list { display: flex; flex-direction: column; gap: 10px; }
-    .local-event-item {
-      display: flex;
+      grid-template-columns: repeat(5, 1fr);
       gap: 12px;
-      align-items: flex-start;
+      margin-bottom: 48px;
     }
-    .event-date-box {
-      background: #3a7b52;
-      color: #fff;
-      border-radius: 8px;
-      padding: 6px 10px;
-      text-align: center;
-      min-width: 44px;
-      flex-shrink: 0;
-    }
-    .event-date-box .ev-month { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.05em; }
-    .event-date-box .ev-day { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; line-height: 1; }
-    .event-text { padding-top: 2px; }
-    .event-text strong { display: block; font-size: 0.82rem; font-weight: 800; color: #222; margin-bottom: 2px; }
-    .event-text span { font-size: 0.75rem; color: #777; }
-
-    /* ===== BOARD SECTION ===== */
-    .board-layout {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 40px;
-      align-items: start;
-    }
-    .board-posts { display: flex; flex-direction: column; gap: 16px; }
-    .board-post {
-      border: 1px solid #eee;
-      border-radius: 16px;
-      padding: 24px 28px;
+    .sport-cat-btn {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px;
+      padding: 18px 8px;
       background: #fff;
-      transition: box-shadow 0.3s;
-    }
-    .board-post:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
-    .post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
-    .post-sport-badge {
-      background: #3a7b52;
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 4px;
-      letter-spacing: 0.04em;
-    }
-    .post-type-badge {
-      background: #f5f5f3;
-      color: #555;
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 4px;
-    }
-    .post-date { font-size: 0.72rem; color: #aaa; margin-left: auto; }
-    .board-post h4 { font-size: 0.96rem; font-weight: 900; color: #111; margin-bottom: 8px; }
-    .board-post p { font-size: 0.83rem; color: #555; line-height: 1.75; margin-bottom: 12px; }
-    .post-contact { font-size: 0.78rem; color: #888; display: flex; align-items: center; gap: 6px; }
-    .post-contact strong { color: #333; }
-
-    .board-empty {
-      border: 2px dashed #ddd;
-      border-radius: 16px;
-      padding: 48px 24px;
-      text-align: center;
-      color: #aaa;
-      font-size: 0.88rem;
-    }
-
-    .board-form-box {
-      background: background: #3a7b52 0%, #2c5f3e 100%);
-      border-radius: 20px;
-      padding: 32px 28px;
-      color: #fff;
-    }
-    .board-form-box h3 { font-size: 1.1rem; font-weight: 900; margin-bottom: 10px; }
-    .board-form-box p { font-size: 0.82rem; line-height: 1.7; opacity: 0.9; margin-bottom: 20px; }
-    .form-field-preview {
-      background: rgba(255,255,255,0.15);
-      border-radius: 10px;
-      padding: 10px 14px;
-      margin-bottom: 8px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.85);
-    }
-    .btn-form-submit {
-      display: block;
-      width: 100%;
-      background: #fff;
-      color: #3a7b52;
-      text-align: center;
-      padding: 13px;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      font-weight: 800;
-      margin-top: 16px;
-      transition: background 0.2s;
-    }
-    .btn-form-submit:hover { background: #f0fdf6; }
-
-    .ext-board-list { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-
-    /* ===== CLUB SECTION ===== */
-    .sport-filter {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 36px;
-    }
-    .filter-btn {
-      padding: 8px 20px;
-      border-radius: 4px;
-      border: 2px solid #eee;
-      background: #fff;
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: #555;
+      border: 2px solid #e5ede8;
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.2s;
+      font-size: 0.72rem; font-weight: 800;
+      color: #444;
     }
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: #3a7b52;
+    .sport-cat-btn:hover, .sport-cat-btn.active {
+      background: #3a7b52; color: #fff;
       border-color: #3a7b52;
-      color: #fff;
+      box-shadow: 0 4px 16px rgba(58,123,82,0.2);
     }
+    .sport-cat-btn .sc-icon { font-size: 1.6rem; }
 
     .clubs-grid {
       display: grid;
@@ -296,519 +249,1383 @@
       padding: 22px 20px;
       background: #fff;
       transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
     }
     .club-card:hover {
       box-shadow: 0 8px 30px rgba(0,0,0,0.08);
       transform: translateY(-2px);
     }
-    .club-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .club-card-top {
+      display: flex; align-items: center;
+      gap: 10px; margin-bottom: 12px;
+    }
     .club-sport-icon { font-size: 1.5rem; }
     .club-sport-label {
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: #888;
+      font-size: 0.62rem; font-weight: 900;
+      letter-spacing: 0.1em; color: #999;
     }
-    .club-card h4 { font-size: 0.92rem; font-weight: 900; color: #111; margin-bottom: 8px; line-height: 1.4; }
-    .club-card p { font-size: 0.78rem; color: #666; line-height: 1.7; margin-bottom: 12px; }
-    .club-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+    .club-recruit-badge {
+      margin-left: auto;
+      background: #e8f3ed; color: #2c7a4b;
+      font-size: 0.6rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 4px;
+    }
+    .club-recruit-badge.closed {
+      background: #f5f5f3; color: #aaa;
+    }
+    .club-card h4 {
+      font-size: 0.94rem; font-weight: 900;
+      color: #111; margin-bottom: 8px; line-height: 1.4;
+    }
+    .club-meta {
+      display: flex; flex-direction: column;
+      gap: 4px; margin-bottom: 12px;
+    }
+    .club-meta-row {
+      display: flex; gap: 6px;
+      font-size: 0.75rem;
+    }
+    .club-meta-row .meta-label {
+      color: #aaa; flex-shrink: 0; min-width: 56px;
+    }
+    .club-meta-row .meta-val { color: #444; }
+    .club-tags {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      margin-bottom: 12px;
+    }
     .club-tag {
-      background: #f0fdf6;
-      color: #3a7b52;
+      background: #f0fdf6; color: #3a7b52;
       border: 1px solid #c6f0de;
-      font-size: 0.65rem;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 4px;
+      font-size: 0.62rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 4px;
     }
-    .club-contact { font-size: 0.75rem; color: #888; border-top: 1px solid #eee; padding-top: 10px; }
-    .club-contact a { color: #3a7b52; font-weight: 700; }
-
+    .club-contact {
+      font-size: 0.75rem; color: #888;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 10px;
+    }
     .club-add-card {
       border: 2px dashed #ddd;
-      border-radius: 16px;
-      padding: 22px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 8px;
-      color: #aaa;
-      cursor: pointer;
+      border-radius: 16px; padding: 22px 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; gap: 8px;
+      color: #aaa; cursor: pointer;
       transition: border-color 0.2s, color 0.2s;
-      min-height: 160px;
-      text-decoration: none;
+      min-height: 180px; text-decoration: none;
     }
     .club-add-card:hover { border-color: #3a7b52; color: #3a7b52; }
-    .club-add-card .add-icon { font-size: 1.8rem; }
+    .club-add-card .add-icon { font-size: 2rem; }
     .club-add-card span { font-size: 0.78rem; font-weight: 800; }
 
-    /* hidden clubs */
-    .club-card[data-hidden="true"] { display: none; }
+    /* =====================================================
+       ② 大会・イベント
+    ===================================================== */
+    .event-filter-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .ev-tab {
+      padding: 8px 20px;
+      border: 2px solid #e5ede8;
+      border-radius: 4px; background: #fff;
+      font-size: 0.8rem; font-weight: 800;
+      color: #555; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ev-tab:hover, .ev-tab.active {
+      background: #3a7b52; border-color: #3a7b52; color: #fff;
+    }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .event-layout,
-      .board-layout { grid-template-columns: 1fr; }
+    .event-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 40px; align-items: start;
+    }
+    .event-list { display: flex; flex-direction: column; gap: 14px; }
+    .event-card {
+      display: flex; gap: 16px;
+      background: #fff; border: 1px solid #eee;
+      border-radius: 12px; padding: 18px 20px;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+    }
+    .event-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .event-date-box {
+      background: #3a7b52; color: #fff;
+      border-radius: 10px; padding: 8px 12px;
+      text-align: center; min-width: 52px; flex-shrink: 0;
+    }
+    .ev-month { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.05em; }
+    .ev-day { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; line-height: 1; }
+    .ev-dow { font-size: 0.58rem; opacity: 0.8; }
+    .event-card-body { flex: 1; }
+    .event-card-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+    .ev-badge {
+      font-size: 0.62rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 3px;
+    }
+    .ev-badge.kids { background: #fff3e0; color: #e65100; }
+    .ev-badge.adult { background: #e3f2fd; color: #1565c0; }
+    .ev-badge.senior { background: #f3e5f5; color: #6a1b9a; }
+    .ev-badge.sport { background: #e8f3ed; color: #2e7d32; }
+    .event-card-body h4 {
+      font-size: 0.92rem; font-weight: 900;
+      color: #111; margin-bottom: 4px;
+    }
+    .event-card-body p {
+      font-size: 0.78rem; color: #666; line-height: 1.6;
+    }
+    .event-placeholder {
+      background: #f5f5f3; border: 2px dashed #ddd;
+      border-radius: 12px; padding: 40px;
+      text-align: center; color: #aaa;
+    }
+    .event-placeholder .ep-icon { font-size: 2.4rem; margin-bottom: 10px; }
+    .event-placeholder p { font-size: 0.82rem; line-height: 1.7; }
+
+    .event-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .ev-sidebar-box {
+      background: #fff; border: 1px solid #eee;
+      border-radius: 16px; padding: 24px;
+    }
+    .ev-sidebar-title {
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.1em; color: #999;
+      margin-bottom: 14px; padding-bottom: 10px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .ext-link-list { display: flex; flex-direction: column; gap: 8px; }
+    .ext-link-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      background: #f9f9f9; border: 1px solid #eee;
+      border-radius: 8px; font-size: 0.8rem;
+      font-weight: 700; color: #333;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .ext-link-item:hover { border-color: #3a7b52; color: #3a7b52; background: #f0fdf6; }
+    .ext-link-item .ext-icon { font-size: 1rem; flex-shrink: 0; }
+    .ext-arrow { margin-left: auto; color: #ccc; font-size: 0.7rem; }
+
+    /* =====================================================
+       ③ スポーツニュース
+    ===================================================== */
+    .news-section-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .news-category-block {
+      background: #fff; border-radius: 16px;
+      border: 1px solid #eee; overflow: hidden;
+    }
+    .ncb-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .ncb-icon { font-size: 1.1rem; }
+    .ncb-title { font-size: 0.82rem; font-weight: 900; color: #111; }
+    .ncb-links { padding: 8px 0; }
+    .ncb-link-item {
+      display: flex; align-items: center;
+      padding: 10px 18px; gap: 10px;
+      font-size: 0.78rem; color: #333;
+      font-weight: 700;
+      border-bottom: 1px solid #f5f5f5;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .ncb-link-item:last-child { border-bottom: none; }
+    .ncb-link-item:hover { background: #f0fdf6; color: #3a7b52; }
+    .ncb-link-item .ncb-arrow { margin-left: auto; color: #ddd; font-size: 0.7rem; }
+    .ncb-link-item .ncb-league {
+      font-size: 0.62rem; color: #aaa; font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .news-pro-banner {
+      background: linear-gradient(135deg, #0d1f14 0%, #1a3d26 100%);
+      border-radius: 16px; padding: 32px;
+      display: flex; align-items: center; gap: 32px;
+    }
+    .npb-text h3 {
+      font-size: 1.1rem; font-weight: 900;
+      color: #fff; margin-bottom: 8px;
+    }
+    .npb-text p {
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .npb-links {
+      display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap;
+    }
+    .npb-btn {
+      padding: 10px 20px;
+      border-radius: 8px; font-size: 0.82rem;
+      font-weight: 800; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .npb-btn.green {
+      background: #3a7b52; color: #fff;
+    }
+    .npb-btn.green:hover { background: #2c5f3e; }
+    .npb-btn.outline {
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: #fff;
+    }
+    .npb-btn.outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* =====================================================
+       ④ 仲間募集掲示板
+    ===================================================== */
+    .board-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px; align-items: start;
+    }
+    .board-toolbar {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .board-toolbar-left {
+      font-size: 0.82rem; font-weight: 900; color: #111;
+    }
+    .board-toolbar-right {
+      display: flex; gap: 8px;
+    }
+    .board-filter-chip {
+      padding: 5px 14px;
+      border-radius: 4px; border: 1.5px solid #eee;
+      font-size: 0.72rem; font-weight: 800;
+      color: #666; cursor: pointer;
+      transition: all 0.2s; background: #fff;
+    }
+    .board-filter-chip.active, .board-filter-chip:hover {
+      background: #3a7b52; color: #fff; border-color: #3a7b52;
+    }
+
+    .board-posts { display: flex; flex-direction: column; gap: 14px; }
+    .board-post {
+      border: 1px solid #eee; border-radius: 16px;
+      padding: 22px 24px; background: #fff;
+      transition: box-shadow 0.3s;
+    }
+    .board-post:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
+    .post-header {
+      display: flex; align-items: center;
+      gap: 8px; margin-bottom: 10px; flex-wrap: wrap;
+    }
+    .post-sport-badge {
+      background: #3a7b52; color: #fff;
+      font-size: 0.65rem; font-weight: 800;
+      padding: 3px 10px; border-radius: 4px;
+    }
+    .post-type-badge {
+      font-size: 0.65rem; font-weight: 800;
+      padding: 3px 10px; border-radius: 4px;
+    }
+    .post-type-badge.recruit { background: #fff3e0; color: #e65100; }
+    .post-type-badge.search { background: #e3f2fd; color: #1565c0; }
+    .post-type-badge.match { background: #f3e5f5; color: #6a1b9a; }
+    .post-date { font-size: 0.7rem; color: #bbb; margin-left: auto; }
+    .board-post h4 {
+      font-size: 0.94rem; font-weight: 900;
+      color: #111; margin-bottom: 8px;
+    }
+    .board-post p {
+      font-size: 0.82rem; color: #555;
+      line-height: 1.75; margin-bottom: 10px;
+    }
+    .post-contact {
+      font-size: 0.76rem; color: #888;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    .board-cta-box {
+      background: linear-gradient(145deg, #1a3d26, #2c5f3e);
+      border-radius: 20px; padding: 30px 24px;
+      color: #fff;
+    }
+    .board-cta-box h3 {
+      font-size: 1.05rem; font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .board-cta-box p {
+      font-size: 0.8rem; line-height: 1.7;
+      opacity: 0.85; margin-bottom: 18px;
+    }
+    .form-field-preview {
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px; padding: 9px 14px;
+      margin-bottom: 7px; font-size: 0.76rem;
+      color: rgba(255,255,255,0.8);
+    }
+    .btn-form-submit {
+      display: block; width: 100%;
+      background: #fff; color: #2c5f3e;
+      text-align: center; padding: 13px;
+      border-radius: 10px; font-size: 0.86rem;
+      font-weight: 800; margin-top: 14px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-form-submit:hover { background: #f0fdf6; }
+    .board-extra-links {
+      margin-top: 16px; background: #f9f9f7;
+      border: 1px solid #eee; border-radius: 14px;
+      padding: 18px;
+    }
+    .board-extra-title {
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.1em; color: #999;
+      margin-bottom: 10px;
+    }
+
+    /* =====================================================
+       ⑤ マエナカからのお知らせ
+    ===================================================== */
+    .notice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .notice-card {
+      background: #fff; border-radius: 14px;
+      border: 1px solid #eee; overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+      text-decoration: none; display: block;
+    }
+    .notice-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .notice-card-img {
+      width: 100%; height: 160px;
+      object-fit: cover; display: block;
+    }
+    .notice-card-body { padding: 18px; }
+    .notice-card-meta {
+      display: flex; gap: 8px;
+      align-items: center; margin-bottom: 8px;
+    }
+    .notice-cat-badge {
+      font-size: 0.6rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 3px;
+    }
+    .notice-cat-badge.news { background: #e8f3ed; color: #2e7d32; }
+    .notice-cat-badge.event { background: #fff3e0; color: #e65100; }
+    .notice-cat-badge.tips { background: #e3f2fd; color: #1565c0; }
+    .notice-date { font-size: 0.68rem; color: #bbb; }
+    .notice-card h4 {
+      font-size: 0.9rem; font-weight: 900;
+      color: #111; line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .notice-card p {
+      font-size: 0.76rem; color: #666;
+      line-height: 1.65;
+    }
+    .notice-more-btn {
+      display: flex; align-items: center;
+      justify-content: center;
+      margin-top: 32px;
+      gap: 8px;
+      background: #fff; border: 2px solid #3a7b52;
+      color: #3a7b52; font-size: 0.86rem;
+      font-weight: 800; padding: 14px 32px;
+      border-radius: 8px; text-decoration: none;
+      transition: all 0.2s; width: fit-content;
+      margin-left: auto; margin-right: auto;
+    }
+    .notice-more-btn:hover { background: #3a7b52; color: #fff; }
+
+    /* =====================================================
+       UX FLOW BAND
+    ===================================================== */
+    .ux-flow-band {
+      background: linear-gradient(135deg, #0d2817 0%, #1a4028 100%);
+      padding: 56px 0;
+    }
+    .ux-flow-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      text-align: center;
+    }
+    .ux-flow-inner h2 {
+      font-size: 1.5rem; font-weight: 900;
+      color: #fff; margin-bottom: 8px;
+    }
+    .ux-flow-inner p {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 36px;
+    }
+    .ux-steps {
+      display: flex; align-items: center;
+      justify-content: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ux-step {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; padding: 18px 20px;
+      text-align: center; min-width: 120px;
+    }
+    .ux-step-icon { font-size: 1.4rem; margin-bottom: 6px; }
+    .ux-step-label {
+      font-size: 0.72rem; font-weight: 900;
+      color: #fff; line-height: 1.4;
+    }
+    .ux-step-sub {
+      font-size: 0.6rem; color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+    }
+    .ux-arrow { color: #5fca85; font-size: 1.4rem; }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 960px) {
+      .sport-category-grid { grid-template-columns: repeat(5, 1fr); }
+      .event-layout, .board-layout { grid-template-columns: 1fr; }
       .clubs-grid { grid-template-columns: repeat(2, 1fr); }
-      .section-nav-inner { overflow-x: auto; padding-bottom: 2px; }
+      .news-section-layout { grid-template-columns: 1fr 1fr; }
+      .notice-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
+      .sport-category-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
       .clubs-grid { grid-template-columns: 1fr; }
+      .notice-grid { grid-template-columns: 1fr; }
+      .news-section-layout { grid-template-columns: 1fr; }
       .tsn-section { padding: 56px 0; }
-      .tsn-section-header h2 { font-size: 1.5rem; }
-      .section-nav-inner a { padding: 12px 16px; font-size: 0.75rem; }
+      .platform-flow { gap: 6px; }
+      .platform-flow-item { min-width: 90px; padding: 12px 8px; }
+      .ux-steps { gap: 6px; }
+      .ux-step { min-width: 90px; padding: 12px 10px; }
+      .news-pro-banner { flex-direction: column; }
+      .tsn-hero h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
+
 <header id="header" class="scrolled">
   <div class="header-inner">
-    <a href="index.html" class="logo-wrap"><div class="logo-icon">MS</div><div class="logo-text-wrap"><strong>マエナカスポーツ</strong><span>MAENAKA SPORTS · SANDA</span></div></a>
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-icon">MS</div>
+      <div class="logo-text-wrap"><strong>マエナカスポーツ</strong><span>MAENAKA SPORTS · SANDA</span></div>
+    </a>
     <nav class="header-nav">
-      <a href="index.html#services">サービス</a><a href="index.html#about">店舗紹介</a><a href="index.html#about">会社概要</a><a href="index.html#access">アクセス</a>
+      <a href="index.html#services">サービス</a>
+      <a href="index.html#about">店舗紹介</a>
+      <a href="index.html#access">アクセス</a>
       <a href="tel:0795645570" class="header-cta">📞 079-564-5570</a>
     </nav>
     <div class="hbg" onclick="openMM()"><span></span><span></span><span></span></div>
   </div>
 </header>
 <div id="mmenu" onclick="if(event.target===this)closeMM()">
-  <div class="mmenu-panel"><button class="mmenu-close" onclick="closeMM()">✕</button><a href="index.html#services" onclick="closeMM()">サービス</a><a href="index.html#about" onclick="closeMM()">店舗紹介</a><a href="index.html#about" onclick="closeMM()">会社概要</a><a href="index.html#access" onclick="closeMM()">アクセス</a><a href="tel:0795645570" class="mmenu-cta">📞 今すぐ電話する</a></div>
-</div>
-
-<div class="page-hero">
-  <img src="svc-tsunagaru-hero.jpg" alt="スポーツコミュニティ">
-  <div class="page-hero-overlay"></div>
-  <div class="page-hero-content">
-    <a href="index.html" class="breadcrumb">← トップへ戻る</a>
-    <div class="service-num">05</div>
-    <h1>つながるスポーツ</h1>
-    <p>三田のスポーツコミュニティをひとつに</p>
+  <div class="mmenu-panel">
+    <button class="mmenu-close" onclick="closeMM()">✕</button>
+    <a href="index.html#services" onclick="closeMM()">サービス</a>
+    <a href="index.html#about" onclick="closeMM()">店舗紹介</a>
+    <a href="index.html#access" onclick="closeMM()">アクセス</a>
+    <a href="tel:0795645570" class="mmenu-cta">📞 今すぐ電話する</a>
   </div>
 </div>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+<section class="tsn-hero">
+  <div class="tsn-hero-bg"></div>
+  <p class="tsn-breadcrumb"><a href="index.html">← トップへ戻る</a></p>
+  <div class="tsn-hero-content">
+    <div class="tsn-hero-eyebrow">05 TSUNAGARU SPORTS</div>
+    <h1>スポーツが、<br>人と地域を<em>つなぐ。</em></h1>
+    <p class="tsn-hero-sub">
+      チームを探したい、仲間を募りたい、大会情報を知りたい——<br>
+      三田のスポーツに関わるすべての人のための、地域プラットフォームです。
+    </p>
+    <div class="tsn-hero-stats">
+      <div class="tsn-hero-stat">
+        <div class="num">35<span>年</span></div>
+        <div class="label">地域スポーツを支えてきた年数</div>
+      </div>
+      <div class="tsn-hero-stat">
+        <div class="num">10<span>競技</span></div>
+        <div class="label">対応スポーツカテゴリー</div>
+      </div>
+      <div class="tsn-hero-stat">
+        <div class="num">∞</div>
+        <div class="label">生まれる可能性のつながり</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     PLATFORM CONCEPT
+===================================================== -->
+<section class="platform-section reveal">
+  <div class="platform-inner">
+    <div class="platform-label">SPORTS HUB CONCEPT</div>
+    <h2 class="platform-title">マエナカスポーツは、<br>「スポーツ用品店」を超えた地域ハブへ。</h2>
+    <p class="platform-desc">
+      Amazonや大型チェーンにはできない、地域・人・チームとのつながり。<br>
+      1989年から三田で積み重ねた関係性が、あなたのスポーツライフをつなぎます。
+    </p>
+    <div class="platform-flow">
+      <div class="platform-flow-item">
+        <div class="pf-icon">🔍</div>
+        <div class="pf-label">チームを<br>見つける</div>
+        <div class="pf-sub">チーム紹介</div>
+      </div>
+      <div class="platform-arrow">→</div>
+      <div class="platform-flow-item">
+        <div class="pf-icon">🤝</div>
+        <div class="pf-label">仲間に<br>加わる</div>
+        <div class="pf-sub">仲間募集</div>
+      </div>
+      <div class="platform-arrow">→</div>
+      <div class="platform-flow-item">
+        <div class="pf-icon">🏆</div>
+        <div class="pf-label">大会に<br>出る</div>
+        <div class="pf-sub">イベント情報</div>
+      </div>
+      <div class="platform-arrow">→</div>
+      <div class="platform-flow-item">
+        <div class="pf-icon">🛒</div>
+        <div class="pf-label">道具を<br>買う・直す</div>
+        <div class="pf-sub">かう・つくる</div>
+      </div>
+      <div class="platform-arrow">→</div>
+      <div class="platform-flow-item">
+        <div class="pf-icon">🔄</div>
+        <div class="pf-label">スポーツを<br>続ける</div>
+        <div class="pf-sub">地域の循環</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- セクションナビ -->
 <nav class="page-section-nav">
   <div class="section-nav-inner">
-    <a href="#events" class="active">🏆 イベント・大会情報</a>
-    <a href="#board">📢 チーム募集掲示板</a>
-    <a href="#clubs">⚽ チーム・クラブ紹介</a>
+    <a href="#clubs" class="active">⚽ チームを探す</a>
+    <a href="#events">🏆 大会・イベント</a>
+    <a href="#news">📺 スポーツニュース</a>
+    <a href="#board">📢 仲間募集</a>
+    <a href="#notice">📣 お知らせ</a>
   </div>
 </nav>
 
-<main class="service-main">
+<main class="service-main" style="padding-top:0;">
 
-  <!-- ===== SECTION 1: イベント・大会情報 ===== -->
-  <section class="tsn-section" id="events">
-    <div class="tsn-section-header reveal">
-      <div class="tsn-badge">🏆 Events &amp; Tournaments</div>
-      <h2>地域イベント・大会情報</h2>
-      <p>三田市・北摂エリアのスポーツイベント・大会スケジュールをお届けします。Googleカレンダーで常に最新情報に更新中。主要スポーツの試合日程は外部サイトへのリンクもご活用ください。</p>
-    </div>
-
-    <div class="event-layout">
-      <!-- カレンダー埋め込み -->
-      <div class="reveal">
-        <!--
-          【店舗スタッフへ】Googleカレンダーの設定方法:
-          1. Google カレンダーで「マエナカスポーツ イベント情報」カレンダーを新規作成
-          2. カレンダーを「公開」設定にする
-          3. 「カレンダーの統合」からiframeコードをコピーして、下の calendar-wrap div に貼り付ける
-          例: <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=Asia%2FTokyo" ...>
-        -->
-        <div class="calendar-wrap">
-          <div class="calendar-placeholder-icon">📅</div>
-          <div class="calendar-placeholder-title">Googleカレンダーを設定中</div>
-          <div class="calendar-placeholder-text">
-            マエナカスポーツの店舗スタッフがGoogleカレンダーで<br>イベント・大会情報を随時更新予定です。<br>現在は下記の三田市スポーツ協会のリンクをご確認ください。
-          </div>
-          <a href="https://www.sanda-sports.or.jp/" target="_blank" rel="noopener" class="calendar-placeholder-btn">三田市スポーツ協会サイトを見る →</a>
-        </div>
-
-        <!-- イベントリスト（手動更新） -->
-        <div style="margin-top: 32px;">
-          <div style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;color:#888;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #eee;">近日開催のイベント（店舗スタッフが更新）</div>
-          <div class="local-event-list" id="localEvents">
-            <div class="local-event-item">
-              <div class="event-date-box" style="background:#aaa">
-                <div class="ev-month">---</div>
-                <div class="ev-day">--</div>
-              </div>
-              <div class="event-text">
-                <strong>イベント情報を準備中</strong>
-                <span>三田市内のイベント・大会情報は随時更新します。LINEでもお知らせします。</span>
-              </div>
-            </div>
-          </div>
-          <p style="font-size:0.75rem;color:#aaa;margin-top:12px;line-height:1.6;">※ 最新情報は<a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" style="color:#3a7b52;font-weight:700;">LINE公式アカウント</a>でも配信しています。</p>
-        </div>
-      </div>
-
-      <!-- サイドバー -->
-      <div class="event-sidebar reveal">
-        <!-- 主要スポーツ情報リンク -->
-        <div class="event-sidebar-box">
-          <div class="sidebar-box-title">⚡ 主要スポーツ 試合情報</div>
-          <div class="ext-link-list">
-            <a href="https://soccer.yahoo.co.jp/jleague/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">⚽</span>Jリーグ 試合日程
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://npb.jp/schedule/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">⚾</span>プロ野球 NPB 日程
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://www.basketball-japan.com/b.league/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🏀</span>Bリーグ 試合日程
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://www.jva.or.jp/schedule/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🏐</span>バレーボール Vリーグ
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://sportsnavi.ht.kyodo-d.jp/sports/tennis/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🎾</span>テニス 国際大会
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://www.japan-sports.or.jp/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🇯🇵</span>JSPO スポーツ総合
-              <span class="ext-arrow">→</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- 三田市・地域情報 -->
-        <div class="event-sidebar-box">
-          <div class="sidebar-box-title">📍 地域スポーツ情報</div>
-          <div class="ext-link-list">
-            <a href="https://www.sanda-sports.or.jp/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🏟</span>三田市スポーツ協会
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://www.city.sanda.lg.jp/sangyo_kanko/sports/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🏙</span>三田市 スポーツ情報
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://hyogo-sports.or.jp/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🔵</span>兵庫県スポーツ協会
-              <span class="ext-arrow">→</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- SNS -->
-        <div class="event-sidebar-box" style="background:#111;border-color:#111;">
-          <div class="sidebar-box-title" style="color:#555;border-color:#333;">📢 SNSで最新情報をチェック</div>
-          <div class="ext-link-list">
-            <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="ext-link-item" style="background:#00b909;border-color:#00b909;color:#fff;">
-              <span class="ext-icon">💬</span>LINE公式でお知らせ登録
-              <span class="ext-arrow" style="color:rgba(255,255,255,0.5);">→</span>
-            </a>
-            <a href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener" class="ext-link-item" style="background:#e1306c;border-color:#e1306c;color:#fff;">
-              <span class="ext-icon">📷</span>Instagram をフォロー
-              <span class="ext-arrow" style="color:rgba(255,255,255,0.5);">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SECTION 2: チーム募集掲示板 ===== -->
-  <section class="tsn-section" id="board">
-    <div class="tsn-section-header reveal">
-      <div class="tsn-badge">📢 Recruitment Board</div>
-      <h2>チーム募集掲示板</h2>
-      <p>「仲間を探している」「チームに加わりたい」そんな出会いをここで。フォームから投稿いただくと店舗スタッフが確認・掲載します。外部マッチングサービスへのリンクもどうぞ。</p>
-    </div>
-
-    <div class="board-layout">
-      <!-- 投稿一覧 -->
-      <div class="reveal">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-          <div style="font-size:0.82rem;font-weight:800;color:#333;">掲載中の募集情報</div>
-          <a href="#board-form" style="font-size:0.78rem;font-weight:700;color:#3a7b52;">＋ 投稿する</a>
-        </div>
-
-        <div class="board-posts">
-          <!-- 掲載例（実際は店舗スタッフが追加・削除） -->
-          <div class="board-post">
-            <div class="post-header">
-              <span class="post-sport-badge">⚽ サッカー</span>
-              <span class="post-type-badge">メンバー募集</span>
-              <span class="post-date">2024.10</span>
-            </div>
-            <h4>三田FC U40（40代男性チーム）メンバー募集</h4>
-            <p>毎週土曜朝、三田市内グラウンドで活動する40代メインのフットサルチームです。和気あいあいとした雰囲気で楽しくプレーしています。経験不問。</p>
-            <div class="post-contact">📞 <strong>店頭スタッフまでお問い合わせください</strong></div>
-          </div>
-
-          <div class="board-post">
-            <div class="post-header">
-              <span class="post-sport-badge" style="background:#e8316e">🎾 テニス</span>
-              <span class="post-type-badge">チームを探している</span>
-              <span class="post-date">2024.10</span>
-            </div>
-            <h4>テニス歴3年・三田市在住 30代女性 チームを探しています</h4>
-            <p>週末に活動できるテニスサークルを探しています。初中級レベルです。女性メインまたは混合サークルを希望します。</p>
-            <div class="post-contact">📞 <strong>店頭スタッフまでお問い合わせください</strong></div>
-          </div>
-
-          <div class="board-post">
-            <div class="post-header">
-              <span class="post-sport-badge" style="background:#0066cc">🏓 卓球</span>
-              <span class="post-type-badge">メンバー募集</span>
-              <span class="post-date">2024.09</span>
-            </div>
-            <h4>三田卓球クラブ（シニア）新メンバー募集</h4>
-            <p>60代中心のシニア卓球クラブです。月・水・金の午前中に活動中。初心者からベテランまで大歓迎です。</p>
-            <div class="post-contact">📞 <strong>マエナカスポーツ店頭で詳細を確認できます</strong></div>
-          </div>
-        </div>
-
-        <p style="font-size:0.75rem;color:#aaa;margin-top:16px;line-height:1.7;">※ 掲載情報は随時更新されます。掲載を希望する方は下記フォームまたは店頭スタッフにお声がけください。</p>
-
-        <!-- 外部マッチングサイト -->
-        <div style="margin-top:40px;">
-          <div style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;color:#888;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #eee;">🔗 外部マッチングサービスも活用しよう</div>
-          <div class="ext-link-list">
-            <a href="https://www.sportsyaroyo.com/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🤝</span>スポーツやろうよ（全国最大級のスポーツマッチング）
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://cramo.net/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">📋</span>Cramo（チーム・サークル探し）
-              <span class="ext-arrow">→</span>
-            </a>
-            <a href="https://teamcolor.jp/" target="_blank" rel="noopener" class="ext-link-item">
-              <span class="ext-icon">🎽</span>チームカラー（スポーツチーム検索）
-              <span class="ext-arrow">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 投稿フォーム -->
-      <div id="board-form" class="reveal">
-        <div class="board-form-box">
-          <h3>📝 募集情報を投稿する</h3>
-          <p>下記フォームに入力して送信してください。内容を確認後、店舗スタッフが掲示板に掲載します（掲載まで数日いただく場合があります）。</p>
-          <div class="form-field-preview">🏅 スポーツ種目</div>
-          <div class="form-field-preview">📣 投稿タイプ（メンバー募集 / チームを探す）</div>
-          <div class="form-field-preview">📝 タイトル・内容</div>
-          <div class="form-field-preview">📞 連絡先（任意）</div>
-          <!--
-            【店舗スタッフへ】Googleフォームの設定方法:
-            1. Google フォームで上記項目のフォームを作成
-            2. フォームの「送信」→「リンク」をコピー
-            3. 下のリンク先 href="#" を実際のGoogleフォームURLに変更する
-          -->
-          <a href="https://forms.gle/example" target="_blank" rel="noopener" class="btn-form-submit">Googleフォームで投稿する →</a>
-        </div>
-
-        <div style="margin-top:20px;background:#f7f7f5;border-radius:16px;padding:20px;border:1px solid #eee;">
-          <div style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;color:#888;margin-bottom:12px;">📞 店頭での掲示も可能</div>
-          <p style="font-size:0.82rem;color:#555;line-height:1.7;">店舗にお越しいただければ店頭掲示板へも掲載します。来店が難しい場合はLINEからでも受け付けています。</p>
-          <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:0.82rem;font-weight:700;color:#3a7b52;">💬 LINEで送る →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SECTION 3: チーム・クラブ紹介 ===== -->
+  <!-- =====================================================
+       ① チーム・仲間とつながる
+  ===================================================== -->
   <section class="tsn-section" id="clubs">
-    <div class="tsn-section-header reveal">
-      <div class="tsn-badge">⚽ Teams &amp; Clubs</div>
-      <h2>チーム・クラブ紹介</h2>
-      <p>三田市・北摂エリアで活動するスポーツチーム・クラブを競技別に紹介しています。ジュニアから大人まで、あなたに合ったチームを探してみてください。情報提供・修正は店頭またはLINEにてご連絡ください。</p>
+    <div class="tsn-inner">
+      <div class="tsn-section-header reveal">
+        <div class="tsn-badge">⚽ Teams &amp; Clubs</div>
+        <h2>チーム・仲間とつながる</h2>
+        <p>三田市・北摂エリアで活動するスポーツチームを競技別に紹介しています。「始めたいけどどこでやるかわからない」「仲間を増やしたい」——まずはここから探してください。掲載希望は店頭またはLINEにてご連絡ください。</p>
+      </div>
+
+      <!-- 競技カテゴリー選択 -->
+      <div class="sport-category-grid reveal">
+        <button class="sport-cat-btn active" onclick="filterClubs('all', this)">
+          <span class="sc-icon">🏅</span>すべて
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('volleyball', this)">
+          <span class="sc-icon">🏐</span>バレーボール
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('baseball', this)">
+          <span class="sc-icon">⚾</span>野球
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('soccer', this)">
+          <span class="sc-icon">⚽</span>サッカー
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('basketball', this)">
+          <span class="sc-icon">🏀</span>バスケ
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('tennis', this)">
+          <span class="sc-icon">🎾</span>テニス
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('badminton', this)">
+          <span class="sc-icon">🏸</span>バドミントン
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('tabletennis', this)">
+          <span class="sc-icon">🏓</span>卓球
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('athletics', this)">
+          <span class="sc-icon">🏃</span>陸上
+        </button>
+        <button class="sport-cat-btn" onclick="filterClubs('groundgolf', this)">
+          <span class="sc-icon">🏌</span>グラウンドゴルフ
+        </button>
+      </div>
+
+      <!-- チームグリッド -->
+      <div class="clubs-grid reveal" id="clubsGrid">
+
+        <!-- バレーボール -->
+        <div class="club-card" data-sport="volleyball">
+          <div class="club-card-top">
+            <span class="club-sport-icon">🏐</span>
+            <span class="club-sport-label">VOLLEYBALL</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田主婦バレーボールクラブ</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">三田市体育館</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">毎週水曜 10:00〜12:00</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">女性・主婦</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">女性のみ</span>
+            <span class="club-tag">初心者OK</span>
+            <span class="club-tag">楽しむ重視</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- 野球 -->
+        <div class="club-card" data-sport="baseball">
+          <div class="club-card-top">
+            <span class="club-sport-icon">⚾</span>
+            <span class="club-sport-label">BASEBALL</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田南が丘スポーツ少年団（野球）</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">南が丘グラウンド</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">土日・祝日</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">小中学生</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">ジュニア</span>
+            <span class="club-tag">小中学生</span>
+            <span class="club-tag">大会参加あり</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- サッカー① -->
+        <div class="club-card" data-sport="soccer">
+          <div class="club-card-top">
+            <span class="club-sport-icon">⚽</span>
+            <span class="club-sport-label">SOCCER</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田サッカー少年団</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">南が丘公園グラウンド</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">土日</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">小学生</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">ジュニア</span>
+            <span class="club-tag">小学生</span>
+            <span class="club-tag">初心者OK</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- サッカー② -->
+        <div class="club-card" data-sport="soccer">
+          <div class="club-card-top">
+            <span class="club-sport-icon">⚽</span>
+            <span class="club-sport-label">SOCCER / FUTSAL</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>FC三田（社会人フットサル）</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">三田市内施設</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">毎週土曜朝</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">20〜40代</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">大人</span>
+            <span class="club-tag">20〜40代</span>
+            <span class="club-tag">週末活動</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- バスケ -->
+        <div class="club-card" data-sport="basketball">
+          <div class="club-card-top">
+            <span class="club-sport-icon">🏀</span>
+            <span class="club-sport-label">BASKETBALL</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田バスケットボールクラブ</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">三田市体育館</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">月・木 夜間</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">中学生以上・男女OK</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">中学生以上</span>
+            <span class="club-tag">男女OK</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- テニス -->
+        <div class="club-card" data-sport="tennis">
+          <div class="club-card-top">
+            <span class="club-sport-icon">🎾</span>
+            <span class="club-sport-label">TENNIS</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田テニスサークル（社会人）</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">三田市テニスコート</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">週末</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">大人・男女OK</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">大人</span>
+            <span class="club-tag">初中級</span>
+            <span class="club-tag">男女OK</span>
+            <span class="club-tag">楽しむ重視</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- バドミントン -->
+        <div class="club-card" data-sport="badminton">
+          <div class="club-card-top">
+            <span class="club-sport-icon">🏸</span>
+            <span class="club-sport-label">BADMINTON</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田バドミントン同好会</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">三田市体育館</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">月2〜3回 夜間</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">社会人</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">大人</span>
+            <span class="club-tag">夜間活動</span>
+            <span class="club-tag">月2〜3回</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- 卓球 -->
+        <div class="club-card" data-sport="tabletennis">
+          <div class="club-card-top">
+            <span class="club-sport-icon">🏓</span>
+            <span class="club-sport-label">TABLE TENNIS</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田卓球クラブ（シニア）</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">マエナカスポーツ 1F</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">月・水・金 午前</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">60代〜</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">シニア</span>
+            <span class="club-tag">60代〜</span>
+            <span class="club-tag">初心者OK</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- グラウンドゴルフ -->
+        <div class="club-card" data-sport="groundgolf">
+          <div class="club-card-top">
+            <span class="club-sport-icon">🏌</span>
+            <span class="club-sport-label">GROUND GOLF</span>
+            <span class="club-recruit-badge">募集中</span>
+          </div>
+          <h4>三田南が丘グラウンドゴルフ同好会</h4>
+          <div class="club-meta">
+            <div class="club-meta-row"><span class="meta-label">📍 場所</span><span class="meta-val">南が丘公園</span></div>
+            <div class="club-meta-row"><span class="meta-label">📅 活動</span><span class="meta-val">毎週火・木 午前</span></div>
+            <div class="club-meta-row"><span class="meta-label">👥 対象</span><span class="meta-val">シニア・誰でも</span></div>
+          </div>
+          <div class="club-tags">
+            <span class="club-tag">シニア</span>
+            <span class="club-tag">初心者OK</span>
+            <span class="club-tag">健康づくり</span>
+          </div>
+          <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+        </div>
+
+        <!-- 追加カード -->
+        <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="club-add-card">
+          <span class="add-icon">➕</span>
+          <span>チームを掲載したい方は<br>LINEまたは店頭へ</span>
+        </a>
+      </div>
+
+      <div style="margin-top:20px;background:#f5f9f6;border-radius:12px;padding:14px 18px;border:1px solid #d4e8da;font-size:0.77rem;color:#667;line-height:1.7;" class="reveal">
+        ⚠️ 掲載情報の追加・修正・削除は
+        <a href="tel:0795645570" style="color:#3a7b52;font-weight:700;">079-564-5570</a> または
+        <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" style="color:#3a7b52;font-weight:700;">LINE</a> にてご連絡ください。
+      </div>
     </div>
+  </section>
 
-    <!-- 競技フィルター -->
-    <div class="sport-filter reveal">
-      <button class="filter-btn active" onclick="filterClubs('all', this)">すべて</button>
-      <button class="filter-btn" onclick="filterClubs('soccer', this)">⚽ サッカー</button>
-      <button class="filter-btn" onclick="filterClubs('baseball', this)">⚾ 野球</button>
-      <button class="filter-btn" onclick="filterClubs('basketball', this)">🏀 バスケ</button>
-      <button class="filter-btn" onclick="filterClubs('tennis', this)">🎾 テニス</button>
-      <button class="filter-btn" onclick="filterClubs('tabletennis', this)">🏓 卓球</button>
-      <button class="filter-btn" onclick="filterClubs('badminton', this)">🏸 バドミントン</button>
-      <button class="filter-btn" onclick="filterClubs('volleyball', this)">🏐 バレー</button>
-      <button class="filter-btn" onclick="filterClubs('other', this)">その他</button>
+  <!-- =====================================================
+       ② 大会・イベント情報
+  ===================================================== -->
+  <section class="tsn-section alt" id="events">
+    <div class="tsn-inner">
+      <div class="tsn-section-header reveal">
+        <div class="tsn-badge">🏆 Events &amp; Tournaments</div>
+        <h2>大会・イベント情報</h2>
+        <p>三田市・北摂エリアのスポーツ大会・体験会・教室情報を集約しています。子ども向け・大人向け・シニア向けに分けて掲載。最新情報はLINE公式でも配信中です。</p>
+      </div>
+
+      <div class="event-filter-tabs reveal">
+        <button class="ev-tab active" onclick="filterEvents('all', this)">すべて</button>
+        <button class="ev-tab" onclick="filterEvents('kids', this)">👦 子ども向け</button>
+        <button class="ev-tab" onclick="filterEvents('adult', this)">👨 大人向け</button>
+        <button class="ev-tab" onclick="filterEvents('senior', this)">👴 シニア向け</button>
+        <button class="ev-tab" onclick="filterEvents('open', this)">🎉 体験会・教室</button>
+      </div>
+
+      <div class="event-layout">
+        <!-- イベントリスト -->
+        <div class="reveal">
+          <div class="event-list" id="eventList">
+            <div class="event-placeholder">
+              <div class="ep-icon">📅</div>
+              <p>
+                大会・イベント情報を随時更新中です。<br>
+                最新情報はLINE公式アカウントでお知らせしています。<br>
+                店頭でも掲示板をご確認ください。
+              </p>
+              <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener"
+                  style="background:#00b900;color:#fff;padding:10px 22px;border-radius:8px;font-size:0.82rem;font-weight:800;text-decoration:none;">
+                  💬 LINEで最新情報を受け取る
+                </a>
+                <a href="https://www.sanda-sports.or.jp/" target="_blank" rel="noopener"
+                  style="background:#3a7b52;color:#fff;padding:10px 22px;border-radius:8px;font-size:0.82rem;font-weight:800;text-decoration:none;">
+                  三田市スポーツ協会サイト →
+                </a>
+              </div>
+            </div>
+
+            <!--
+            ★ 以下が実際のイベントカード例（スタッフが追加する）★
+            <div class="event-card" data-category="kids">
+              <div class="event-date-box">
+                <div class="ev-month">JUL</div>
+                <div class="ev-day">15</div>
+                <div class="ev-dow">土</div>
+              </div>
+              <div class="event-card-body">
+                <div class="event-card-badges">
+                  <span class="ev-badge kids">子ども向け</span>
+                  <span class="ev-badge sport">⚽ サッカー</span>
+                </div>
+                <h4>三田市少年サッカー大会</h4>
+                <p>三田市内小学生対象。申込は6月末まで。</p>
+              </div>
+            </div>
+            -->
+          </div>
+        </div>
+
+        <!-- サイドバー -->
+        <div class="event-sidebar reveal">
+          <div class="ev-sidebar-box">
+            <div class="ev-sidebar-title">⚡ プロ・主要スポーツ 試合情報</div>
+            <div class="ext-link-list">
+              <a href="https://npb.jp/schedule/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">⚾</span>プロ野球 NPB日程
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://soccer.yahoo.co.jp/jleague/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">⚽</span>Jリーグ 試合日程
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://www.bleague.jp/game/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🏀</span>Bリーグ 試合日程
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://www.jva.or.jp/schedule/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🏐</span>バレーボール Vリーグ
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://www.badminton.or.jp/news/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🏸</span>バドミントン日本代表
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://jtta.or.jp/tour/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🏓</span>卓球 全日本大会情報
+                <span class="ext-arrow">→</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="ev-sidebar-box">
+            <div class="ev-sidebar-title">📍 地域スポーツ公式情報</div>
+            <div class="ext-link-list">
+              <a href="https://www.sanda-sports.or.jp/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🏟</span>三田市スポーツ協会
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://www.city.sanda.lg.jp/sangyo_kanko/sports/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🏙</span>三田市 スポーツ情報
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://hyogo-sports.or.jp/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🔵</span>兵庫県スポーツ協会
+                <span class="ext-arrow">→</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="ev-sidebar-box" style="background:#0d1f14;border-color:#0d1f14;">
+            <div class="ev-sidebar-title" style="color:#3a6644;border-color:#1a3d26;">📢 最新情報をSNSで受け取る</div>
+            <div class="ext-link-list">
+              <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="ext-link-item"
+                style="background:#00b900;border-color:#00b900;color:#fff;">
+                <span class="ext-icon">💬</span>LINE公式 登録する
+                <span class="ext-arrow" style="color:rgba(255,255,255,0.4);">→</span>
+              </a>
+              <a href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener" class="ext-link-item"
+                style="background:#e1306c;border-color:#e1306c;color:#fff;">
+                <span class="ext-icon">📷</span>Instagram フォロー
+                <span class="ext-arrow" style="color:rgba(255,255,255,0.4);">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="clubs-grid reveal" id="clubsGrid">
-      <!-- サッカー -->
-      <div class="club-card" data-sport="soccer">
-        <div class="club-card-header">
-          <span class="club-sport-icon">⚽</span>
-          <span class="club-sport-label">SOCCER</span>
-        </div>
-        <h4>三田サッカー少年団</h4>
-        <p>南が丘を拠点に活動する少年サッカークラブ。小学生対象、初心者歓迎。</p>
-        <div class="club-tags">
-          <span class="club-tag">ジュニア</span>
-          <span class="club-tag">小学生</span>
-          <span class="club-tag">初心者OK</span>
-        </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+  <!-- =====================================================
+       ③ スポーツニュース
+  ===================================================== -->
+  <section class="tsn-section" id="news">
+    <div class="tsn-inner">
+      <div class="tsn-section-header reveal">
+        <div class="tsn-badge blue">📺 Sports News</div>
+        <h2>スポーツニュース</h2>
+        <p>観るスポーツの楽しみをもっと深く。プロ野球・サッカー・バレーなど各競技の最新情報は下記の公式サイトへ。マエナカスポーツが厳選した情報源です。</p>
       </div>
 
-      <div class="club-card" data-sport="soccer">
-        <div class="club-card-header">
-          <span class="club-sport-icon">⚽</span>
-          <span class="club-sport-label">SOCCER / FUTSAL</span>
+      <div class="news-section-layout reveal">
+        <!-- 野球 -->
+        <div class="news-category-block">
+          <div class="ncb-header">
+            <span class="ncb-icon">⚾</span>
+            <span class="ncb-title">野球・ソフトボール</span>
+          </div>
+          <div class="ncb-links">
+            <a href="https://npb.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              NPB 公式サイト <span class="ncb-league">プロ野球</span>
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://news.yahoo.co.jp/categories/baseball" target="_blank" rel="noopener" class="ncb-link-item">
+              野球ニュース <span class="ncb-league">Yahoo!スポーツ</span>
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://www.softball.or.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              日本ソフトボール協会
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://www.jhbf.or.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              高校野球 JHBF
+              <span class="ncb-arrow">→</span>
+            </a>
+          </div>
         </div>
-        <h4>FC三田（成人・フットサル）</h4>
-        <p>20〜40代メインの社会人フットサルチーム。週末活動。経験者向け。</p>
-        <div class="club-tags">
-          <span class="club-tag">大人</span>
-          <span class="club-tag">20〜40代</span>
-          <span class="club-tag">週末活動</span>
+
+        <!-- 球技系 -->
+        <div class="news-category-block">
+          <div class="ncb-header">
+            <span class="ncb-icon">⚽</span>
+            <span class="ncb-title">サッカー・フットサル</span>
+          </div>
+          <div class="ncb-links">
+            <a href="https://www.jleague.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              Jリーグ 公式 <span class="ncb-league">J1/J2/J3</span>
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://www.jfa.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              JFA 日本サッカー協会
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://news.yahoo.co.jp/categories/soccer" target="_blank" rel="noopener" class="ncb-link-item">
+              サッカーニュース <span class="ncb-league">Yahoo!</span>
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://www.jfa.jp/match/worldcup_2026/" target="_blank" rel="noopener" class="ncb-link-item">
+              W杯2026 情報
+              <span class="ncb-arrow">→</span>
+            </a>
+          </div>
         </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+
+        <!-- バレー・バスケ -->
+        <div class="news-category-block">
+          <div class="ncb-header">
+            <span class="ncb-icon">🏐</span>
+            <span class="ncb-title">バレー・バスケ・その他</span>
+          </div>
+          <div class="ncb-links">
+            <a href="https://www.jva.or.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              Vリーグ / JVA バレー
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://www.bleague.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              Bリーグ バスケットボール
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://www.badminton.or.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              日本バドミントン協会
+              <span class="ncb-arrow">→</span>
+            </a>
+            <a href="https://jtta.or.jp/" target="_blank" rel="noopener" class="ncb-link-item">
+              日本卓球協会 JTTA
+              <span class="ncb-arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
-      <!-- 野球 -->
-      <div class="club-card" data-sport="baseball">
-        <div class="club-card-header">
-          <span class="club-sport-icon">⚾</span>
-          <span class="club-sport-label">BASEBALL</span>
+      <!-- スポーツ総合バナー -->
+      <div class="news-pro-banner reveal">
+        <div class="npb-text">
+          <h3>📡 スポーツ総合ニュースサイト</h3>
+          <p>一般スポーツニュースはYahoo!スポーツ・スポーツナビ・日刊スポーツでチェック。<br>マエナカLINEでも地域スポーツの話題をお届けしています。</p>
         </div>
-        <h4>三田南が丘スポーツ少年団（野球）</h4>
-        <p>地域の小中学生を対象とした野球チーム。大会参加実績あり。</p>
-        <div class="club-tags">
-          <span class="club-tag">ジュニア</span>
-          <span class="club-tag">小中学生</span>
+        <div class="npb-links">
+          <a href="https://sports.yahoo.co.jp/" target="_blank" rel="noopener" class="npb-btn green">Yahoo!スポーツ →</a>
+          <a href="https://sportsnavi.ht.kyodo-d.jp/" target="_blank" rel="noopener" class="npb-btn outline">スポーツナビ →</a>
+          <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="npb-btn outline">💬 LINE登録 →</a>
         </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       ④ 仲間募集掲示板
+  ===================================================== -->
+  <section class="tsn-section alt" id="board">
+    <div class="tsn-inner">
+      <div class="tsn-section-header reveal">
+        <div class="tsn-badge amber">📢 Recruitment Board</div>
+        <h2>スポーツ仲間募集・掲示板</h2>
+        <p>「チームに加わりたい」「メンバーを探している」「練習相手が欲しい」——三田の地域課題を解決する出会いの場です。店頭またはLINEから投稿を受け付けています。</p>
       </div>
 
-      <!-- バスケ -->
-      <div class="club-card" data-sport="basketball">
-        <div class="club-card-header">
-          <span class="club-sport-icon">🏀</span>
-          <span class="club-sport-label">BASKETBALL</span>
+      <div class="board-layout">
+        <!-- 投稿一覧 -->
+        <div class="reveal">
+          <div class="board-toolbar">
+            <div class="board-toolbar-left">掲載中の募集情報</div>
+            <div class="board-toolbar-right">
+              <button class="board-filter-chip active" onclick="filterBoard('all', this)">すべて</button>
+              <button class="board-filter-chip" onclick="filterBoard('recruit', this)">メンバー募集</button>
+              <button class="board-filter-chip" onclick="filterBoard('search', this)">チームを探す</button>
+              <button class="board-filter-chip" onclick="filterBoard('match', this)">試合相手募集</button>
+            </div>
+          </div>
+
+          <div class="board-posts" id="boardPosts">
+            <div class="board-post" data-btype="recruit">
+              <div class="post-header">
+                <span class="post-sport-badge">⚽ サッカー</span>
+                <span class="post-type-badge recruit">メンバー募集</span>
+                <span class="post-date">2025.06</span>
+              </div>
+              <h4>三田FC U40（40代男性チーム）メンバー募集</h4>
+              <p>毎週土曜朝、三田市内グラウンドで活動する40代メインのフットサルチームです。和気あいあいとした雰囲気で楽しくプレーしています。経験不問・初心者歓迎。</p>
+              <div class="post-contact">📞 <strong>店頭スタッフまでお問い合わせください</strong></div>
+            </div>
+
+            <div class="board-post" data-btype="search">
+              <div class="post-header">
+                <span class="post-sport-badge" style="background:#c0392b;">🎾 テニス</span>
+                <span class="post-type-badge search">チームを探す</span>
+                <span class="post-date">2025.06</span>
+              </div>
+              <h4>テニス歴3年・三田市在住 30代女性 サークルを探しています</h4>
+              <p>週末に活動できるテニスサークルを探しています。初中級レベルです。女性メインまたは混合サークルを希望します。</p>
+              <div class="post-contact">📞 <strong>店頭スタッフまでお問い合わせください</strong></div>
+            </div>
+
+            <div class="board-post" data-btype="recruit">
+              <div class="post-header">
+                <span class="post-sport-badge" style="background:#0066cc;">🏓 卓球</span>
+                <span class="post-type-badge recruit">メンバー募集</span>
+                <span class="post-date">2025.05</span>
+              </div>
+              <h4>三田卓球クラブ（シニア）新メンバー募集</h4>
+              <p>60代中心のシニア卓球クラブです。月・水・金の午前中に活動中。初心者からベテランまで大歓迎。道具はマエナカスポーツでご用意できます。</p>
+              <div class="post-contact">📞 <strong>マエナカスポーツ店頭で詳細をご確認ください</strong></div>
+            </div>
+
+            <div class="board-post" data-btype="recruit">
+              <div class="post-header">
+                <span class="post-sport-badge" style="background:#7b3a7b;">🏸 バドミントン</span>
+                <span class="post-type-badge recruit">メンバー募集</span>
+                <span class="post-date">2025.05</span>
+              </div>
+              <h4>40代から始めるバドミントンサークル 仲間募集</h4>
+              <p>「年齢を理由にスポーツを諦めたくない」という方へ。月2回の活動。道具の相談はマエナカスポーツへどうぞ。</p>
+              <div class="post-contact">📞 <strong>店頭スタッフまでお問い合わせください</strong></div>
+            </div>
+
+            <div class="board-post" data-btype="match">
+              <div class="post-header">
+                <span class="post-sport-badge" style="background:#1a6b3a;">⚾ 野球</span>
+                <span class="post-type-badge match">試合相手募集</span>
+                <span class="post-date">2025.04</span>
+              </div>
+              <h4>少年野球チーム 練習試合の相手を募集</h4>
+              <p>三田市内の小学生野球チームです。7月・8月に練習試合の相手チームを探しています。同レベルのチームのご連絡お待ちしています。</p>
+              <div class="post-contact">📞 <strong>マエナカスポーツ店頭にてご相談ください</strong></div>
+            </div>
+          </div>
+
+          <p style="font-size:0.74rem;color:#aaa;margin-top:14px;line-height:1.7;">
+            ※ 掲載情報は随時更新されます。投稿希望の方は下記フォームまたは店頭スタッフまで。
+          </p>
+
+          <!-- 外部マッチングサービス -->
+          <div style="margin-top:36px;">
+            <div style="font-size:0.7rem;font-weight:800;letter-spacing:0.1em;color:#aaa;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #eee;">🔗 外部マッチングサービスも活用しよう</div>
+            <div class="ext-link-list">
+              <a href="https://www.sportsyaroyo.com/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🤝</span>スポーツやろうよ（全国最大級のスポーツマッチング）
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://cramo.net/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">📋</span>Cramo（チーム・サークル探し）
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://teamcolor.jp/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🎽</span>チームカラー（スポーツチーム検索）
+                <span class="ext-arrow">→</span>
+              </a>
+            </div>
+          </div>
         </div>
-        <h4>三田バスケットボールクラブ</h4>
-        <p>中学生以上対象。男女問わず参加可能。三田市体育館を中心に活動。</p>
-        <div class="club-tags">
-          <span class="club-tag">中学生以上</span>
-          <span class="club-tag">男女OK</span>
+
+        <!-- 投稿フォーム -->
+        <div id="board-form" class="reveal">
+          <div class="board-cta-box">
+            <h3>📝 募集情報を投稿する</h3>
+            <p>内容を確認後、店舗スタッフが掲示板に掲載します。掲載まで数日いただく場合があります。</p>
+            <div class="form-field-preview">🏅 スポーツ種目</div>
+            <div class="form-field-preview">📣 種別（募集・探す・試合相手）</div>
+            <div class="form-field-preview">📝 タイトル・内容</div>
+            <div class="form-field-preview">📞 連絡先（任意）</div>
+            <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="btn-form-submit">
+              💬 LINEで投稿する →
+            </a>
+          </div>
+
+          <div class="board-extra-links">
+            <div class="board-extra-title">📌 他の投稿方法</div>
+            <p style="font-size:0.8rem;color:#555;line-height:1.7;margin-bottom:12px;">
+              店舗にお越しいただければ店頭掲示板にも掲載します。
+            </p>
+            <a href="tel:0795645570" style="display:inline-block;font-size:0.82rem;font-weight:700;color:#3a7b52;">
+              📞 079-564-5570 に電話する
+            </a>
+          </div>
         </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       ⑤ マエナカスポーツからのお知らせ
+  ===================================================== -->
+  <section class="tsn-section" id="notice">
+    <div class="tsn-inner">
+      <div class="tsn-section-header reveal">
+        <div class="tsn-badge">📣 From MAENAKA</div>
+        <h2>マエナカスポーツからのお知らせ</h2>
+        <p>新商品情報、スポーツ教室のご案内、地域活動レポート、スポーツ豆知識など。地域とのつながりを大切に、お役立ち情報を発信しています。</p>
       </div>
 
-      <!-- テニス -->
-      <div class="club-card" data-sport="tennis">
-        <div class="club-card-header">
-          <span class="club-sport-icon">🎾</span>
-          <span class="club-sport-label">TENNIS</span>
-        </div>
-        <h4>三田テニスサークル（社会人）</h4>
-        <p>週末活動の混合テニスサークル。初中級者歓迎。試合より楽しむことを重視。</p>
-        <div class="club-tags">
-          <span class="club-tag">大人</span>
-          <span class="club-tag">初中級</span>
-          <span class="club-tag">男女OK</span>
-        </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
+      <div class="notice-grid reveal">
+        <a href="news.html" class="notice-card">
+          <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=70" alt="新商品" class="notice-card-img">
+          <div class="notice-card-body">
+            <div class="notice-card-meta">
+              <span class="notice-cat-badge news">新商品</span>
+              <span class="notice-date">2025.06</span>
+            </div>
+            <h4>夏のスポーツシーズン到来！新入荷アイテムのご紹介</h4>
+            <p>テニス・バドミントン・野球など各競技の新商品が続々入荷。ご来店お待ちしています。</p>
+          </div>
+        </a>
+
+        <a href="news.html" class="notice-card">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&q=70" alt="スポーツ教室" class="notice-card-img">
+          <div class="notice-card-body">
+            <div class="notice-card-meta">
+              <span class="notice-cat-badge event">イベント</span>
+              <span class="notice-date">2025.06</span>
+            </div>
+            <h4>卓球体験会を開催します！初心者大歓迎</h4>
+            <p>マエナカスポーツ1Fの卓球スペースで体験会を開催予定。道具もレンタルできます。</p>
+          </div>
+        </a>
+
+        <a href="news.html" class="notice-card">
+          <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&q=70" alt="スポーツ豆知識" class="notice-card-img">
+          <div class="notice-card-body">
+            <div class="notice-card-meta">
+              <span class="notice-cat-badge tips">スポーツ豆知識</span>
+              <span class="notice-date">2025.05</span>
+            </div>
+            <h4>ガットの張り替え時期、知っていますか？</h4>
+            <p>テニス・バドミントンのガットは使用頻度により定期交換が必要です。プロが解説。</p>
+          </div>
+        </a>
       </div>
 
-      <!-- 卓球 -->
-      <div class="club-card" data-sport="tabletennis">
-        <div class="club-card-header">
-          <span class="club-sport-icon">🏓</span>
-          <span class="club-sport-label">TABLE TENNIS</span>
-        </div>
-        <h4>三田卓球クラブ（シニア）</h4>
-        <p>60代中心のシニア卓球クラブ。平日午前中に活動中。初心者でも大歓迎。</p>
-        <div class="club-tags">
-          <span class="club-tag">シニア</span>
-          <span class="club-tag">60代〜</span>
-          <span class="club-tag">初心者OK</span>
-        </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
-      </div>
-
-      <!-- バドミントン -->
-      <div class="club-card" data-sport="badminton">
-        <div class="club-card-header">
-          <span class="club-sport-icon">🏸</span>
-          <span class="club-sport-label">BADMINTON</span>
-        </div>
-        <h4>三田バドミントン同好会</h4>
-        <p>社会人向け。月2〜3回活動。仕事帰りに参加できる夜間メインのクラブ。</p>
-        <div class="club-tags">
-          <span class="club-tag">大人</span>
-          <span class="club-tag">夜間活動</span>
-          <span class="club-tag">月2〜3回</span>
-        </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
-      </div>
-
-      <!-- バレー -->
-      <div class="club-card" data-sport="volleyball">
-        <div class="club-card-header">
-          <span class="club-sport-icon">🏐</span>
-          <span class="club-sport-label">VOLLEYBALL</span>
-        </div>
-        <h4>三田主婦バレーボールクラブ</h4>
-        <p>主婦・女性中心のバレーボールチーム。楽しむことが第一。</p>
-        <div class="club-tags">
-          <span class="club-tag">女性</span>
-          <span class="club-tag">主婦OK</span>
-          <span class="club-tag">初心者OK</span>
-        </div>
-        <div class="club-contact">📞 連絡先は店頭でご確認ください</div>
-      </div>
-
-      <!-- 追加 -->
-      <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="club-add-card">
-        <span class="add-icon">➕</span>
-        <span>チームを掲載したい方は<br>LINEでご連絡ください</span>
+      <a href="news.html" class="notice-more-btn reveal">
+        すべてのお知らせを見る →
       </a>
     </div>
+  </section>
 
-    <div style="margin-top:24px;background:#f7f7f5;border-radius:12px;padding:16px 20px;border:1px solid #eee;font-size:0.78rem;color:#888;line-height:1.7;" class="reveal">
-      ⚠️ 掲載情報は店舗スタッフが管理しています。内容の追加・修正・削除をご希望の場合は<a href="tel:0795645570" style="color:#3a7b52;font-weight:700;">079-564-5570</a>または<a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" style="color:#3a7b52;font-weight:700;">LINE</a>にてご連絡ください。
+  <!-- =====================================================
+       UXフローバンド
+  ===================================================== -->
+  <section class="ux-flow-band reveal">
+    <div class="ux-flow-inner">
+      <h2>スポーツの循環が、三田を元気にする。</h2>
+      <p>マエナカスポーツは、スポーツを「始める入口」から「続ける仕組み」まで一貫して支えます。</p>
+      <div class="ux-steps">
+        <div class="ux-step">
+          <div class="ux-step-icon">🔍</div>
+          <div class="ux-step-label">スポーツを<br>探す</div>
+          <div class="ux-step-sub">チーム紹介</div>
+        </div>
+        <div class="ux-arrow">→</div>
+        <div class="ux-step">
+          <div class="ux-step-icon">🤝</div>
+          <div class="ux-step-label">チームに<br>加わる</div>
+          <div class="ux-step-sub">仲間募集</div>
+        </div>
+        <div class="ux-arrow">→</div>
+        <div class="ux-step">
+          <div class="ux-step-icon">🏆</div>
+          <div class="ux-step-label">大会に<br>出る</div>
+          <div class="ux-step-sub">イベント情報</div>
+        </div>
+        <div class="ux-arrow">→</div>
+        <div class="ux-step">
+          <div class="ux-step-icon">🛒</div>
+          <div class="ux-step-label">道具を<br>買う・直す</div>
+          <div class="ux-step-sub">かう・つくる</div>
+        </div>
+        <div class="ux-arrow">→</div>
+        <div class="ux-step">
+          <div class="ux-step-icon">🔄</div>
+          <div class="ux-step-label">スポーツを<br>続ける</div>
+          <div class="ux-step-sub">三田の循環</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
   <div class="service-cta reveal">
     <h2>スポーツで三田を<br>もっと元気に</h2>
-    <p>チーム情報の掲載・イベント告知・仲間探し、何でもご相談ください</p>
+    <p>チーム情報の掲載・イベント告知・仲間探し・道具の相談、何でもお気軽にどうぞ。</p>
     <div class="cta-btns">
-      <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="btn-g">💬 LINEで相談する</a>
-      <a href="tel:0795645570" class="btn-ghost">📞 電話する</a>
+      <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="btn-g">💬 LINEで相談する</a>
+      <a href="tel:0795645570" class="btn-ghost">📞 079-564-5570</a>
     </div>
   </div>
 
+  <!-- 他のサービス -->
   <div class="other-services reveal">
     <h2 class="section-h2">他のサービスも見る</h2>
     <div class="other-grid">
-      <a href="kau.html" class="other-card"><img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&q=70" alt="かうスポーツ"><div class="other-overlay"><span>01 かうスポーツ</span></div></a>
-      <a href="tsukuru.html" class="other-card"><img src="https://images.unsplash.com/photo-1662096909714-e2f206d0a636?w=400&q=70" alt="つくるスポーツ"><div class="other-overlay"><span>02 つくるスポーツ</span></div></a>
-      <a href="kariru.html" class="other-card"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&q=70" alt="かりるスポーツ"><div class="other-overlay"><span>03 かりるスポーツ</span></div></a>
-      <a href="suru.html" class="other-card"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=70" alt="するスポーツ"><div class="other-overlay"><span>04 するスポーツ</span></div></a>
+      <a href="kau.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&q=70" alt="かうスポーツ">
+        <div class="other-overlay"><span>01 かうスポーツ</span></div>
+      </a>
+      <a href="tsukuru.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1662096909714-e2f206d0a636?w=400&q=70" alt="つくるスポーツ">
+        <div class="other-overlay"><span>02 つくるスポーツ</span></div>
+      </a>
+      <a href="kariru.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1461748659110-16121c049d52?w=400&q=70" alt="かりるスポーツ">
+        <div class="other-overlay"><span>03 かりるスポーツ</span></div>
+      </a>
+      <a href="suru.html" class="other-card">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=70" alt="するスポーツ">
+        <div class="other-overlay"><span>04 するスポーツ</span></div>
+      </a>
     </div>
   </div>
 </main>
 
-<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo-icon">MS</div><div class="footer-logo-text">マエナカスポーツ</div><p>三田市南が丘に40年以上根ざした地域密着型スポーツ専門店。</p></div><div class="footer-col"><h4>Services</h4><ul><li><a href="kau.html">かうスポーツ</a></li><li><a href="tsukuru.html">つくるスポーツ</a></li><li><a href="kariru.html">かりるスポーツ</a></li><li><a href="suru.html">するスポーツ</a></li><li><a href="tsunagaru.html">つながるスポーツ</a></li></ul></div><div class="footer-col"><h4>Contact</h4><ul><li><a href="index.html#about">会社概要</a></li><li><a href="tel:0795645570">079-564-5570</a></li><li><a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener">LINE公式</a></li><li><a href="index.html#access">アクセス・地図</a></li></ul></div></div><div class="footer-bottom"><p>© 2024 株式会社マエナカスポーツ. All rights reserved.</p></div></div></footer>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-icon">MS</div>
+        <div class="footer-logo-text">マエナカスポーツ</div>
+        <p>三田市南が丘に35年以上根ざした地域密着型スポーツ専門店。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="kau.html">かうスポーツ</a></li>
+          <li><a href="tsukuru.html">つくるスポーツ</a></li>
+          <li><a href="kariru.html">かりるスポーツ</a></li>
+          <li><a href="suru.html">するスポーツ</a></li>
+          <li><a href="tsunagaru.html">つながるスポーツ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="index.html#about">会社概要</a></li>
+          <li><a href="tel:0795645570">079-564-5570</a></li>
+          <li><a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener">LINE公式</a></li>
+          <li><a href="index.html#access">アクセス・地図</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 株式会社マエナカスポーツ. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
 <script src="service-common.js"></script>
 <script>
-  // セクションナビのアクティブ制御
-  const sectionIds = ['events', 'board', 'clubs'];
+  /* =====================================================
+     セクションナビ アクティブ制御
+  ===================================================== */
+  const sectionIds = ['clubs', 'events', 'news', 'board', 'notice'];
   const navLinks = document.querySelectorAll('.section-nav-inner a');
 
   function updateActiveNav() {
     let current = sectionIds[0];
     sectionIds.forEach(id => {
       const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top <= 130) current = id;
+      if (el && el.getBoundingClientRect().top <= 140) current = id;
     });
     navLinks.forEach(a => {
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
@@ -816,13 +1633,36 @@
   }
   window.addEventListener('scroll', updateActiveNav, { passive: true });
 
-  // 競技フィルター
+  /* =====================================================
+     チーム フィルター
+  ===================================================== */
   function filterClubs(sport, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.sport-cat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('#clubsGrid .club-card').forEach(card => {
-      const show = sport === 'all' || card.dataset.sport === sport;
-      card.style.display = show ? '' : 'none';
+      card.style.display = (sport === 'all' || card.dataset.sport === sport) ? '' : 'none';
+    });
+  }
+
+  /* =====================================================
+     イベント フィルター
+  ===================================================== */
+  function filterEvents(cat, btn) {
+    document.querySelectorAll('.ev-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#eventList .event-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
+    });
+  }
+
+  /* =====================================================
+     掲示板 フィルター
+  ===================================================== */
+  function filterBoard(type, btn) {
+    document.querySelectorAll('.board-filter-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#boardPosts .board-post').forEach(post => {
+      post.style.display = (type === 'all' || post.dataset.btype === type) ? '' : 'none';
     });
   }
 </script>
