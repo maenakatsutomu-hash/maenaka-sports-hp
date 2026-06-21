@@ -815,25 +815,23 @@
 <!-- セクションナビ -->
 <nav class="page-section-nav">
   <div class="section-nav-inner">
-    <a href="#clubs" class="active">⚽ チームを探す</a>
-    <a href="#events">🏆 大会・イベント</a>
-    <a href="#news">📺 スポーツニュース</a>
-    <a href="#board">📢 仲間募集</a>
-    <a href="#notice">📣 お知らせ</a>
+    <a href="#find-team" class="active">🏅 チームを探す</a>
+    <a href="#find-opponent">🤝 試合相手を探す</a>
+    <a href="#find-tournament">🏆 大会を探す</a>
   </div>
 </nav>
 
 <main class="service-main" style="padding-top:0;">
 
   <!-- =====================================================
-       ① チーム・仲間とつながる
+       ① チームを探す
   ===================================================== -->
-  <section class="tsn-section" id="clubs">
+  <section class="tsn-section" id="find-team">
     <div class="tsn-inner">
       <div class="tsn-section-header reveal">
-        <div class="tsn-badge">⚽ Teams &amp; Clubs</div>
-        <h2>チーム・仲間とつながる</h2>
-        <p>三田市・北摂エリアで活動するスポーツチームを競技別に紹介しています。「始めたいけどどこでやるかわからない」「仲間を増やしたい」——まずはここから探してください。掲載希望は店頭またはLINEにてご連絡ください。</p>
+        <div class="tsn-badge">🏅 Find Your Team</div>
+        <h2>チームを探す</h2>
+        <p>三田市・神戸北区で活動するスポーツチームを競技別に紹介しています。「始めたいけどどこでやるかわからない」「子どもに合うチームを探している」——まずはここから。掲載希望は店頭またはLINEにてご連絡ください。</p>
       </div>
 
       <!-- 競技カテゴリー選択 -->
@@ -1129,13 +1127,123 @@
   </section>
 
   <!-- =====================================================
-       ② 大会・イベント情報
+       ② 試合相手を探す
   ===================================================== -->
-  <section class="tsn-section alt" id="events">
+  <section class="tsn-section alt" id="find-opponent">
     <div class="tsn-inner">
       <div class="tsn-section-header reveal">
-        <div class="tsn-badge">🏆 Events &amp; Tournaments</div>
-        <h2>大会・イベント情報</h2>
+        <div class="tsn-badge amber">🤝 Find Opponents</div>
+        <h2>試合相手を探す</h2>
+        <p>練習試合の相手チームを探している・チームに単発で参加したい・スパーリングパートナーが欲しい——そんな時に使える掲示板です。店頭またはLINEから投稿を受け付けています。</p>
+      </div>
+
+      <div class="board-layout">
+        <!-- 投稿一覧 -->
+        <div class="reveal">
+          <div class="board-toolbar">
+            <div class="board-toolbar-left">掲載中の募集情報</div>
+            <div class="board-toolbar-right">
+              <button class="board-filter-chip active" onclick="filterBoard('all', this)">すべて</button>
+              <button class="board-filter-chip" onclick="filterBoard('match', this)">⚔️ 試合相手募集</button>
+              <button class="board-filter-chip" onclick="filterBoard('recruit', this)">📢 メンバー募集</button>
+            </div>
+          </div>
+
+          <div class="board-posts" id="boardPosts">
+            <div class="board-post" data-btype="match">
+              <div class="post-header">
+                <span class="post-sport-badge" style="background:#1a6b3a;">⚾ 野球</span>
+                <span class="post-type-badge match">試合相手募集</span>
+                <span class="post-date">2025.04</span>
+              </div>
+              <h4>少年野球チーム 練習試合の相手を募集</h4>
+              <p>三田市内の小学生野球チームです。7月・8月に練習試合の相手チームを探しています。同レベルのチームのご連絡お待ちしています。</p>
+              <div class="post-contact">📞 <strong>マエナカスポーツ店頭にてご相談ください</strong></div>
+            </div>
+
+            <div class="board-post" data-btype="recruit">
+              <div class="post-header">
+                <span class="post-sport-badge">⚽ サッカー</span>
+                <span class="post-type-badge recruit">メンバー募集</span>
+                <span class="post-date">2025.06</span>
+              </div>
+              <h4>三田FC U40（40代男性チーム）メンバー募集</h4>
+              <p>毎週土曜朝、三田市内グラウンドで活動する40代メインのフットサルチームです。和気あいあいとした雰囲気で楽しくプレーしています。経験不問・初心者歓迎。</p>
+              <div class="post-contact">📞 <strong>店頭スタッフまでお問い合わせください</strong></div>
+            </div>
+
+            <div class="board-post" data-btype="recruit">
+              <div class="post-header">
+                <span class="post-sport-badge" style="background:#7b3a7b;">🏸 バドミントン</span>
+                <span class="post-type-badge recruit">メンバー募集</span>
+                <span class="post-date">2025.05</span>
+              </div>
+              <h4>40代から始めるバドミントンサークル 仲間募集</h4>
+              <p>月2回の活動。年齢を理由にスポーツを諦めたくない方大歓迎。道具の相談はマエナカスポーツへどうぞ。</p>
+              <div class="post-contact">📞 <strong>店頭スタッフまでお問い合わせください</strong></div>
+            </div>
+          </div>
+
+          <p style="font-size:0.74rem;color:#aaa;margin-top:14px;line-height:1.7;">
+            ※ 掲載情報は随時更新されます。投稿希望の方は下記フォームまたは店頭スタッフまで。
+          </p>
+
+          <!-- 外部マッチングサービス -->
+          <div style="margin-top:36px;">
+            <div style="font-size:0.7rem;font-weight:800;letter-spacing:0.1em;color:#aaa;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #eee;">🔗 外部マッチング・チーム探しサービス</div>
+            <div class="ext-link-list">
+              <a href="https://jmty.jp/hyogo/com-spo/g-all/a-594-sanda" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">📌</span>ジモティー（三田市・神戸北区のスポーツ募集）
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://labola.jp/recruits/baseball/member/area/hyogo?area_tags=%E4%B8%89%E7%94%B0" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">⚾</span>LaBOLA（三田の野球チーム・対戦相手検索）
+                <span class="ext-arrow">→</span>
+              </a>
+              <a href="https://www.sportsyaroyo.com/" target="_blank" rel="noopener" class="ext-link-item">
+                <span class="ext-icon">🤝</span>スポーツやろうよ（全国最大級マッチング）
+                <span class="ext-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 投稿フォーム -->
+        <div id="board-form" class="reveal">
+          <div class="board-cta-box">
+            <h3>📝 試合相手・仲間を募集する</h3>
+            <p>内容を確認後、店舗スタッフが掲示板に掲載します。掲載まで数日いただく場合があります。</p>
+            <div class="form-field-preview">🏅 スポーツ種目</div>
+            <div class="form-field-preview">⚔️ 種別（試合相手・メンバー募集）</div>
+            <div class="form-field-preview">📝 チーム名・内容</div>
+            <div class="form-field-preview">📞 連絡先（任意）</div>
+            <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="btn-form-submit">
+              💬 LINEで投稿する →
+            </a>
+          </div>
+
+          <div class="board-extra-links">
+            <div class="board-extra-title">📌 他の投稿方法</div>
+            <p style="font-size:0.8rem;color:#555;line-height:1.7;margin-bottom:12px;">
+              店舗にお越しいただければ店頭掲示板にも掲載します。
+            </p>
+            <a href="tel:0795645570" style="display:inline-block;font-size:0.82rem;font-weight:700;color:#3a7b52;">
+              📞 079-564-5570 に電話する
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       ③ 大会を探す
+  ===================================================== -->
+  <section class="tsn-section" id="find-tournament">
+    <div class="tsn-inner">
+      <div class="tsn-section-header reveal">
+        <div class="tsn-badge">🏆 Tournaments &amp; Events</div>
+        <h2>大会を探す</h2>
         <p>三田市・北摂エリアのスポーツ大会・体験会・教室情報を集約しています。子ども向け・大人向け・シニア向けに分けて掲載。最新情報はLINE公式でも配信中です。</p>
       </div>
 
@@ -1261,16 +1369,8 @@
     </div>
   </section>
 
-  <!-- =====================================================
-       ③ スポーツニュース
-  ===================================================== -->
-  <section class="tsn-section" id="news">
-    <div class="tsn-inner">
-      <div class="tsn-section-header reveal">
-        <div class="tsn-badge blue">📺 Sports News</div>
-        <h2>スポーツニュース</h2>
-        <p>観るスポーツの楽しみをもっと深く。プロ野球・サッカー・バレーなど各競技の最新情報は下記の公式サイトへ。マエナカスポーツが厳選した情報源です。</p>
-      </div>
+  <!-- スポーツニュースセクション削除済み -->
+  <section style="display:none" id="news"><div class="tsn-inner">
 
       <div class="news-section-layout reveal">
         <!-- 野球 -->
@@ -1367,16 +1467,8 @@
     </div>
   </section>
 
-  <!-- =====================================================
-       ④ 仲間募集掲示板
-  ===================================================== -->
-  <section class="tsn-section alt" id="board">
-    <div class="tsn-inner">
-      <div class="tsn-section-header reveal">
-        <div class="tsn-badge amber">📢 Recruitment Board</div>
-        <h2>スポーツ仲間募集・掲示板</h2>
-        <p>「チームに加わりたい」「メンバーを探している」「練習相手が欲しい」——三田の地域課題を解決する出会いの場です。店頭またはLINEから投稿を受け付けています。</p>
-      </div>
+  <!-- 旧仲間募集セクション削除済み -->
+  <section style="display:none" id="board"><div class="tsn-inner">
 
       <div class="board-layout">
         <!-- 投稿一覧 -->
@@ -1500,10 +1592,8 @@
     </div>
   </section>
 
-  <!-- =====================================================
-       ⑤ マエナカスポーツからのお知らせ
-  ===================================================== -->
-  <section class="tsn-section" id="notice">
+  <!-- お知らせセクション削除済み -->
+  <section style="display:none" id="notice">
     <div class="tsn-inner">
       <div class="tsn-section-header reveal">
         <div class="tsn-badge">📣 From MAENAKA</div>
@@ -1669,7 +1759,7 @@
   /* =====================================================
      セクションナビ アクティブ制御
   ===================================================== */
-  const sectionIds = ['clubs', 'events', 'news', 'board', 'notice'];
+  const sectionIds = ['find-team', 'find-opponent', 'find-tournament'];
   const navLinks = document.querySelectorAll('.section-nav-inner a');
 
   function updateActiveNav() {
