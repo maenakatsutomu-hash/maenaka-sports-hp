@@ -7,31 +7,26 @@ content:
     label: お知らせ管理
     type: file
     path: news.json
-    format: json
     fields:
       - name: items
-        label: お知らせ一覧
+        label: お知らせ
         type: list
         fields:
           - name: id
-            label: ID（自動）
+            label: ID
             type: string
-            hidden: true
           - name: date
             label: 日付
             type: date
-            options:
-              format: YYYY-MM-DD
           - name: category
             label: カテゴリ
             type: select
             options:
-              values:
-                - お知らせ
-                - セール
-                - 新入荷
-                - イベント
-                - 休業日
+              - お知らせ
+              - セール
+              - 新入荷
+              - イベント
+              - 休業日
           - name: title
             label: タイトル
             type: string
