@@ -49,84 +49,171 @@
   </div>
 </div>
 
+<style>
+  .tsukuru-section { margin: 56px 0; }
+  .tsukuru-section-header {
+    display: flex; align-items: center; gap: 16px;
+    border-left: 5px solid #3a7b52; padding-left: 18px;
+    margin-bottom: 28px;
+  }
+  .tsukuru-section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem; color: #3a7b52; line-height: 1;
+    min-width: 50px;
+  }
+  .tsukuru-section-title { font-size: 1.3rem; font-weight: 900; color: #111; line-height: 1.3; }
+  .tsukuru-section-lead { font-size: 0.9rem; color: #555; margin-bottom: 24px; line-height: 1.8; }
+
+  /* ユニフォームシミュレーター */
+  .sim-intro { background: #f0f7f3; border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; font-size: 0.88rem; color: #333; }
+  .sim-intro strong { color: #3a7b52; font-size: 1rem; }
+  .sim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .sim-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: #fff; border: 1.5px solid #d0e8da;
+    border-radius: 10px; padding: 14px 16px;
+    text-decoration: none; color: #1a3d26; font-weight: 700;
+    font-size: 0.85rem; transition: all 0.2s;
+  }
+  .sim-btn:hover { background: #3a7b52; color: #fff; border-color: #3a7b52; }
+  .sim-sport-icon { font-size: 1.5rem; }
+  .sim-sport-en { font-size: 0.65rem; color: #888; font-weight: 800; letter-spacing: 0.08em; display: block; }
+  .sim-note {
+    background: #fffbea; border-left: 4px solid #f5a623;
+    padding: 14px 18px; border-radius: 0 8px 8px 0;
+    font-size: 0.82rem; color: #555; margin-top: 8px;
+  }
+
+  /* チームシャツ */
+  .shirt-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 640px) { .shirt-steps { grid-template-columns: 1fr; } }
+  .shirt-step {
+    background: #fff; border: 1.5px solid #e0e0e0;
+    border-radius: 12px; padding: 20px 16px; text-align: center;
+  }
+  .shirt-step-num {
+    width: 36px; height: 36px; background: #3a7b52; color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 0.9rem; margin: 0 auto 10px;
+  }
+  .shirt-step h4 { font-size: 0.9rem; font-weight: 800; color: #111; margin-bottom: 6px; }
+  .shirt-step p { font-size: 0.78rem; color: #666; line-height: 1.6; margin: 0; }
+
+  /* グッズリスト */
+  .goods-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+  .goods-item {
+    display: flex; align-items: center; gap: 10px;
+    background: #f8faf9; border: 1px solid #e0ede5;
+    border-radius: 8px; padding: 10px 14px;
+    font-size: 0.83rem; font-weight: 700; color: #1a3d26;
+  }
+  .goods-item::before { content: '✦'; color: #3a7b52; font-size: 0.7rem; flex-shrink: 0; }
+</style>
+
 <main class="service-main">
-  <div class="service-intro reveal">
-    <h2>チームを一つにする<br>ユニフォームを作ろう</h2>
-    <p>マエナカスポーツでは、チームユニフォームやオリジナルウェアの製作を承っています。素材・デザイン・カラーを自由にカスタマイズし、名前・番号・ロゴ入れにも対応。少人数のクラブから学校の部活・企業チームまで幅広く対応します。</p>
+
+  <!-- 1. オリジナルユニフォームを作る -->
+  <div class="tsukuru-section reveal">
+    <div class="tsukuru-section-header">
+      <div class="tsukuru-section-num">01</div>
+      <div class="tsukuru-section-title">オリジナルユニフォームを作る</div>
+    </div>
+    <div class="sim-intro">
+      シミュレーターを立ち上げてオリジナルユニフォームをつくろう！<strong>（7,590円～）</strong><br>
+      下の競技を選んでシミュレーターを開いてください。店頭でそのまま注文できます。
+    </div>
+    <div class="sim-grid">
+      <a href="https://rivost.com/?action_goods_list=true&cat1=405" target="_blank" rel="noopener" class="sim-btn">
+        <span class="sim-sport-icon">⚽</span>
+        <div><span class="sim-sport-en">SOCCER & FUTSAL</span>サッカー・フットサル</div>
+      </a>
+      <a href="https://rivost.com/?action_goods_list=true&cat1=396" target="_blank" rel="noopener" class="sim-btn">
+        <span class="sim-sport-icon">🏀</span>
+        <div><span class="sim-sport-en">BASKETBALL</span>バスケットボール</div>
+      </a>
+      <a href="https://rivost.com/?action_goods_list=true&cat1=407" target="_blank" rel="noopener" class="sim-btn">
+        <span class="sim-sport-icon">🏐</span>
+        <div><span class="sim-sport-en">VOLLEYBALL</span>バレーボール</div>
+      </a>
+      <a href="https://rivost.com/?action_goods_list=true&cat1=413" target="_blank" rel="noopener" class="sim-btn">
+        <span class="sim-sport-icon">⚾</span>
+        <div><span class="sim-sport-en">BASEBALL</span>野球</div>
+      </a>
+      <a href="https://rivost.com/?action_goods_list=true&cat1=456" target="_blank" rel="noopener" class="sim-btn">
+        <span class="sim-sport-icon">🏃</span>
+        <div><span class="sim-sport-en">TRACK & FIELD</span>陸上</div>
+      </a>
+    </div>
+    <div class="sim-note">
+      💡 <strong>とにかく安く作りたい方は店頭まで！</strong> 一緒に考えます。相談にのります。（最安 3,850円～）
+    </div>
   </div>
 
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="fc-img-wrap">
-        <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=600&q=75" alt="チームユニフォーム">
+  <!-- 2. チームシャツを作る -->
+  <div class="tsukuru-section reveal">
+    <div class="tsukuru-section-header">
+      <div class="tsukuru-section-num">02</div>
+      <div class="tsukuru-section-title">チームシャツ（ポロシャツ・Tシャツ）を作る</div>
+    </div>
+    <p class="tsukuru-section-lead">最安 1,500円～。デザイン作成費は不要です。一緒に考えます(^^)</p>
+    <div class="shirt-steps">
+      <div class="shirt-step reveal">
+        <div class="shirt-step-num">1</div>
+        <h4>ロゴやデザインをつくる</h4>
+        <p>自作でも、デザイン作成依頼でもOK。何もなくても大丈夫です。</p>
       </div>
-      <div class="fc-body">
-        <div class="fc-icon">⚽</div>
-        <h3>チームユニフォーム</h3>
-        <p>サッカー・野球・バスケ・バドミントンなど各競技に対応したユニフォームを製作。チームカラーを忠実に再現します。</p>
+      <div class="shirt-step reveal delay-1">
+        <div class="shirt-step-num">2</div>
+        <h4>生地を選ぶ</h4>
+        <p>ポロシャツ・Tシャツなど、用途や予算に合わせて素材を選びます。</p>
+      </div>
+      <div class="shirt-step reveal delay-2">
+        <div class="shirt-step-num">3</div>
+        <h4>加工方法を選ぶ</h4>
+        <p>ラバー圧着・転写圧着・昇華プリント・刺繍など、用途に合わせて提案します。</p>
       </div>
     </div>
-    <div class="feature-card reveal delay-1">
-      <div class="fc-img-wrap">
-        <img src="https://images.unsplash.com/photo-1503341338985-95943a257c74?w=600&q=75" alt="ロゴプリント・名入れ">
-      </div>
-      <div class="fc-body">
-        <div class="fc-icon">🔢</div>
-        <h3>名入れ・番号・ロゴ</h3>
-        <p>プリント・刺繍どちらにも対応。選手名・背番号はもちろん、チームロゴや学校名の入れ込みもできます。</p>
-      </div>
-    </div>
-    <div class="feature-card reveal delay-2">
-      <div class="fc-img-wrap">
-        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=75" alt="ロゴ入りTシャツ・オリジナルグッズ">
-      </div>
-      <div class="fc-body">
-        <div class="fc-icon">🎽</div>
-        <h3>オリジナルグッズ</h3>
-        <p>Tシャツ・パーカー・キャップなどオリジナルグッズも製作可能。チームの結束を高めるアイテムをお作りします。</p>
-      </div>
+    <div class="sim-note">
+      💡 <strong>デザイン作成費は不要です。</strong> ゼロからでも一緒に考えますので、お気軽にご相談ください。
     </div>
   </div>
 
-  <div class="flow-section reveal">
-    <h2 class="section-h2">ご注文の流れ</h2>
-    <div class="flow-steps">
-      <div class="flow-step">
-        <div class="step-num">01</div>
-        <h3>ご相談・お見積もり</h3>
-        <p>競技・枚数・デザインのご希望をお聞きし、お見積もりをご提示します。まずはお気軽に。</p>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="step-num">02</div>
-        <h3>デザイン確認</h3>
-        <p>デザインサンプルをご確認いただき、色・配置・サイズ感を調整します。</p>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="step-num">03</div>
-        <h3>製作・お届け</h3>
-        <p>ご注文確定後、製作開始。完成品をご来店または配送にてお届けします。</p>
-      </div>
+  <!-- 3. その他オリジナルグッズを作る -->
+  <div class="tsukuru-section reveal">
+    <div class="tsukuru-section-header">
+      <div class="tsukuru-section-num">03</div>
+      <div class="tsukuru-section-title">その他オリジナルグッズを作る</div>
+    </div>
+    <p class="tsukuru-section-lead">プリント加工・刺繍・レーザー機を使ってできるものが多数あります。まずはご相談ください。</p>
+    <div class="goods-grid">
+      <div class="goods-item">オリジナル刺繍ソックス</div>
+      <div class="goods-item">オリジナル刺繍ハンカチ</div>
+      <div class="goods-item">オリジナル刺繍バッグ</div>
+      <div class="goods-item">オリジナル刺繍タオル</div>
+      <div class="goods-item">名入れペン</div>
+      <div class="goods-item">キーホルダー</div>
+      <div class="goods-item">横断幕・応援団旗</div>
+      <div class="goods-item">ペナント刺繍</div>
+      <div class="goods-item" style="grid-column:span 2;">などなど、お気軽にご相談ください！</div>
     </div>
   </div>
 
   <div class="service-cta reveal">
-    <h2>まずは枚数・デザインをご相談ください</h2>
-    <p>少量注文もOK。納期はお早めにご相談ください。</p>
+    <h2>まずはお気軽にご相談ください</h2>
+    <p>少量注文もOK。デザインゼロからでも大丈夫です。</p>
     <div class="cta-btns">
       <a href="tel:0795645570" class="btn-g">📞 電話で相談する</a>
-      <a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener" class="btn-ghost">💬 LINEで問い合わせ</a>
+      <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="btn-ghost">💬 LINEで問い合わせ</a>
     </div>
   </div>
 
   <div class="other-services reveal">
     <h2 class="section-h2">他のサービスも見る</h2>
     <div class="other-grid">
-      <a href="kau.html" class="other-card"><img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&q=70" alt="かうスポーツ"><div class="other-overlay"><span>01 かうスポーツ</span></div></a>
-      <a href="kariru.html" class="other-card"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=70" alt="かりるスポーツ"><div class="other-overlay"><span>03 かりるスポーツ</span></div></a>
-      <a href="suru.html" class="other-card"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=70" alt="するスポーツ"><div class="other-overlay"><span>04 するスポーツ</span></div></a>
-      <a href="tsunagaru.html" class="other-card"><img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=70" alt="つながるスポーツ"><div class="other-overlay"><span>05 つながるスポーツ</span></div></a>
+      <a href="kau.html" class="other-card"><img src="kau-hero.jpg" alt="かうスポーツ"><div class="other-overlay"><span>01 かうスポーツ</span></div></a>
+      <a href="kariru.html" class="other-card"><img src="svc-kariru-hero.jpg" alt="かりるスポーツ"><div class="other-overlay"><span>03 かりるスポーツ</span></div></a>
+      <a href="suru.html" class="other-card"><img src="svc-suru-hero.jpg" alt="するスポーツ"><div class="other-overlay"><span>04 するスポーツ</span></div></a>
+      <a href="tsunagaru.html" class="other-card"><img src="svc-tsunagaru.jpg" alt="つながるスポーツ"><div class="other-overlay"><span>05 つながるスポーツ</span></div></a>
     </div>
   </div>
 </main>
@@ -136,7 +223,7 @@
     <div class="footer-top">
       <div class="footer-brand"><div class="logo-icon">MS</div><div class="footer-logo-text">マエナカスポーツ</div><p>三田市南が丘に40年以上根ざした地域密着型スポーツ専門店。</p></div>
       <div class="footer-col"><h4>Services</h4><ul><li><a href="kau.html">かうスポーツ</a></li><li><a href="tsukuru.html">つくるスポーツ</a></li><li><a href="kariru.html">かりるスポーツ</a></li><li><a href="suru.html">するスポーツ</a></li><li><a href="tsunagaru.html">つながるスポーツ</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:0795645570">079-564-5570</a></li><li><a href="https://lin.ee/gC3VFdY" target="_blank" rel="noopener">LINE公式</a></li><li><a href="index.html#access">アクセス・地図</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:0795645570">079-564-5570</a></li><li><a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener">LINE公式</a></li><li><a href="index.html#access">アクセス・地図</a></li></ul></div>
     </div>
     <div class="footer-bottom"><p>© 2024 株式会社マエナカスポーツ. All rights reserved.</p></div>
   </div>
