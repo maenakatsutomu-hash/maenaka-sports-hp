@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お知らせ管理 ｜ マエナカスポーツ</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Hiragino Sans', 'Meiryo', sans-serif; background: #f5f5f3; color: #111; min-height: 100vh; }
+
+    .header {
+      background: #1a3d26; color: #fff; padding: 16px 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .header .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: 0.05em; }
+    .header .sub { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 32px 20px; }
+
+    /* ステップ */
+    .steps {
+      display: flex; gap: 0; margin-bottom: 32px;
+      background: #fff; border-radius: 10px; overflow: hidden;
+      border: 1px solid #e0e0e0;
+    }
+    .step {
+      flex: 1; padding: 14px 12px; text-align: center;
+      font-size: 0.78rem; color: #999; border-right: 1px solid #e0e0e0;
+      position: relative;
+    }
+    .step:last-child { border-right: none; }
+    .step.active { background: #f0f7f3; color: #3a7b52; font-weight: 800; }
+    .step-num {
+      display: inline-flex; width: 22px; height: 22px; border-radius: 50%;
+      background: #e0e0e0; color: #999; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 900; margin-bottom: 4px;
+    }
+    .step.active .step-num { background: #3a7b52; color: #fff; }
+    .step-label { display: block; }
+
+    /* フォームカード */
+    .card {
+      background: #fff; border-radius: 12px; padding: 28px 24px;
+      border: 1px solid #e0e0e0; margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 1rem; font-weight: 900; color: #1a3d26;
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 2px solid #e8f3ec;
+    }
+
+    .form-row { margin-bottom: 18px; }
+    .form-label {
+      display: block; font-size: 0.8rem; font-weight: 800;
+      color: #333; margin-bottom: 6px;
+    }
+    .form-label .req { color: #e53; margin-left: 4px; }
+    .form-hint { font-size: 0.72rem; color: #888; margin-top: 4px; }
+
+    input[type="text"], input[type="date"], textarea, select {
+      width: 100%; padding: 10px 14px; border: 1.5px solid #ddd;
+      border-radius: 8px; font-size: 0.88rem; color: #111;
+      font-family: inherit; transition: border-color 0.2s;
+      background: #fafafa;
+    }
+    input[type="text"]:focus, input[type="date"]:focus,
+    textarea:focus, select:focus {
+      outline: none; border-color: #3a7b52; background: #fff;
+    }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 500px) { .row2 { grid-template-columns: 1fr; } }
+
+    /* 画像プレビュー */
+    .img-preview-wrap {
+      margin-top: 10px; border: 1.5px dashed #ccc; border-radius: 8px;
+      padding: 12px; background: #f9f9f9; display: none;
+    }
+    .img-preview-wrap.show { display: block; }
+    .img-preview-wrap img { max-height: 120px; border-radius: 6px; }
+
+    /* 生成ボタン */
+    .btn-generate {
+      width: 100%; padding: 14px; background: #3a7b52; color: #fff;
+      border: none; border-radius: 8px; font-size: 1rem; font-weight: 900;
+      cursor: pointer; letter-spacing: 0.05em; transition: background 0.2s;
+    }
+    .btn-generate:hover { background: #2d6040; }
+
+    /* 生成結果 */
+    .result-card {
+      background: #fff; border-radius: 12px; padding: 24px;
+      border: 2px solid #3a7b52; margin-bottom: 20px;
+      display: none;
+    }
+    .result-card.show { display: block; }
+    .result-title {
+      font-size: 0.88rem; font-weight: 900; color: #3a7b52;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .json-box {
+      background: #1a1a2e; color: #a8e6cf; border-radius: 8px;
+      padding: 16px; font-family: 'Courier New', monospace; font-size: 0.78rem;
+      line-height: 1.7; overflow-x: auto; white-space: pre; margin-bottom: 14px;
+    }
+    .btn-copy {
+      padding: 10px 22px; background: #111; color: #fff;
+      border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 800;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-copy:hover { background: #333; }
+    .btn-copy.copied { background: #3a7b52; }
+
+    /* GitHubリンク */
+    .github-steps {
+      background: #fff; border-radius: 12px; padding: 24px;
+      border: 1px solid #e0e0e0; margin-bottom: 20px;
+    }
+    .github-steps-title {
+      font-size: 0.9rem; font-weight: 900; color: #111;
+      margin-bottom: 16px;
+    }
+    .gh-step {
+      display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start;
+    }
+    .gh-step-num {
+      width: 28px; height: 28px; background: #3a7b52; color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 900; flex-shrink: 0; margin-top: 1px;
+    }
+    .gh-step-text { font-size: 0.83rem; color: #444; line-height: 1.6; }
+    .gh-step-text strong { color: #111; }
+    .btn-github {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #24292e; color: #fff; padding: 11px 20px;
+      border-radius: 8px; text-decoration: none; font-size: 0.85rem;
+      font-weight: 800; margin-top: 4px; transition: background 0.2s;
+    }
+    .btn-github:hover { background: #444; }
+
+    /* プレビュー */
+    .preview-card {
+      display: none; background: #fff; border-radius: 12px;
+      padding: 20px; border: 1px solid #e0e0e0; margin-bottom: 20px;
+    }
+    .preview-card.show { display: block; }
+    .preview-title { font-size: 0.82rem; font-weight: 800; color: #888; margin-bottom: 12px; }
+    .news-preview {
+      border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;
+      display: flex; gap: 0; max-width: 480px;
+    }
+    .np-img {
+      width: 100px; flex-shrink: 0; background: #eee;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; overflow: hidden;
+    }
+    .np-img img { width: 100%; height: 100%; object-fit: cover; }
+    .np-body { padding: 12px 14px; }
+    .np-cat {
+      font-size: 0.68rem; font-weight: 800; color: #3a7b52;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .np-title { font-size: 0.85rem; font-weight: 800; color: #111; margin-bottom: 4px; }
+    .np-body-text { font-size: 0.75rem; color: #666; line-height: 1.5; }
+    .np-date { font-size: 0.68rem; color: #aaa; margin-top: 6px; }
+
+    .success-msg {
+      display: none; background: #f0f7f3; border: 1.5px solid #3a7b52;
+      border-radius: 8px; padding: 12px 16px; font-size: 0.83rem;
+      color: #1a3d26; margin-top: 10px; font-weight: 700;
+    }
+    .success-msg.show { display: block; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo">📰 マエナカスポーツ お知らせ管理</div>
+    <div class="sub">スタッフ専用 · 更新ページ</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ステップ表示 -->
+  <div class="steps">
+    <div class="step active">
+      <div class="step-num">1</div>
+      <span class="step-label">内容を入力</span>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <span class="step-label">JSONをコピー</span>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <span class="step-label">GitHubに貼る</span>
+    </div>
+  </div>
+
+  <!-- 入力フォーム -->
+  <div class="card">
+    <div class="card-title">📝 ステップ1：お知らせの内容を入力</div>
+
+    <div class="row2">
+      <div class="form-row">
+        <label class="form-label">日付 <span class="req">必須</span></label>
+        <input type="date" id="f-date">
+      </div>
+      <div class="form-row">
+        <label class="form-label">カテゴリ <span class="req">必須</span></label>
+        <select id="f-category">
+          <option value="お知らせ">お知らせ</option>
+          <option value="セール">セール</option>
+          <option value="イベント">イベント</option>
+          <option value="入荷情報">入荷情報</option>
+          <option value="休業日">休業日</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">タイトル <span class="req">必須</span></label>
+      <input type="text" id="f-title" placeholder="例：夏のスポーツ用品セール開催中！">
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">画像ファイル名またはURL</label>
+      <input type="text" id="f-image" placeholder="例：news-summer.jpg　または　https://..." oninput="updatePreview()">
+      <div class="form-hint">📁 画像を使う場合はプロジェクトフォルダに入れてファイル名を入力。なければ空欄でOK。</div>
+      <div class="img-preview-wrap" id="imgPreviewWrap">
+        <img id="imgPreview" src="" alt="プレビュー">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">本文 <span class="req">必須</span></label>
+      <textarea id="f-body" placeholder="お知らせの内容を入力してください。"></textarea>
+    </div>
+
+    <button class="btn-generate" onclick="generate()">✅ JSONコードを生成する</button>
+  </div>
+
+  <!-- カードプレビュー -->
+  <div class="preview-card" id="previewCard">
+    <div class="preview-title">👀 サイト上での見え方（イメージ）</div>
+    <div class="news-preview">
+      <div class="np-img" id="npImg">📰</div>
+      <div class="np-body">
+        <div class="np-cat" id="npCat">お知らせ</div>
+        <div class="np-title" id="npTitle">タイトルが入ります</div>
+        <div class="np-body-text" id="npBody">本文が入ります。</div>
+        <div class="np-date" id="npDate">2025-01-01</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 生成結果 -->
+  <div class="result-card" id="resultCard">
+    <div class="result-title">📋 ステップ2：このJSONコードをコピーしてください</div>
+    <div class="json-box" id="jsonBox"></div>
+    <button class="btn-copy" id="copyBtn" onclick="copyJson()">📋 コピーする</button>
+    <div class="success-msg" id="copyMsg">✅ コピーしました！ステップ3に進んでください。</div>
+  </div>
+
+  <!-- GitHubへの貼り付け手順 -->
+  <div class="github-steps" id="githubSteps" style="display:none;">
+    <div class="github-steps-title">🐙 ステップ3：GitHubに貼り付けて保存する</div>
+
+    <div class="gh-step">
+      <div class="gh-step-num">1</div>
+      <div class="gh-step-text">下のボタンを押してGitHubのファイル編集画面を開く</div>
+    </div>
+    <a class="btn-github" href="https://github.com/maenakatsutomu-hash/maenaka-sports-hp/edit/main/news.json" target="_blank">
+      🐙 GitHubでnews.jsonを開く →
+    </a>
+
+    <div class="gh-step" style="margin-top:16px;">
+      <div class="gh-step-num">2</div>
+      <div class="gh-step-text"><strong>「items」の一番上</strong>（最初の <code style="background:#f0f0f0;padding:2px 5px;border-radius:3px;">{</code> の前）にカーソルを置いて、コピーしたコードを貼り付ける</div>
+    </div>
+
+    <div class="gh-step">
+      <div class="gh-step-num">3</div>
+      <div class="gh-step-text">緑の <strong>「変更をコミットする」</strong> ボタンを押せば完了！数分後にサイトに反映されます。</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // 今日の日付をデフォルトに
+  const today = new Date().toISOString().slice(0, 10);
+  document.getElementById('f-date').value = today;
+
+  // リアルタイムプレビュー更新
+  ['f-title', 'f-body', 'f-date', 'f-category', 'f-image'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updatePreview);
+    document.getElementById(id).addEventListener('change', updatePreview);
+  });
+
+  function updatePreview() {
+    const title = document.getElementById('f-title').value;
+    const body = document.getElementById('f-body').value;
+    const date = document.getElementById('f-date').value;
+    const cat = document.getElementById('f-category').value;
+    const img = document.getElementById('f-image').value.trim();
+
+    if (title || body) {
+      document.getElementById('previewCard').classList.add('show');
+      document.getElementById('npTitle').textContent = title || '（タイトル未入力）';
+      document.getElementById('npBody').textContent = body ? body.slice(0, 60) + (body.length > 60 ? '…' : '') : '';
+      document.getElementById('npDate').textContent = date;
+      document.getElementById('npCat').textContent = cat;
+
+      const npImg = document.getElementById('npImg');
+      if (img) {
+        const src = img.startsWith('http') ? img : img;
+        npImg.innerHTML = `<img src="${src}" alt="preview" onerror="this.parentElement.innerHTML='📰'">`;
+      } else {
+        npImg.innerHTML = '📰';
+      }
+
+      // 画像プレビュー
+      const wrap = document.getElementById('imgPreviewWrap');
+      if (img) {
+        wrap.classList.add('show');
+        document.getElementById('imgPreview').src = img.startsWith('http') ? img : img;
+      } else {
+        wrap.classList.remove('show');
+      }
+    }
+  }
+
+  function generate() {
+    const date = document.getElementById('f-date').value;
+    const cat = document.getElementById('f-category').value;
+    const title = document.getElementById('f-title').value.trim();
+    const img = document.getElementById('f-image').value.trim();
+    const body = document.getElementById('f-body').value.trim();
+
+    if (!date || !title || !body) {
+      alert('日付・タイトル・本文は必須です。');
+      return;
+    }
+
+    // IDを日付＋タイトル冒頭から自動生成
+    const idBase = date + '-' + title.slice(0, 10).replace(/[^\w]/g, '').toLowerCase() || 'news';
+
+    const obj = {
+      id: idBase,
+      date: date,
+      category: cat,
+      title: title,
+      image: img || '',
+      body: body
+    };
+
+    // インデント付きJSON（news.jsonに貼る1アイテム分）
+    const json = JSON.stringify(obj, null, 6)
+      .split('\n')
+      .map((line, i) => i === 0 ? '    ' + line : '    ' + line)
+      .join('\n') + ',';
+
+    document.getElementById('jsonBox').textContent = json;
+    document.getElementById('resultCard').classList.add('show');
+    document.getElementById('githubSteps').style.display = 'block';
+
+    // スクロール
+    setTimeout(() => {
+      document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+
+    // ステップ更新
+    document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('active', i === 1));
+  }
+
+  function copyJson() {
+    const text = document.getElementById('jsonBox').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ コピーしました！';
+      btn.classList.add('copied');
+      document.getElementById('copyMsg').classList.add('show');
+      document.querySelectorAll('.step').forEach((s, i) => s.classList.toggle('active', i === 2));
+      setTimeout(() => {
+        btn.textContent = '📋 コピーする';
+        btn.classList.remove('copied');
+      }, 3000);
+    });
+  }
+</script>
+</body>
+</html>
