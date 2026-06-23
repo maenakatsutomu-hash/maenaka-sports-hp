@@ -949,7 +949,36 @@
       }
 
       const shown = items.slice(0, LIMIT);
-      list.innerHTML = shown.map(item => {
+      const renderItem = item => {
         const thumb = item.image
           ? `<img class="news-thumb" src="${item.image}" alt="${item.title}" loading="lazy">`
-          : `<div class="news-thumb-placeholder
+          : `<div class="news-thumb-placeholder">📰</div>`;
+        return `<a class="news-item" href="#">
+          ${thumb}
+          <div style="flex:1;min-width:0;">
+            <div class="news-item-meta">
+              <span class="news-cat">${item.category || 'お知らせ'}</span>
+              <span class="news-date">${item.date || ''}</span>
+            </div>
+            <div class="news-item-title">${item.title || ''}</div>
+          </div>
+        </a>`;
+      };
+      list.innerHTML = shown.map(renderItem).join('');
+
+      if (items.length > LIMIT) {
+        moreBtn.style.display = 'inline-block';
+        let count = LIMIT;
+        moreBtn.addEventListener('click', () => {
+          list.innerHTML += items.slice(count, count + LIMIT).map(renderItem).join('');
+          count += LIMIT;
+          if (count >= items.length) moreBtn.style.display = 'none';
+        });
+      }
+    } catch(e) {
+      list.innerHTML = '<p class="news-loading">情報を取得できませんでした。</p>';
+    }
+  })();
+</script>
+</body>
+</html>
