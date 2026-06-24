@@ -341,7 +341,9 @@ async function ghFetch(path, method = 'GET', body = null) {
 
 async function getFileSHA(path) {
   const data = await ghFetch(path);
-  return { sha: data.sha, content: JSON.parse(atob(data.content.replace(/\n/g,''))) };
+  const raw = atob(data.content.replace(/\n/g,''));
+  const text = decodeURIComponent(escape(raw));
+  return { sha: data.sha, content: JSON.parse(text) };
 }
 
 async function uploadImage(file) {
