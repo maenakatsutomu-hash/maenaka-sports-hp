@@ -346,17 +346,35 @@ async function getFileSHA(path) {
   return { sha: data.sha, content: JSON.parse(text) };
 }
 
+function compressImage(dataUrl, maxPx, quality) {
+  maxPx = maxPx || 1200; quality = quality || 0.82;
+  return new Promise(function(resolve) {
+    var img = new Image();
+    img.onload = function() {
+      var w = img.width, h = img.height;
+      if (w > maxPx || h > maxPx) {
+        if (w > h) { h = Math.round(h * maxPx / w); w = maxPx; }
+        else        { w = Math.round(w * maxPx / h); h = maxPx; }
+      }
+      var canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', quality).split(',')[1]);
+    };
+    img.src = dataUrl;
+  });
+}
+
 async function uploadImage(file) {
-  const ext = file.name.split('.').pop().toLowerCase();
-  const safeName = Date.now() + '.' + ext;
+  const safeName = Date.now() + '.jpg';
   const path = `${IMG_DIR}/${safeName}`;
-  const base64 = selectedImageDataUrl.split(',')[1];
+  const base64 = await compressImage(selectedImageDataUrl);
   await ghFetch(path, 'PUT', {
     message: `お知らせ画像追加: ${safeName}`,
     content: base64,
     branch: BRANCH,
   });
-  return safeName;
+  return `${IMG_DIR}/${safeName}`;
 }
 
 // ---- 公開 ----
@@ -438,7 +456,7 @@ async function loadNewsList() {
       <div class="news-item">
         <div class="news-item-img">
           ${item.image
-            ? `<img src="https://maenakatsutomu-hash.github.io/maenaka-sports-hp/news-images/${item.image}" alt="">`
+            ? `<img src="https://maenakatsutomu-hash.github.io/maenaka-sports-hp/${item.image}" alt="">`
             : '📰'}
         </div>
         <div class="news-item-body">
