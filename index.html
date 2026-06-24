@@ -950,8 +950,9 @@
 
       const shown = items.slice(0, LIMIT);
       const renderItem = item => {
-        const thumb = item.image
-          ? `<img class="news-thumb" src="${item.image}" alt="${item.title}" loading="lazy">`
+        const imgSrc = item.image ? (item.image.includes('/') ? item.image : 'news-images/' + item.image) : null;
+        const thumb = imgSrc
+          ? `<img class="news-thumb" src="${imgSrc}" alt="${item.title}" loading="lazy">`
           : `<div class="news-thumb-placeholder">📰</div>`;
         return `<a class="news-item" href="#">
           ${thumb}
