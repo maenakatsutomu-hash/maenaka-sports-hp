@@ -283,13 +283,18 @@ function saveToken() {
 
 // ---- 初期化 ----
 function init() {
+  // URLハッシュにトークンがあればlocalStorageに保存（スマホブックマーク用）
+  const tkMatch = location.hash.match(/[#&]tk=([^&]+)/);
+  if (tkMatch) {
+    localStorage.setItem('gh_token', decodeURIComponent(tkMatch[1]));
+    history.replaceState(null, '', location.pathname); // ハッシュを消す
+  }
   // 今日の日付
   document.getElementById('f-date').value = new Date().toISOString().slice(0,10);
-  // トークン確認
   if (getToken()) {
     document.getElementById('tokenSetup').style.display = 'none';
-    loadNewsList();
   }
+  loadNewsList();
 }
 
 // ---- 画像選択 ----
