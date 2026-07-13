@@ -7,6 +7,7 @@
   <title>マエナカスポーツ｜三田市のスポーツ専門店</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -314,8 +315,11 @@
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; flex-wrap: wrap; gap: 12px; }
     .footer-bottom p { font-size: 0.74rem; }
     .socials { display: flex; gap: 8px; }
-    .social-btn { width: 36px; height: 36px; border: 1px solid #222; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.88rem; transition: all 0.2s; }
-    .social-btn:hover { border-color: #3a7b52; background: #3a7b52; color: #fff; }
+    .social-btn { width: 36px; height: 36px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; transition: all 0.2s; color: #fff; text-decoration: none; }
+    .social-btn:hover { transform: scale(1.12); opacity: 0.9; }
+    .social-btn.line-btn { background: #06C755; }
+    .social-btn.insta-btn { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .social-btn.mail-btn { background: #555; }
 
     /* ===== ANIMATIONS ===== */
     .reveal { opacity: 1; transform: none; transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
@@ -845,6 +849,7 @@
       <div class="access-btns">
         <a href="https://maps.google.com/maps?q=兵庫県三田市南が丘1-40-5" target="_blank" rel="noopener" class="btn-g">Google マップで開く</a>
         <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="btn-ghost">LINE で問い合わせ</a>
+        <a href="mailto:maenakasports@gmail.com" class="btn-ghost">✉️ メールで問い合わせ</a>
       </div>
     </div>
   </div>
@@ -857,6 +862,7 @@
   <div class="cta-btns">
     <a href="tel:0795645570" class="btn-cta-dark">📞 電話で問い合わせる</a>
     <a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" class="btn-cta-wh">💬 LINE で相談する</a>
+    <a href="mailto:maenakasports@gmail.com" class="btn-cta-wh">✉️ メールで問い合わせる</a>
   </div>
 </section>
 
@@ -893,16 +899,18 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:0795645570">📞 079-564-5570</a></li>
-          <li><a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener">💬 LINE</a></li>
-          <li><a href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener">📷 Instagram</a></li>
+          <li><a href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener"><i class="fab fa-line" style="color:#06C755"></i> LINE</a></li>
+          <li><a href="mailto:maenakasports@gmail.com"><i class="fas fa-envelope"></i> メール</a></li>
+          <li><a href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener"><i class="fab fa-instagram" style="color:#E1306C"></i> Instagram</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2024 株式会社マエナカスポーツ. All rights reserved.</p>
       <div class="socials">
-        <a class="social-btn" href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener" title="Instagram">📷</a>
-        <a class="social-btn" href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" title="LINE">💬</a>
+        <a class="social-btn insta-btn" href="https://www.instagram.com/maenakasports/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a class="social-btn line-btn" href="https://lin.ee/XwdfZR7" target="_blank" rel="noopener" title="LINE"><i class="fab fa-line"></i></a>
+        <a class="social-btn mail-btn" href="mailto:maenakasports@gmail.com" title="メール"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </div>
